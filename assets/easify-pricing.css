@@ -1,0 +1,280 @@
+/* Pricing calculator, plan grid, and FAQ. Keep this surface independent of page wrappers. */
+.easify-final--pricing { background:#d2f2f9; color:#000; }
+.easify-final--pricing a { color:#000; }
+.easify-final--pricing a:hover { color:#303030; }
+.ez-pricing-page,
+.ez-pricing-page > section { width:100%; max-width:100%; overflow-x:clip; }
+.ez-pricing-hero-region { background:#9de2f3; }
+
+[data-pricing-calculator] .visually-hidden {
+  position:absolute !important; width:1px !important; height:1px !important;
+  padding:0 !important; margin:-1px !important; overflow:hidden !important;
+  clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important;
+}
+[data-pricing-calculator] .bb-slider {
+  -webkit-appearance:none; appearance:none; width:100%; min-height:16px; height:16px;
+  margin:0; border-radius:99999px; background:#e3e3e3; outline:none; touch-action:pan-y;
+}
+[data-pricing-calculator] .bb-slider::-webkit-slider-thumb {
+  -webkit-appearance:none; width:27px; height:27px; border-radius:50%;
+  background:#303030; border:1.231px solid #d9d9d9; cursor:grab;
+  box-shadow:0 2.462px 4.923px rgba(0,0,0,.16);
+}
+[data-pricing-calculator] .bb-slider::-moz-range-thumb {
+  width:27px; height:27px; border-radius:50%; background:#303030;
+  border:1.231px solid #d9d9d9; cursor:grab; box-shadow:0 2.462px 4.923px rgba(0,0,0,.16);
+}
+[data-pricing-calculator] {
+  position:relative; isolation:isolate; width:100%; min-height:947px; overflow:hidden;
+  background:linear-gradient(180deg,#9de2f3 0%,#d2f2f9 100%); color:#000;
+  font-family:"Inter Tight",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; font-size:16px;
+}
+[data-pricing-calculator] :is(button,input):focus-visible { outline:3px solid #8640ff; outline-offset:5px; }
+[data-pricing-calculator] .bb-pricing-sky {
+  position:absolute; left:-8%; top:31%; width:116%; aspect-ratio:1;
+  border-radius:50%; background:radial-gradient(circle,#fffbc0 0%,rgba(255,251,192,.92) 52%,rgba(255,251,192,0) 74%);
+}
+[data-pricing-calculator] .bb-pricing-bushes {
+  position:absolute; z-index:1; left:calc(50% - 798px); bottom:21px;
+  width:1075px; aspect-ratio:1075/258; opacity:.8; overflow:hidden; pointer-events:none;
+}
+[data-pricing-calculator] .bb-pricing-bush-piece { position:absolute; display:block; }
+[data-pricing-calculator] .bb-pricing-bush-piece--1 { left:18.8324%; top:13.2153%; width:27.0088%; height:61.459%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--2 { left:0; top:36.8946%; width:26.8705%; height:59.0906%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--3 { left:7.3955%; top:69.2678%; width:6.6393%; height:13.2343%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--4 { left:56.8994%; top:0; width:43.1006%; height:89.6581%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--5 { left:62.13%; top:21.8701%; width:3.49%; height:12.6657%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--fruit-1 { left:63.379%; top:25.2915%; width:1.081%; height:4.2501%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--6 { left:79.3931%; top:35.5369%; width:4.4628%; height:15.5186%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--fruit-2 { left:80.9701%; top:40.1695%; width:1.2011%; height:4.7504%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--7 { left:85.7097%; top:72.0962%; width:5.5535%; height:8.6133%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--8 { left:73.4042%; top:36.0896%; width:2.3841%; height:4.8667%; }
+[data-pricing-calculator] .bb-pricing-bush-piece--flowers { left:23.0024%; top:21.7484%; width:59.3011%; height:78.2516%; }
+[data-pricing-calculator] .bb-pricing-shell {
+  position:relative; z-index:2; width:min(1296px,calc(100% - 48px));
+  min-height:947px; margin:0 auto; padding:80px 0 176px;
+}
+[data-pricing-calculator] .bb-pricing-heading { position:relative; width:min(1135px,100%); display:grid; gap:32px; }
+[data-pricing-calculator] .bb-pricing-title {
+  margin:0; max-width:15ch; color:#000; font:600 clamp(64px,8.3vw,95px)/1 "Inter Tight",sans-serif;
+  letter-spacing:-.035em; text-wrap:balance;
+}
+[data-pricing-calculator] .bb-pricing-description {
+  margin:0; max-width:760px; color:#000; font:400 24px/1.3 "Inter Tight",sans-serif;
+  text-wrap:pretty;
+}
+[data-pricing-calculator] .bb-pricing-card {
+  position:relative; width:min(950px,calc(100% - 320px)); margin-top:48px;
+  padding:32px; border:1px solid #303030; border-radius:24px; background:#fff;
+  display:grid; gap:24px; box-shadow:none;
+}
+[data-pricing-calculator] .bb-price { display:flex; align-items:flex-end; gap:8px; }
+[data-pricing-calculator] .bb-price > [data-pricing-price] {
+  color:#000; font:600 48px/1.1 "Inter Tight",sans-serif;
+  letter-spacing:-.025em; font-variant-numeric:tabular-nums;
+}
+[data-pricing-calculator] .bb-price-period { padding-bottom:6px; color:#727272; font-size:16px; line-height:1.2; }
+[data-pricing-calculator] .bb-plan { display:flex; align-items:center; flex-wrap:wrap; gap:12px; color:#616161; font-size:16px; }
+[data-pricing-calculator] .bb-plan strong { color:#000; font-weight:600; font-variant-numeric:tabular-nums; }
+[data-pricing-calculator] .bb-plan-divider { width:1px; height:19px; background:#d9d9d9; }
+[data-pricing-calculator] .bb-price-ticks { display:flex; justify-content:space-between; gap:8px; margin-top:-14px; }
+[data-pricing-calculator] .bb-price-ticks button {
+  min-width:44px; min-height:44px; padding:12px 4px; border:0; background:transparent;
+  color:#616161; font:500 16px/1.2 "Inter Tight",sans-serif; cursor:pointer;
+  transition:color 180ms ease-out,transform 120ms ease-out;
+}
+[data-pricing-calculator] .bb-price-ticks button:first-child { text-align:left; }
+[data-pricing-calculator] .bb-price-ticks button:last-child { text-align:right; }
+[data-pricing-calculator] .bb-price-ticks button:hover,
+[data-pricing-calculator] .bb-price-ticks button[aria-current="true"] { color:#000; transform:translateY(-2px); }
+[data-pricing-calculator] .bb-price-ticks button[data-pricing-reached="true"] { color:#000; font-weight:700; }
+[data-pricing-calculator] .bb-price-ticks button:active { transform:translateY(1px); }
+[data-pricing-calculator] .bb-pricing-metrics {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px;
+  border:1px solid #e3e3e3; border-radius:12px; overflow:hidden; background:#e3e3e3;
+}
+[data-pricing-calculator] .bb-pricing-metrics > div { display:grid; gap:6px; padding:16px 18px; background:#fff; }
+[data-pricing-calculator] .bb-pricing-metrics span { color:#727272; font-size:15px; }
+[data-pricing-calculator] .bb-pricing-metrics strong { color:#000; font-size:22px; font-variant-numeric:tabular-nums; }
+[data-pricing-calculator] .bb-pricing-note { margin:0; color:#616161; font-size:16px; line-height:1.5; }
+[data-pricing-calculator] .bb-pricing-ground {
+  position:absolute; z-index:1; left:-6%; bottom:-86px; width:112%; height:184px;
+  border-radius:50% 50% 0 0; background:#2d1400;
+}
+[data-pricing-calculator] .bb-pricing-tree {
+  --pricing-tree-scale:.78; position:absolute; z-index:3; right:0; bottom:64px;
+  width:min(29.4vw,380px); aspect-ratio:19/20; pointer-events:none;
+  transform:scale(var(--pricing-tree-scale)); transform-origin:50% 100%;
+  transition:transform 80ms ease-out;
+}
+[data-pricing-calculator] .bb-pricing-tree-image {
+  display:block; width:100%; height:100%; object-fit:contain;
+}
+
+.easify-home-pricing-section {
+  background:linear-gradient(180deg,#9de2f3 0%,#d2f2f9 100%);
+}
+.easify-team-section[data-home-pricing-handoff-ready="true"] {
+  position:relative;
+  z-index:1;
+  height:var(--ez-home-pricing-team-stage-height,220svh);
+  background:#fff8e9;
+}
+.easify-team-section[data-home-pricing-handoff-ready="true"] > .easify-team-root {
+  position:sticky;
+  top:calc(var(--ez-home-pricing-panel-height,100svh) - var(--ez-home-pricing-team-content-height,100svh));
+}
+.easify-home-pricing-section[data-home-pricing-stage-ready="true"] {
+  position:relative;
+  z-index:4;
+  height:var(--ez-home-pricing-stage-height,220svh);
+  margin-top:calc(-1 * var(--ez-home-pricing-stage-height,220svh));
+  overflow:visible;
+  background:transparent;
+}
+.easify-home-pricing-section[data-home-pricing-stage-ready="true"] > [data-home-pricing-reveal][data-home-pricing-reveal-ready="true"] {
+  position:sticky;
+  top:0;
+  z-index:2;
+  width:100%;
+  height:var(--ez-home-pricing-panel-height,100svh);
+  min-height:var(--ez-home-pricing-panel-height,100svh);
+  clip-path:circle(var(--ez-home-pricing-reveal-radius,75%) at 50% 50%);
+}
+.easify-home-pricing-section[data-home-pricing-stage-ready="true"] .bb-pricing--home .bb-pricing-shell {
+  min-height:var(--ez-home-pricing-panel-height,100svh);
+}
+
+@media (min-width:1200px) {
+  [data-pricing-calculator] .bb-pricing-shell {
+    width:min(1180px,calc(100% - 160px));
+  }
+  [data-pricing-calculator] .bb-pricing-title {
+    font-size:clamp(64px,7vw,95px);
+  }
+  [data-pricing-calculator] .bb-pricing-tree {
+    right:auto;
+    left:calc(min(950px,calc(100% - 320px)) + 24px);
+  }
+  [data-pricing-calculator].bb-pricing--home .bb-pricing-tree {
+    bottom:76px;
+    width:min(39vw,540px);
+  }
+  [data-pricing-calculator].bb-pricing--home .bb-pricing-ground {
+    bottom:-42px;
+  }
+  .easify-home-pricing-section {
+    overflow:hidden;
+    background:linear-gradient(180deg,#9de2f3 0%,#d2f2f9 100%);
+  }
+  .easify-home-pricing-section[data-home-pricing-stage-ready="true"] {
+    overflow:visible;
+    background:transparent;
+  }
+  .easify-team-section[data-home-pricing-handoff-ready="true"] {
+    height:var(--ez-home-pricing-team-stage-height,220svh);
+  }
+  .easify-team-section[data-home-pricing-handoff-ready="true"] > .easify-team-root {
+    top:0;
+    bottom:auto;
+    height:var(--ez-home-pricing-panel-height,100svh);
+    overflow:hidden;
+  }
+}
+
+.ez-pricing-plans > div { width:min(1296px,calc(100% - 48px)) !important; max-width:100%; }
+.ez-pricing-plans__billing-link {
+  text-decoration:none;
+  transition:transform 180ms var(--ez-ease-out-quart,cubic-bezier(.25,1,.5,1));
+  will-change:transform;
+}
+.ez-pricing-plans__billing-link:hover { transform:translateY(-2px); }
+#ez-faq {
+  padding:88px 0; background-color:#fff3e8;
+  background-image:linear-gradient(rgba(255,134,23,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,134,23,.16) 1px,transparent 1px);
+  background-size:56px 56px;
+}
+#ez-faq .ez-faq-shell { width:min(1000px,calc(100% - 48px)); margin:0 auto; display:grid; gap:26px; }
+#ez-faq h2 { margin:0; color:#000; font-size:clamp(30px,4.4vw,56px); line-height:1.05; }
+#ez-faq .ez-faq-list { display:grid; gap:12px; }
+#ez-faq .ez-faq-item { border:1px solid #f1e3d0; border-radius:16px; overflow:hidden; background:#fffcf8; }
+#ez-faq [data-faq-button] {
+  width:100%; min-height:68px; padding:16px 24px; border:0; background:transparent;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  color:#000; font:600 18px/1.35 "Inter Tight",sans-serif; text-align:left; cursor:pointer;
+  transition:background-color 180ms ease-out;
+}
+#ez-faq [data-faq-button]:hover { background:#f7f7f7; }
+#ez-faq [data-faq-sign] {
+  flex:0 0 28px; width:28px; height:28px; border-radius:50%; background:#f1f1f1;
+  display:grid; place-items:center; color:#303030; font-size:16px;
+  transition:transform 220ms cubic-bezier(.25,1,.5,1);
+}
+#ez-faq [data-faq-button][aria-expanded="true"] [data-faq-sign] { transform:rotate(180deg); }
+#ez-faq [data-faq-panel] p { margin:0; max-width:86ch; padding:0 24px 22px; color:#616161; font-size:16px; line-height:1.65; }
+#ez-faq [data-faq-panel][hidden] { display:none; }
+
+@media (max-width:1199px) {
+  [data-pricing-calculator] .bb-pricing-bushes { left:-6%; width:min(90vw,968px); bottom:32px; }
+  [data-pricing-calculator] .bb-pricing-shell { min-height:760px; padding:72px 0 152px; }
+  [data-pricing-calculator] .bb-pricing-card { width:min(820px,calc(100% - 180px)); }
+}
+
+@media (max-width:767px) {
+  [data-pricing-calculator] { min-height:760px; }
+  [data-pricing-calculator] .bb-pricing-shell { width:calc(100% - 32px); min-height:760px; padding:56px 0 128px; }
+  [data-pricing-calculator].bb-pricing--home {
+    height:100dvh;
+    min-height:100dvh;
+  }
+  [data-pricing-calculator].bb-pricing--home .bb-pricing-shell {
+    height:100dvh;
+    min-height:100dvh;
+    padding:48px 0 96px;
+  }
+  [data-pricing-calculator] .bb-pricing-heading { gap:20px; }
+  [data-pricing-calculator] .bb-pricing-title { width:100%; max-width:100%; font-size:48px; }
+  [data-pricing-calculator].bb-pricing--home .bb-pricing-title { font-size:40px; }
+  [data-pricing-calculator] .bb-pricing-description { font-size:16px; line-height:1.45; }
+  [data-pricing-calculator] .bb-pricing-card { width:100%; margin-top:36px; padding:24px 20px; border-radius:20px; gap:20px; }
+  [data-pricing-calculator] .bb-price > [data-pricing-price] { font-size:44px; }
+  [data-pricing-calculator] .bb-price-period { padding-bottom:5px; font-size:16px; }
+  [data-pricing-calculator] .bb-plan { align-items:flex-start; flex-direction:column; gap:8px; }
+  [data-pricing-calculator] .bb-plan-divider { display:none; }
+  [data-pricing-calculator] .bb-price-ticks { gap:0; }
+  [data-pricing-calculator] .bb-price-ticks button { min-width:0; padding-inline:2px; font-size:13px; }
+  [data-pricing-calculator] .bb-pricing-metrics { grid-template-columns:1fr; }
+  [data-pricing-calculator] .bb-pricing-bushes { left:-20%; bottom:72px; width:120vw; }
+  [data-pricing-calculator] .bb-pricing-tree { right:-32px; bottom:40px; width:min(62vw,240px); }
+  [data-pricing-calculator].bb-pricing--home .bb-pricing-bushes {
+    left:-18%;
+    bottom:66px;
+    width:min(82vw,316px);
+  }
+  [data-pricing-calculator].bb-pricing--home .bb-pricing-tree { bottom:62px; }
+  [data-pricing-calculator].bb-pricing--home .bb-pricing-ground {
+    left:-6%;
+    bottom:-42px;
+    width:112%;
+    height:126px;
+    border-radius:38% 38% 0 0;
+  }
+  .ez-pricing-plans { padding-top:64px !important; }
+  .ez-pricing-plans > div { width:100% !important; padding-inline:16px !important; }
+  #ez-faq { padding:64px 0; }
+  #ez-faq .ez-faq-shell { width:calc(100% - 32px); }
+  #ez-faq [data-faq-button] { min-height:64px; padding:14px 16px; font-size:16px; }
+  #ez-faq [data-faq-panel] p { padding:0 16px 18px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  [data-home-pricing-reveal] {
+    clip-path:none !important;
+    animation:none !important;
+  }
+  [data-pricing-calculator] .bb-pricing-tree,
+  [data-pricing-calculator] .bb-price-ticks button,
+  .ez-pricing-plans__billing-link,
+  #ez-faq [data-faq-button],
+  #ez-faq [data-faq-sign] { transition-duration:.01ms !important; }
+}

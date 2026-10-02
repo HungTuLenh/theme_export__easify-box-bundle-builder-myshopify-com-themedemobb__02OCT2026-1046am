@@ -1,0 +1,32 @@
+{%- liquid
+  assign button_variant = variant | default: 'default'
+  unless button_variant == 'primary'
+    assign button_variant = 'default'
+  endunless
+
+  assign button_href = href | default: '#'
+  assign button_label = label | default: ''
+  assign button_class = 'ez-button ez-button--' | append: button_variant
+  if extra_class != blank
+    assign button_class = button_class | append: ' ' | append: extra_class
+  endif
+
+  assign button_target = target
+  assign button_rel = rel
+  if new_tab
+    assign button_target = '_blank'
+    if button_rel == blank
+      assign button_rel = 'noreferrer'
+    endif
+  endif
+-%}
+<a
+  class="{{ button_class | strip | escape }}"
+  href="{{ button_href | escape }}"
+  {% if button_rel != blank %}rel="{{ button_rel | escape }}"{% endif %}
+  {% if button_target != blank %}target="{{ button_target | escape }}"{% endif %}
+  {% if attributes != blank %}{{ attributes }}{% endif %}
+>
+  <span class="ez-button__label">{{ button_label | escape }}</span>
+  <span aria-hidden="true" class="ez-button__icon"><span></span></span>
+</a>

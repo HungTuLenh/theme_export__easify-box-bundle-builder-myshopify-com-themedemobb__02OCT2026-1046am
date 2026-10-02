@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+ {%- capture ecom_header_content -%}{%- render 'ecom_header' -%}{%- endcapture -%}{%- unless ecom_header_content contains 'Liquid error' -%}{{ ecom_header_content }}{%- endunless -%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <title>{{ page_title }}</title>
+
+    <script>document.documentElement.classList.add('js');</script>
+    {{ 'inter-tight-variable.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
+    {{ 'easify-theme.css' | asset_url | stylesheet_tag }}
+    {{ 'easify-button.css' | asset_url | stylesheet_tag }}
+    {{ 'easify-pricing.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body>
+    {% liquid
+      assign site_active_page = 'none'
+      assign site_header_placement = 'flow'
+      assign site_header_background = '#ffffff'
+      assign site_request_path = request.path | default: ''
+
+      if template.name == 'index'
+        assign site_active_page = 'home'
+        assign site_header_placement = 'overlay'
+      elsif template.suffix == 'demo' or site_request_path contains '/pages/demo'
+        assign site_active_page = 'demo'
+        assign site_header_placement = 'overlay'
+      elsif template.suffix == 'pricing' or site_request_path contains '/pages/pricing'
+        assign site_active_page = 'pricing'
+        assign site_header_background = '#9de2f3'
+      elsif template.suffix == 'testimonials' or site_request_path contains '/pages/testimonials'
+        assign site_active_page = 'testimonials'
+        assign site_header_background = '#fff3e8'
+      endif
+    %}
+
+    <div class="easify-global-header" style="position:relative;z-index:30;background:{{ site_header_background }};">
+      {% render 'easify-site-header',
+        active_page: site_active_page,
+        placement: site_header_placement,
+        id_suffix: 'global'
+      %}
+    </div>
+
+    <main
+      id="MainContent"
+      role="main"
+      {% if site_active_page == 'none' %}style="padding-block:40px;"{% endif %}
+    >
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'easify-site-footer' %}
+
+    <script src="{{ 'easify-image-map.js' | asset_url }}" defer></script>
+    <script src="{{ 'easify-theme.js' | asset_url }}" defer></script>
+  {%- capture ecom_footer_content -%}{%- render 'ecom_footer' -%}{%- endcapture -%}{%- unless ecom_footer_content contains 'Liquid error' -%}{{ ecom_footer_content }}{%- endunless -%}</body>
+</html>

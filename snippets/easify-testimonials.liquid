@@ -1,0 +1,106 @@
+{% liquid
+  assign app_review_rating = settings.easify_app_review_rating
+  assign testimonial_reviews_link = settings.easify_app_reviews_url
+  assign testimonial_reviews_joiner = '?'
+  if testimonial_reviews_link contains '?'
+    assign testimonial_reviews_joiner = '&'
+  endif
+  assign testimonial_all_reviews_link = testimonial_reviews_link | append: testimonial_reviews_joiner | append: 'utm_source=demo-store&utm_medium=all-reviews'
+  assign testimonial_stars = '★★★★★'
+  assign testimonial_card_style = 'background: rgb(255, 252, 248); border: 1px solid rgb(241, 227, 208); border-radius: 20px; padding: 26px; display: grid; gap: 14px; grid-template-rows: auto auto 1fr; align-content: start; min-width: 0px; height: 100%; box-sizing: border-box;'
+  assign testimonial_header_style = 'display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;'
+  assign testimonial_merchant_stack_style = 'display: grid; gap: 3px; min-width: 0px;'
+  assign testimonial_store_style = 'font-size: 20px; font-weight: 600; line-height: 1.3; color: rgb(0, 0, 0);'
+  assign testimonial_country_style = 'font-size: 13px; font-weight: 400; color: rgb(122, 106, 87);'
+  assign testimonial_badge_style = 'flex: 0 0 auto; white-space: nowrap; border-radius: 20px; padding: 4px 10px; font-size: 11px; font-weight: 500;'
+  assign testimonial_stars_style = 'color: rgb(239, 112, 27); font-size: 13px; letter-spacing: 2px;'
+  assign testimonial_quote_style = 'margin: 0px; font-size: 15px; line-height: 1.6; color: rgb(74, 63, 51); text-wrap: pretty;'
+%}
+{% capture testimonial_filters -%}
+all||All~~
+gift||Gift & Lifestyle~~
+fashion||Fashion & Apparel~~
+food||Food & Drink~~
+home||Home & Decor~~
+jewelry||Jewelry~~
+beauty||Beauty & Craft~~
+sports||Sports & Fitness
+{%- endcapture %}
+{% capture testimonial_rows -%}
+gift||true||Hill Country Mum Kits||🇺🇸 United States||Gift & Lifestyle||rgb(255, 241, 227)||rgb(163, 75, 0)||Customers just walk through one step at a time and make selections. No waiting for all images to be loaded. It solves the problem we had with our 200+ photos.~~
+fashion||true||Girls with Guns Clothing||🇺🇸 United States||Fashion & Apparel||rgb(239, 243, 255)||rgb(45, 69, 210)||Best option I've found after trying several others. User-friendly interface with the power and flexibility to do exactly what I need. Support is responsive and knowledgeable.~~
+food||true||G 2 the F Cookies||🇦🇺 Australia||Food & Drink||rgb(255, 246, 224)||rgb(138, 98, 0)||I was able to create my cookie boxes exactly how I wanted, including my colours and product photos. Any questions I had were answered within minutes.~~
+home||true||Lael Mitchell Interiors||🇺🇸 United States||Home & Decor||rgb(237, 247, 238)||rgb(44, 110, 58)||Outstanding app packed with powerful features and flexible customization. Despite my complex request, they devised the perfect workaround tailored to my needs. Truly a 10/10.~~
+jewelry||true||Ka Ohana Jewelry||🇺🇸 United States||Jewelry||rgb(244, 238, 255)||rgb(91, 58, 166)||Always responsive, kept us in the loop when working with their dev team, and helped solve every issue. Service is fast, everyone is super friendly. Highly recommend!~~
+beauty||true||Better Off Soap Shop||🇺🇸 United States||Beauty & Craft||rgb(253, 240, 255)||rgb(128, 48, 160)||I spent way too much time on two other apps before finding this one. Support was so patient the whole way helping problem solve to get it to work!~~
+sports||true||Rone Restorations||🇺🇸 United States||Sports & Fitness||rgb(234, 246, 250)||rgb(15, 110, 140)||Seriously the best BYOB app. I've tried them all — literally downloaded and tried at least 30 of them. You can see in real time what your screen will look like.~~
+gift||true||EOS BOX||🇬🇧 United Kingdom||Gift & Lifestyle||rgb(255, 241, 227)||rgb(163, 75, 0)||One of the first BYOB apps that meets almost all of our requirements. Feature requests were immediately passed to developers and they kept us updated.~~
+fashion||true||MudGear||🇺🇸 United States||Fashion & Apparel||rgb(239, 243, 255)||rgb(45, 69, 210)||The build your own bundle box builder is easy to set up and has great options for layout. If you have any issues, the support is top-notch.~~
+food||true||Cookie Boxx||🇺🇸 United States||Food & Drink||rgb(255, 246, 224)||rgb(138, 98, 0)||I have made progress in getting all my bundles working. Support understood the problem, not only solved it, but clearly explained why it was happening.~~
+home||true||ColourHome||🇵🇰 Pakistan||Home & Decor||rgb(237, 247, 238)||rgb(44, 110, 58)||This app really helps me to build any kind of bundle for my store and their customer support is really good and supportive.~~
+jewelry||true||Ladybugfeet Jewelry Designs||🇺🇸 United States||Jewelry||rgb(244, 238, 255)||rgb(91, 58, 166)||I am very pleased with this app so far. There were some minor tweaks that needed to be ironed out but all in all I'm excited for its potential in my shop.~~
+gift||false||Dabble Doll||🇺🇸 United States||Gift & Lifestyle||rgb(255, 241, 227)||rgb(163, 75, 0)||Easy to use and gives me the much needed functionality to allow customers to build their own boxes. Customer support has been wonderful, very communicative and responsive!~~
+gift||false||Charlie Pickles||🇨🇦 Canada||Gift & Lifestyle||rgb(255, 241, 227)||rgb(163, 75, 0)||I'm not sure there is any better app for Shopify than this. They obviously understand shoppers, how they shop, and how to make life easy for store owners to set up.~~
+gift||false||Gentle Doves Flower Shop||🇹🇭 Thailand||Gift & Lifestyle||rgb(255, 241, 227)||rgb(163, 75, 0)||The app is extremely versatile when it comes to customization — I was able to tailor the box-building experience to perfectly match my store's style and workflow.~~
+gift||false||Organising Chaos||🇺🇸 United States||Gift & Lifestyle||rgb(255, 241, 227)||rgb(163, 75, 0)||Great app with great service provided. Support are quick to help and add any suggestions to future updates. I am very impressed and glad I switched from the original box builder app I was using before.~~
+gift||false||mimi mono SG||🇸🇬 Singapore||Gift & Lifestyle||rgb(255, 241, 227)||rgb(163, 75, 0)||Love how seamless it is to set everything up, and have been using their other apps as well with prompt CS reply each time. Keep up the good work, team!~~
+fashion||false||Chatterbox Labels||🇮🇳 India||Fashion & Apparel||rgb(239, 243, 255)||rgb(45, 69, 210)||This is a great app for delivering something new in allowing customers to pick and choose and create own bundles by doing mix and match. The multi-step feature is a great feature.~~
+food||false||Dough For Days||🇺🇸 United States||Food & Drink||rgb(255, 246, 224)||rgb(138, 98, 0)||Very easy to set up. I had an issue with the quantity restrictions but the 24/7 live chat showed me the setting that I had wrong and fixed the problem. I would definitely recommend.~~
+food||false||5 Senses Coffee||🇩🇪 Germany||Food & Drink||rgb(255, 246, 224)||rgb(138, 98, 0)||Sehr hilfreiche App und mords schneller Support. Konnte genau das erstellen und bei Shopify integrieren, was ich wollte.~~
+food||false||Sodalicious Cocktails||🇦🇺 Australia||Food & Drink||rgb(255, 246, 224)||rgb(138, 98, 0)||Its a very useful app to bundle products together and super handy having access to support via chat.~~
+food||false||Saboreo||🇨🇭 Switzerland||Food & Drink||rgb(255, 246, 224)||rgb(138, 98, 0)||Truly amazing support team. Special thanks to Hannie for her prompt replies and help!~~
+beauty||false||Faith Watkins Art||🇺🇸 United States||Beauty & Craft||rgb(253, 240, 255)||rgb(128, 48, 160)||I have been looking EVERYWHERE for an app that will help me make a build-your-own-bundle listing with existing products. This is just what I need — FOR FREE?! This is huge for a small artist.~~
+beauty||false||Inky Quills LLC||🇺🇸 United States||Beauty & Craft||rgb(253, 240, 255)||rgb(128, 48, 160)||The tech team was fantastic and put the work in to make it possible for me to utilize this app without changing my website theme. I am super impressed and love the app and its capabilities.~~
+beauty||false||Mantra Bee||🇦🇺 Australia||Beauty & Craft||rgb(253, 240, 255)||rgb(128, 48, 160)||Love how easy it is to setup. The built in layouts are fantastic and you can customise everything to suit your theme. The support is amazing.~~
+sports||false||WeightWise||🇺🇸 United States||Sports & Fitness||rgb(234, 246, 250)||rgb(15, 110, 140)||Super responsive and helpful team! They answered every question and even wrote custom code so that our bundles could match our other products. Highly recommend!~~
+sports||false||Puzzelly||🇦🇺 Australia||Sports & Fitness||rgb(234, 246, 250)||rgb(15, 110, 140)||I love that discounts can be automated based on how many items they add without needing to go to a new page. After a bit of back and forth, the issue was solved.
+{%- endcapture %}
+
+<div class="ez-testimonials-page" data-testimonials style="width: 100%; overflow-x: clip; background-color: rgb(255, 243, 232); background-image: linear-gradient(rgba(255, 134, 23, 0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 134, 23, 0.16) 1px, transparent 1px); background-size: 56px 56px;">
+<section class="ez-testimonials-hero" style="width: 100%; margin: 0px; padding: 72px 0px 0px; display: grid; gap: 20px; justify-items: start;">
+<h1 style="margin: 0px; font-size: clamp(34px, 5.4vw, 72px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.04; color: rgb(0, 0, 0); max-width: 20ch;">See what stores like yours are saying.</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-size: 16px; color: rgb(122, 106, 87);">
+<span style="color: rgb(239, 112, 27); letter-spacing: 2px;">{{ testimonial_stars }}</span>
+<strong style="color: rgb(0, 0, 0); font-weight: 600;">{{ app_review_rating | escape }} average</strong>
+<span style="color: rgb(224, 205, 182);">·</span><span>Free plan available</span>
+<span style="color: rgb(224, 205, 182);">·</span><span>Built for Shopify</span>
+</div>
+<div aria-label="Filter testimonials by industry" data-testimonial-filters role="group" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+{% assign testimonial_filter_items = testimonial_filters | strip | split: '~~' %}
+{% for testimonial_filter in testimonial_filter_items %}
+  {% assign testimonial_filter_fields = testimonial_filter | strip | split: '||' %}
+  {% assign testimonial_filter_value = testimonial_filter_fields[0] | strip %}
+  {% assign testimonial_filter_label = testimonial_filter_fields[1] | strip %}
+  <button aria-pressed="{% if testimonial_filter_value == 'all' %}true{% else %}false{% endif %}" data-testimonial-filter="{{ testimonial_filter_value | escape }}" type="button"><span>{{ testimonial_filter_label | escape }}</span></button>
+{% endfor %}
+</div>
+</section>
+<section aria-live="polite" class="ez-testimonials-grid" data-testimonial-grid style="width: 100%; margin: 0px; padding: 36px 0px 0px; display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 20px; align-items: stretch;">
+{% assign testimonial_items = testimonial_rows | strip | split: '~~' %}
+{% for testimonial_item in testimonial_items %}
+  {% assign testimonial_fields = testimonial_item | strip | split: '||' %}
+  {% assign testimonial_category = testimonial_fields[0] | strip %}
+  {% assign testimonial_featured = testimonial_fields[1] | strip %}
+  {% assign testimonial_store = testimonial_fields[2] | strip %}
+  {% assign testimonial_country = testimonial_fields[3] | strip %}
+  {% assign testimonial_badge = testimonial_fields[4] | strip %}
+  {% assign testimonial_badge_bg = testimonial_fields[5] | strip %}
+  {% assign testimonial_badge_color = testimonial_fields[6] | strip %}
+  {% assign testimonial_quote = testimonial_fields[7] | strip %}
+  <div data-review-category="{{ testimonial_category | escape }}"{% if testimonial_featured == 'true' %} data-review-featured{% else %} hidden{% endif %} style="{{ testimonial_card_style }}">
+    <div style="{{ testimonial_header_style }}">
+      <div style="{{ testimonial_merchant_stack_style }}">
+        <span style="{{ testimonial_store_style }}">{{ testimonial_store | escape }}</span>
+        <span style="{{ testimonial_country_style }}">{{ testimonial_country | escape }}</span>
+      </div>
+      <span style="{{ testimonial_badge_style }} background: {{ testimonial_badge_bg }}; color: {{ testimonial_badge_color }};">{{ testimonial_badge | escape }}</span>
+    </div>
+    <span style="{{ testimonial_stars_style }}">{{ testimonial_stars }}</span>
+    <p style="{{ testimonial_quote_style }}">{{ testimonial_quote | escape }}</p>
+  </div>
+{% endfor %}
+</section>
+<div style="width: min(1296px, 94vw); margin: 0px auto; padding: 40px 0px 96px; display: flex; justify-content: center;">
+{% render 'easify-button', label: 'View all reviews', href: testimonial_all_reviews_link, variant: 'primary', rel: 'noreferrer', target: '_blank' %}
+</div>
+</div>

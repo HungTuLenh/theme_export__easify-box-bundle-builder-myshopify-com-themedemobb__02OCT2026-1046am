@@ -1,0 +1,420 @@
+{
+  "sections": {
+    "hero": {
+      "type": "easify-hero",
+      "settings": {
+        "variant": "home",
+        "anchor_id": "top",
+        "heading": "Pre-set bundles are",
+        "highlight": "not enough.",
+        "button_label": "Bundle your way",
+        "button_link": "https://apps.shopify.com/easify-box-builder?utm_source=demo-store&utm_medium=hero-banner",
+        "open_new_tab": true,
+        "mascot_alt": "Easify mascot"
+      }
+    },
+    "main": {
+      "type": "easify-box-builder",
+      "settings": {
+        "page_variant": "home"
+      }
+    },
+    "home_stats": {
+      "type": "easify-home-stats",
+      "settings": {
+        "anchor_id": "stats",
+        "heading": "Easify Box\nBundle Builder",
+        "revenue_label": "Revenue generated",
+        "merchants_label": "Merchants trusted",
+        "body": "Stop selling one product at a time. Sell the whole routine. Everything is built in a visual editor: colours, layout, options, pricing logic, all yours. Start with a simple box, grow.",
+        "button_label": "Explore app",
+        "open_new_tab": true,
+        "mascot_alt": "Easify Box Bundle Builder mascot"
+      }
+    },
+    "home_story": {
+      "type": "easify-home-story",
+      "settings": {}
+    },
+    "home_gigi": {
+      "type": "easify-home-gigi",
+      "settings": {
+        "anchor_id": "gigi",
+        "accessible_label": "GiGi, the Easify AI assistant",
+        "word": "GiGi",
+        "mascot_alt": "GiGi, the Easify AI assistant"
+      }
+    },
+    "home_ai": {
+      "type": "easify-home-ai",
+      "blocks": {
+        "instant_mix": {
+          "type": "layer",
+          "settings": {
+            "label": "Layer 1",
+            "title": "Instant Mix & Build",
+            "body": "Suggests winning box ideas from your market – just pick & launch.",
+            "default_image": "layer_1",
+            "image_alt": "AI suggests fitness bundle ideas in a box builder"
+          }
+        },
+        "hands_free_setup": {
+          "type": "layer",
+          "settings": {
+            "label": "Layer 2",
+            "title": "Hands-Free AI Setup",
+            "body": "Configures the whole box for you - design, discounts, whatever.",
+            "default_image": "layer_2",
+            "image_alt": "AI helps customize the box builder design"
+          }
+        },
+        "cro_tuning": {
+          "type": "layer",
+          "settings": {
+            "label": "Layer 3",
+            "title": "AI CRO Tuning",
+            "body": "Spots opportunities to close sales faster & drive repeat revenue later.",
+            "default_image": "layer_3",
+            "image_alt": "AI CRO recommendations and sales feature setup"
+          }
+        }
+      },
+      "block_order": ["instant_mix", "hands_free_setup", "cro_tuning"],
+      "settings": {
+        "anchor_id": "ai-features",
+        "heading_prefix": "You are",
+        "heading_highlight": "NOT",
+        "heading_suffix": "building bundles alone.",
+        "intro": "AI arrived supporting you in your first 30 days. GiGi helps you figure things out in minutes."
+      }
+    },
+    "team": {
+      "type": "easify-team",
+      "blocks": {
+        "live_chat": {
+          "type": "card",
+          "settings": {
+            "icon": "chat",
+            "title": "24/7 live chat\nwith real people",
+            "body": "Not bots. Not AI pretending to care. Just real humans who actually enjoy talking to you."
+          }
+        },
+        "full_team": {
+          "type": "card",
+          "settings": {
+            "icon": "team",
+            "title": "We’re a full team",
+            "body": "Not one person vibe-coding an app. Developers, designers, QA, BA, support - real people with real expertise."
+          }
+        },
+        "cro_experts": {
+          "type": "card",
+          "settings": {
+            "icon": "chart",
+            "title": "CRO experts\nthat accompany",
+            "body": "We read your numbers with you and tell you which offer to run next - not once at launch, every month."
+          }
+        }
+      },
+      "block_order": ["live_chat", "full_team", "cro_experts"],
+      "settings": {
+        "anchor_id": "partners",
+        "heading_line_one": "More than an app.",
+        "heading_line_two": "A team that grows with you",
+        "intro": "A dedicated CRO expert team to support, advise, and help you win bigger."
+      }
+    },
+    "home_pricing": {
+      "type": "easify-home-pricing",
+      "settings": {
+        "heading": "We build and reach bigger together.",
+        "subtext": "The app pays for itself. We only grow when you grow, so pricing follows your orders, not your ambition."
+      }
+    },
+    "reviews": {
+      "type": "easify-home-reviews",
+      "blocks": {
+        "review_salie": {
+          "type": "review",
+          "settings": {
+            "quote": "The app is amazing and the customer support couldnt be better to be honest",
+            "store": "Salie"
+          }
+        },
+        "review_burgrune": {
+          "type": "review",
+          "settings": {
+            "quote": "Really useful app with an easy-to-understand user interface. I had a query which was answered immediately and thoroughly. So sensible to be able to run the full app without paying a fee until income warrants it.",
+            "store": "Burgrune"
+          }
+        },
+        "review_the_pig_skin_boys": {
+          "type": "review",
+          "settings": {
+            "quote": "There's a reason they have a 5-star rating, not my 5-star, across the board. They treated me like I checked into the Four Seasons. Complete white glove service, and it made me realize within the first few minutes I had made the right decision on which partner to scale my business with.",
+            "store": "The Pig Skin Boys"
+          }
+        },
+        "review_cookie_mookie": {
+          "type": "review",
+          "settings": {
+            "quote": "Fast response, good understanding and professionalism.",
+            "store": "COOKIE MOOKIE"
+          }
+        },
+        "review_we_are_fair_trade": {
+          "type": "review",
+          "settings": {
+            "quote": "I am very happy with this app and the backup from the customer service team is very good. They respond quickly and have helped me sort any issues very helpfully",
+            "store": "We Are Fair Trade Ltd"
+          }
+        },
+        "review_kindlebury": {
+          "type": "review",
+          "settings": {
+            "quote": "Decent app. There're quite a bit of limitations but staff is fast in responsiveness to resolve the issues",
+            "store": "Kindlebury"
+          }
+        },
+        "review_chainofjoy": {
+          "type": "review",
+          "settings": {
+            "quote": "I just started to use Easify and it worked perfect for my business. They have been super helpful supporting me with setting all up.",
+            "store": "ChainofJoy"
+          }
+        },
+        "review_jbs_power_centre": {
+          "type": "review",
+          "settings": {
+            "quote": "Very good app. Easy to navigate and use. Also excellent customer support, very friendly and I appreciate the service they provide in auditing boxes you have created and suggesting ways to improve and sell more goods.",
+            "store": "JBs Power Centre"
+          }
+        },
+        "review_plants_in_a_box": {
+          "type": "review",
+          "settings": {
+            "quote": "We wanted to give our customers the option to create their own box and choose exactly what they wanted, and this app has made it really easy to set up. The builder is simple for customers to use, looks great on our store and gives us a lot of flexibility with how we create our boxes and offers. It was also really easy to get started, which is a big plus when you're running a small business and don't want to spend hours trying to figure out an app. Would definitely recommend it if you're looking for a straightforward Build Your Own Box solution.",
+            "store": "Plants in a box"
+          }
+        },
+        "review_mr_swainstons": {
+          "type": "review",
+          "settings": {
+            "quote": "Great app and great help today by Mari. Helped me with the issues I was having as a first time user, but now I have it working perfectly on my website. Great app and exactly what I needed",
+            "store": "Mr Swainstons"
+          }
+        },
+        "review_good_cocktail_co": {
+          "type": "review",
+          "settings": {
+            "quote": "We absolutely love this app. So easy to use, customisable and the help team are SO lovely. Thank you so much.",
+            "store": "Good Cocktail Co."
+          }
+        },
+        "review_aneqdot_shop": {
+          "type": "review",
+          "settings": {
+            "quote": "The support was excellent. It was a huge help. It's a great app.",
+            "store": "aneqdot_shop"
+          }
+        },
+        "review_broad_meadow_farm": {
+          "type": "review",
+          "settings": {
+            "quote": "I was able to set up most of the app by myself and the AI included. They were prompt in answering the last few issues I had with setup. I have yet to make a sale using this system.",
+            "store": "Broad Meadow Farm"
+          }
+        },
+        "review_bentley_candle_co": {
+          "type": "review",
+          "settings": {
+            "quote": "I love the app! Set up was pretty smooth and great speedy customer service!",
+            "store": "Bentley Candle co."
+          }
+        },
+        "review_self_love_club": {
+          "type": "review",
+          "settings": {
+            "quote": "easy to implement, few changes i couldn't find but the easify cs team were very responsive and helped me to make that changes successfully.",
+            "store": "Self Love Club"
+          }
+        },
+        "review_prismatic_chic": {
+          "type": "review",
+          "settings": {
+            "quote": "Rebecca assisted us in setting up the bundle and it works seamlessly without any issues. Their team is very supportive and responds immediately. We're very happy with their service and highly recommend using their app for bundles.",
+            "store": "Prismatic Chic"
+          }
+        },
+        "review_skin_juice": {
+          "type": "review",
+          "settings": {
+            "quote": "Very easy to implement and love the amount of customisation I had while building a page out. There were some changes I wanted to make that I couldn't see options for, but the Easify team were very responsive and able to make all of the changes I requested.",
+            "store": "Skin Juice"
+          }
+        },
+        "review_miklix": {
+          "type": "review",
+          "settings": {
+            "quote": "Super aplication and the support :) thaks Gavin!",
+            "store": "MikliX"
+          }
+        },
+        "review_ocean_rodeo": {
+          "type": "review",
+          "settings": {
+            "quote": "I found this app a bit fiddly to set up initially, but it has been working well once I mastered it. I ran into an issue where if a customer tried to add two boxes to their cart, the discount didn't apply properly - but when I reached out to the support team, they resolved the problem within a day. Great service, can't fault the team.",
+            "store": "Ocean Rodeo"
+          }
+        },
+        "review_terrapothecary": {
+          "type": "review",
+          "settings": {
+            "quote": "Great product so far!",
+            "store": "Terrapothecary"
+          }
+        },
+        "review_the_naked_baker": {
+          "type": "review",
+          "settings": {
+            "quote": "VERY FAST SERVICE AND VERY HELPFUL",
+            "store": "The Naked Baker"
+          }
+        },
+        "review_the_balm_box": {
+          "type": "review",
+          "settings": {
+            "quote": "Terrific app - super easy to install and use. Took about an hour and we were up and running. A few weeks in we got a Shopify alert that an Easify order couldn't be processed and Suzy was super responsive in researching the issue. (It turned out someone added over 150 items to a cart - most likely a bot).",
+            "store": "The Balm Box"
+          }
+        },
+        "review_print_diva": {
+          "type": "review",
+          "settings": {
+            "quote": "I had managed to get most of the bundle builder sorted by myself, and was stuck on the last little bit to get it live in my website menus. Both Anne and Kendle were of great assistance today, and Kendle went above and beyond logging in to my website and sorting the last of the functionality. Very much appreciated xx",
+            "store": "Print Diva"
+          }
+        },
+        "review_devout_hand": {
+          "type": "review",
+          "settings": {
+            "quote": "Wasted so much time trying out other apps only to find out Easify does exactly what I wanted for free (until you reach a sales threshold)! I now have a fully functional tiered discount box on my website which matches the rest of my branding (this took a moment to set up, but was overall pretty straightforward). Huge thanks to Chloe for the quick and immensely helpful customer support!",
+            "store": "devout hand"
+          }
+        },
+        "review_siumai3d": {
+          "type": "review",
+          "settings": {
+            "quote": "Support team is quick and able to solve my problem!",
+            "store": "SIUMAI3D"
+          }
+        },
+        "review_nomad_secrets": {
+          "type": "review",
+          "settings": {
+            "quote": "Great support chat. Chloe guided us with our questions and setting it up was easy.",
+            "store": "Nomad Secrets"
+          }
+        },
+        "review_brighton_party_hut": {
+          "type": "review",
+          "settings": {
+            "quote": "Excellent Support with a friendly team that resolve issues and answer questions. Kai resolved our issue promptly!",
+            "store": "Brighton Party Hut"
+          }
+        },
+        "review_victoria_wilde": {
+          "type": "review",
+          "settings": {
+            "quote": "What a fantastic experience with Easify. The team there could not have been more helpful. And even came up with a personalised solution to a request I had. I couldn’t recommend this product more.",
+            "store": "Victoria Wilde"
+          }
+        },
+        "review_moodbutter": {
+          "type": "review",
+          "settings": {
+            "quote": "’ve tested several bundle-builder apps, and Easify Box Bundle Builder has been one of the easiest and most reliable to work with. The setup is clear, the app gives me the flexibility I need to create a polished build-your-own-box experience, and it fits very well for a premium gifting/bundle page. What really stood out was the support team. They were fast, responsive, and genuinely helpful whenever I needed guidance. For a merchant building a serious storefront, that kind of support makes a huge difference. Overall, the app works very well, looks professional, and gives merchants a lot of control without making the process complicated. Highly recommended.",
+            "store": "Moodbutter"
+          }
+        },
+        "review_mischief_marvels_co": {
+          "type": "review",
+          "settings": {
+            "quote": "Great App and Service! Kendle was a great help to me and responded quick and professional. Thanks Kendle",
+            "store": "Mischief Marvels CO"
+          }
+        }
+      },
+      "block_order": [
+        "review_salie",
+        "review_burgrune",
+        "review_the_pig_skin_boys",
+        "review_cookie_mookie",
+        "review_we_are_fair_trade",
+        "review_kindlebury",
+        "review_chainofjoy",
+        "review_jbs_power_centre",
+        "review_plants_in_a_box",
+        "review_mr_swainstons",
+        "review_good_cocktail_co",
+        "review_aneqdot_shop",
+        "review_broad_meadow_farm",
+        "review_bentley_candle_co",
+        "review_self_love_club",
+        "review_prismatic_chic",
+        "review_skin_juice",
+        "review_miklix",
+        "review_ocean_rodeo",
+        "review_terrapothecary",
+        "review_the_naked_baker",
+        "review_the_balm_box",
+        "review_print_diva",
+        "review_devout_hand",
+        "review_siumai3d",
+        "review_nomad_secrets",
+        "review_brighton_party_hut",
+        "review_victoria_wilde",
+        "review_moodbutter",
+        "review_mischief_marvels_co"
+      ],
+      "settings": {
+        "average_label": "average rating",
+        "button_label": "Read all reviews"
+      }
+    },
+    "mascot_cta": {
+      "type": "easify-mascot-cta",
+      "settings": {
+        "variant": "home",
+        "open_new_tab": true,
+        "show_note": false,
+        "mascot_layout": "home",
+        "animate_mascot": true,
+        "art_height": 500
+      }
+    },
+    "mascot_game": {
+      "type": "easify-home-game",
+      "settings": {
+        "visibility": "always",
+        "heading": "Come play with us",
+        "subtext": "60,000+ Shopify merchants can't be wrong",
+        "button_label": "Try Easify apps",
+        "button_link": "https://apps.shopify.com/search?q=easify&utm_source=demo-store"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main",
+    "home_stats",
+    "home_story",
+    "home_gigi",
+    "home_ai",
+    "team",
+    "home_pricing",
+    "reviews",
+    "mascot_cta",
+    "mascot_game"
+  ]
+}

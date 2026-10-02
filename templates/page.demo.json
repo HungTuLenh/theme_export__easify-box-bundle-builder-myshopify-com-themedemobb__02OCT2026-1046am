@@ -1,0 +1,49 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "easify-hero",
+      "settings": {
+        "variant": "demo",
+        "anchor_id": "demo-hero",
+        "heading": "Don’t just get inspired.",
+        "highlight": "Make it yours.",
+        "subtext": "Start from 40+ conversion-ready templates and launch in minutes.",
+        "button_label": "Explore templates",
+        "button_link": "#ez-box-types",
+        "open_new_tab": false,
+        "mascot_alt": "Easify mascot"
+      }
+    },
+    "main": {
+      "type": "easify-box-builder",
+      "settings": {
+        "page_variant": "demo"
+      }
+    },
+    "mascot_cta": {
+      "type": "easify-mascot-cta",
+      "settings": {
+        "variant": "demo",
+        "open_new_tab": true,
+        "show_note": true,
+        "mascot_layout": "home",
+        "animate_mascot": true,
+        "art_height": 500
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main",
+    "mascot_cta"
+  ]
+}

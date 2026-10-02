@@ -1,0 +1,95 @@
+{% liquid
+  assign pricing_app_store_link = settings.easify_app_store_url
+  assign pricing_cta_label = 'Start building free'
+  assign pricing_no_card_note = 'No credit card required'
+%}
+<div class="ez-pricing-page" style="width:100%;overflow-x:clip;background:#fbfdfe">
+<div class="ez-pricing-hero-region">
+{% render 'easify-pricing-calculator',
+  context: 'standalone',
+  section_id: 'pricing-calculator',
+  heading_tag: 'h1',
+  heading: pricing_heading,
+  subtext: pricing_subtext,
+  initial_position: 0,
+  price_decimals: 0,
+  show_metrics: true,
+  show_note: true
+%}
+</div>
+<section class="ez-pricing-plans" style="background-color: rgb(255, 243, 232); background-image: linear-gradient(rgba(255, 134, 23, 0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 134, 23, 0.16) 1px, transparent 1px); background-size: 56px 56px; padding: 88px 0px 0px;">
+<div class="ez-pricing-plans__inner" style="width: min(1280px, 94vw); margin: 0px auto; display: grid; gap: 0px;">
+<div class="ez-pricing-plans__header" style="display: flex; column-gap: 20px; row-gap: 18px; align-items: center; justify-content: space-between; flex-wrap: wrap; border-bottom: 1px solid rgb(241, 227, 208); padding-bottom: 48px;">
+<h2 style="margin: 0px; font-size: clamp(30px, 4.4vw, 52px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.05; color: rgb(0, 0, 0); max-width: 24ch; flex: 1 1 420px; min-width: min(100%, 320px);">Plans that grow with your store</h2>
+<span class="ez-pricing-plans__badges" style="flex: 0 1 auto; display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: center; gap: 8px; min-width: min(100%, 320px);"><span style="display: inline-flex; align-items: center; gap: 8px; background: rgb(255, 255, 255); border: 1px solid rgb(241, 227, 208); border-radius: 999px; padding: 11px 20px; font-size: 16px; font-weight: 500; color: rgb(48, 48, 48);"><span></span><span></span><span style="white-space: pre-wrap;">14-day Free Trial (uncounted revenue)</span></span><span style="display: inline-flex; align-items: center; gap: 8px; background: rgb(255, 255, 255); border: 1px solid rgb(241, 227, 208); border-radius: 999px; padding: 11px 20px; font-size: 16px; font-weight: 500; color: rgb(48, 48, 48);">30-day money-back ✓</span></span>
+</div>
+<div class="ez-pricing-plans__grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(268px, 100%), 1fr)); gap: 20px; align-items: center;">
+<div class="ez-pricing-plan-card ez-pricing-plan-card--featured" style="background: rgb(255, 255, 255); border: 2px solid rgb(48, 48, 48); border-radius: 24px; padding: 30px; display: grid; gap: 20px; align-content: start; min-width: 0px; box-shadow: rgba(11, 18, 38, 0.1) 0px 18px 40px;">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 100%; box-sizing: border-box; border-radius: 999px; background: rgb(0, 0, 0); color: rgb(255, 255, 255); font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-align: center; text-transform: uppercase; white-space: nowrap; padding: 6px 12px;">Start here — free forever</span>
+<div style="display: grid; gap: 8px;">
+<span style="font-size: 20px; font-weight: 600; color: rgb(0, 0, 0);">Start</span>
+<span style="display: flex; align-items: baseline; gap: 6px;"><span style="font-size: 64px; font-weight: 600; line-height: 1; color: rgb(0, 0, 0);">$0</span><span style="font-size: 16px; font-weight: 400; color: rgb(114, 114, 114);">/mo</span></span>
+<span style="font-size: 16px; font-weight: 400; color: rgb(97, 97, 97);">Up to $500/mo box revenue</span>
+</div>
+<div style="display: grid; gap: 10px; border-top: 1px solid rgb(227, 227, 227); border-bottom: 1px solid rgb(227, 227, 227); padding: 16px 0px;">
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">Fee % of revenue</span><span style="font-weight: 600; color: rgb(0, 0, 0);">0%</span></span>
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">Net revenue kept</span><span style="font-weight: 600; color: rgb(0, 0, 0);">100%</span></span>
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">ROI on app spend</span><span style="font-weight: 600; color: rgb(0, 0, 0);">—</span></span>
+</div>
+{% render 'easify-button', label: pricing_cta_label, href: pricing_app_store_link, variant: 'primary', rel: 'noreferrer', target: '_blank' %}
+<span style="font-size: 14px; font-weight: 400; color: rgb(114, 114, 114); text-align: center;">{{ pricing_no_card_note | escape }}</span>
+<div style="display: grid; gap: 10px;">
+<span style="display: flex; gap: 10px; font-size: 16px; color: rgb(48, 48, 48);"><span style="color: rgb(107, 173, 72);">✓</span>All Easify features &amp; AI access</span>
+</div>
+</div>
+<div class="ez-pricing-plan-card" style="background: rgb(255, 252, 248); border: 1px solid rgb(241, 227, 208); border-radius: 20px; padding: 26px; display: grid; gap: 18px; align-content: start; min-width: 0px;">
+<div style="display: grid; gap: 6px;">
+<span style="font-size: 18px; font-weight: 600; color: rgb(143, 69, 0);"><span>Grow</span></span>
+<span style="display: flex; align-items: baseline; gap: 6px;"><span style="font-size: 36px; font-weight: 600; line-height: 1; color: rgb(0, 0, 0);"><span>$29</span></span><span style="font-size: 16px; font-weight: 400; color: rgb(114, 114, 114);">/mo</span></span>
+<span style="font-size: 16px; font-weight: 400; color: rgb(97, 97, 97);"><span>$501–$5,000/mo box revenue</span></span>
+</div>
+<div style="display: grid; gap: 9px; border-top: 1px solid rgb(227, 227, 227); border-bottom: 1px solid rgb(227, 227, 227); padding: 14px 0px;">
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">Fee % of revenue</span><span style="font-weight: 600; color: rgb(48, 48, 48);"><span>&lt;0.6% at max</span></span></span>
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">Net revenue kept</span><span style="font-weight: 600; color: rgb(48, 48, 48);"><span>&gt;99.4%</span></span></span>
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">ROI on app spend</span><span style="font-weight: 600; color: rgb(48, 48, 48);"><span>16×–171×</span></span></span>
+</div>
+{% render 'easify-button', label: pricing_cta_label, href: pricing_app_store_link, variant: 'default', rel: 'noreferrer', target: '_blank' %}
+<div style="display: grid; gap: 8px;">
+</div>
+</div>
+<div class="ez-pricing-plan-card" style="background: rgb(255, 252, 248); border: 1px solid rgb(241, 227, 208); border-radius: 20px; padding: 26px; display: grid; gap: 18px; align-content: start; min-width: 0px;">
+<div style="display: grid; gap: 6px;">
+<span style="font-size: 18px; font-weight: 600; color: rgb(143, 69, 0);"><span>Scale</span></span>
+<span style="display: flex; align-items: baseline; gap: 6px;"><span style="font-size: 36px; font-weight: 600; line-height: 1; color: rgb(0, 0, 0);"><span>$99</span></span><span style="font-size: 16px; font-weight: 400; color: rgb(114, 114, 114);">/mo</span></span>
+<span style="font-size: 16px; font-weight: 400; color: rgb(97, 97, 97);"><span>$5,001–$25,000/mo box revenue</span></span>
+</div>
+<div style="display: grid; gap: 9px; border-top: 1px solid rgb(227, 227, 227); border-bottom: 1px solid rgb(227, 227, 227); padding: 14px 0px;">
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">Fee % of revenue</span><span style="font-weight: 600; color: rgb(48, 48, 48);"><span>&lt;2% at max</span></span></span>
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">Net revenue kept</span><span style="font-weight: 600; color: rgb(48, 48, 48);"><span>&gt;98%</span></span></span>
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">ROI on app spend</span><span style="font-weight: 600; color: rgb(48, 48, 48);"><span>49×–251×</span></span></span>
+</div>
+{% render 'easify-button', label: pricing_cta_label, href: pricing_app_store_link, variant: 'default', rel: 'noreferrer', target: '_blank' %}
+<div style="display: grid; gap: 8px;">
+</div>
+</div>
+<div class="ez-pricing-plan-card" style="background: rgb(255, 252, 248); border: 1px solid rgb(241, 227, 208); border-radius: 20px; padding: 26px; display: grid; gap: 18px; align-content: start; min-width: 0px;">
+<div style="display: grid; gap: 6px;">
+<span style="font-size: 18px; font-weight: 600; color: rgb(143, 69, 0);"><span>Thrive</span></span>
+<span style="display: flex; align-items: baseline; gap: 6px;"><span style="font-size: 36px; font-weight: 600; line-height: 1; color: rgb(0, 0, 0);"><span>$199</span></span><span style="font-size: 16px; font-weight: 400; color: rgb(114, 114, 114);">/mo</span></span>
+<span style="font-size: 16px; font-weight: 400; color: rgb(97, 97, 97);"><span>Unlimited box revenue</span></span>
+</div>
+<div style="display: grid; gap: 9px; border-top: 1px solid rgb(227, 227, 227); border-bottom: 1px solid rgb(227, 227, 227); padding: 14px 0px;">
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">Fee % of revenue</span><span style="font-weight: 600; color: rgb(48, 48, 48);"><span>&lt;0.8% at $25k</span></span></span>
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">Net revenue kept</span><span style="font-weight: 600; color: rgb(48, 48, 48);"><span>&gt;99.2%</span></span></span>
+<span style="display: flex; justify-content: space-between; gap: 12px; font-size: 16px;"><span style="color: rgb(114, 114, 114);">ROI on app spend</span><span style="font-weight: 600; color: rgb(48, 48, 48);"><span>124×+</span></span></span>
+</div>
+{% render 'easify-button', label: pricing_cta_label, href: pricing_app_store_link, variant: 'default', rel: 'noreferrer', target: '_blank' %}
+<div style="display: grid; gap: 8px;">
+</div>
+</div>
+</div>
+<div style="display: flex; justify-content: center;"><a class="ez-pricing-plans__billing-link" href="https://easify.gitbook.io/easify-box-bundle-builder-docs/user-guide/getting-started/pricing-plans-trial-and-billing" rel="noreferrer" style="display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; color: rgb(143, 69, 0); text-decoration: none; text-align: center; justify-content: center;" target="_blank"><span style="width: 17px; height: 17px; flex: 0 0 auto; border: 1.4px solid; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">i</span>How billing works</a></div>
+</div>
+</section>
+{% render 'easify-pricing-faq' %}
+</div>

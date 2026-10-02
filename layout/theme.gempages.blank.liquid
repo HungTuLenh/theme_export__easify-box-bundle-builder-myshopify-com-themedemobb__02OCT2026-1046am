@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+ {%- capture ecom_header_content -%}{%- render 'ecom_header' -%}{%- endcapture -%}{%- unless ecom_header_content contains 'Liquid error' -%}{{ ecom_header_content }}{%- endunless -%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <title>{{ page_title }}</title>
+
+    <script>document.documentElement.classList.add('js');</script>
+    {{ 'inter-tight-variable.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
+    {{ 'easify-theme.css' | asset_url | stylesheet_tag }}
+    {{ 'easify-button.css' | asset_url | stylesheet_tag }}
+    {{ 'easify-pricing.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body><main
+      id="MainContent"
+      role="main"
+      {% if site_active_page == 'none' %}style="padding-block:40px;"{% endif %}
+    >
+      {{ content_for_layout }}
+    </main></body>
+</html>

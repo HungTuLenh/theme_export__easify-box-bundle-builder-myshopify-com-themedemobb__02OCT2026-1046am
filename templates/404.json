@@ -1,0 +1,55 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "demo_hero": {
+      "type": "easify-hero",
+      "settings": {
+        "variant": "demo-fallback",
+        "anchor_id": "demo-hero",
+        "heading": "Don’t just get inspired.",
+        "highlight": "Make it yours.",
+        "subtext": "Start from 40+ conversion-ready templates and launch in minutes.",
+        "button_label": "Explore templates",
+        "button_link": "#ez-box-types",
+        "open_new_tab": false,
+        "mascot_alt": "Easify mascot"
+      }
+    },
+    "main": {
+      "type": "easify-box-builder",
+      "settings": {
+        "page_variant": "route-fallback"
+      }
+    },
+    "mascot_cta": {
+      "type": "easify-mascot-cta",
+      "settings": {
+        "variant": "auto",
+        "open_new_tab": true,
+        "show_note": true,
+        "mascot_layout": "auto",
+        "animate_mascot": true,
+        "art_height": 500
+      }
+    },
+    "mascot_game": {
+      "type": "easify-home-game",
+      "settings": {
+        "visibility": "auto",
+        "heading": "Come play with us",
+        "subtext": "60,000+ Shopify merchants can't be wrong",
+        "button_label": "Try Easify apps",
+        "button_link": "https://apps.shopify.com/search?q=easify&utm_source=demo-store"
+      }
+    }
+  },
+  "order": ["demo_hero", "main", "mascot_cta", "mascot_game"]
+}

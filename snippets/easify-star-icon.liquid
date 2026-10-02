@@ -1,0 +1,7 @@
+{%- liquid
+  assign icon_size = size | default: 24
+  assign icon_class = class | default: blank
+-%}
+<svg{% if icon_class != blank %} class="{{ icon_class | escape }}"{% endif %} aria-hidden="true" height="{{ icon_size }}" viewBox="0 0 60 59" width="{{ icon_size }}">
+  <path d="M 58.408 21.088 L 39.963 18.314 L 31.695 0.971 C 31.078 -0.324 28.92 -0.324 28.303 0.971 L 20.038 18.314 L 1.593 21.088 C 0.078 21.317 -0.527 23.132 0.535 24.203 L 13.935 37.729 L 10.768 56.851 C 10.515 58.37 12.163 59.51 13.525 58.764 L 30 49.798 L 46.475 58.767 C 47.825 59.505 49.488 58.388 49.233 56.854 L 46.065 37.731 L 59.465 24.205 C 60.528 23.132 59.92 21.317 58.408 21.088 Z" fill="currentColor"></path>
+</svg>

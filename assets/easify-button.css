@@ -1,0 +1,136 @@
+.ez-button {
+  --ez-button-width:auto;
+  --ez-button-max-width:100%;
+  --ez-button-height:56px;
+  --ez-button-min-height:var(--ez-button-height);
+  --ez-button-padding:8px 12px 8px 16px;
+  --ez-button-gap:10px;
+  --ez-button-radius:14px;
+  --ez-button-font-size:17px;
+  --ez-button-icon-size:32px;
+  --ez-button-icon-radius:9999px;
+  --ez-button-shadow:none;
+  --ez-button-hover-shadow:var(--ez-button-shadow);
+  --ez-button-transform:none;
+  --ez-button-hover-transform:translateY(-2px);
+  --ez-button-active-transform:translateY(1px) scale(.985);
+  --ez-button-icon-hover-transform:translateX(6px);
+  --ez-button-focus:#ffc131;
+  position:relative;
+  width:var(--ez-button-width);
+  max-width:var(--ez-button-max-width);
+  height:var(--ez-button-height);
+  min-height:var(--ez-button-min-height);
+  padding:var(--ez-button-padding);
+  overflow:hidden;
+  border:0;
+  border-radius:var(--ez-button-radius);
+  background:var(--ez-button-bg);
+  color:var(--ez-button-color) !important;
+  box-shadow:var(--ez-button-shadow);
+  display:inline-flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  gap:var(--ez-button-gap);
+  font:500 var(--ez-button-font-size)/1.2 "Inter Tight",sans-serif;
+  text-decoration:none;
+  white-space:nowrap;
+  cursor:pointer;
+  transform:var(--ez-button-transform);
+  transition:transform var(--ez-motion-state,180ms) var(--ez-ease-out-quart,cubic-bezier(.25,1,.5,1)),box-shadow var(--ez-motion-state,180ms) var(--ez-ease-out-quart,cubic-bezier(.25,1,.5,1)),background-color var(--ez-motion-state,180ms) var(--ez-ease-out-quart,cubic-bezier(.25,1,.5,1)),color var(--ez-motion-state,180ms) var(--ez-ease-out-quart,cubic-bezier(.25,1,.5,1));
+}
+.ez-button[data-ez-motion] {
+  clip-path:none !important;
+}
+.ez-button--default {
+  --ez-button-bg:#fff;
+  --ez-button-color:#000;
+  --ez-button-hover-bg:#f5f5f5;
+  --ez-button-icon-bg:#000;
+  --ez-button-arrow-color:#fff;
+  --ez-button-shadow:0 10px 24px rgba(26,18,6,.12),0 0 0 1px rgba(26,18,6,.08);
+}
+.ez-button--primary {
+  --ez-button-bg:#000;
+  --ez-button-color:#fff;
+  --ez-button-hover-bg:#000;
+  --ez-button-icon-bg:#fff;
+  --ez-button-arrow-color:#000;
+  --ez-button-shadow:0 12px 28px rgba(0,0,0,.26),0 0 0 1px rgba(255,255,255,.18);
+}
+.ez-button:hover {
+  background:var(--ez-button-hover-bg,var(--ez-button-bg));
+  color:var(--ez-button-color) !important;
+  box-shadow:var(--ez-button-hover-shadow);
+  transform:var(--ez-button-hover-transform);
+}
+.ez-button:active {
+  transform:var(--ez-button-active-transform);
+  transition-duration:var(--ez-motion-fast,120ms);
+}
+.ez-button:focus-visible {
+  outline:3px solid var(--ez-button-focus);
+  outline-offset:5px;
+}
+.ez-button__label {
+  min-width:0;
+  overflow:hidden;
+  color:inherit;
+  font:inherit;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.ez-button__icon {
+  position:relative;
+  width:var(--ez-button-icon-size);
+  height:var(--ez-button-icon-size);
+  flex:0 0 var(--ez-button-icon-size);
+  border-radius:var(--ez-button-icon-radius);
+  background:var(--ez-button-icon-bg);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--ez-button-arrow-color);
+  transition:transform 650ms var(--ez-ease-out-quint,cubic-bezier(.22,1,.36,1));
+}
+.ez-button__icon > span {
+  width:11px;
+  height:11px;
+  border-top:2.6px solid currentColor;
+  border-right:2.6px solid currentColor;
+  transform:rotate(45deg) translate(-1px,1px);
+}
+.ez-button:hover .ez-button__icon {
+  transform:var(--ez-button-icon-hover-transform);
+}
+@media (max-width:1199px) {
+  .ez-button {
+    --ez-button-height:52px;
+    --ez-button-min-height:52px;
+    --ez-button-padding:8px 12px;
+    --ez-button-radius:14px;
+    --ez-button-font-size:16px;
+    --ez-button-icon-size:30px;
+  }
+}
+@media (max-width:767px) {
+  .ez-button {
+    --ez-button-height:52px;
+    --ez-button-min-height:52px;
+    --ez-button-padding:8px 12px;
+    --ez-button-gap:8px;
+    --ez-button-font-size:16px;
+    --ez-button-icon-size:30px;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .ez-button,
+  .ez-button__icon {
+    opacity:1 !important;
+    transform:none !important;
+    clip-path:inset(0 0 0 0) !important;
+    animation:none !important;
+    transition-duration:.01ms !important;
+  }
+}

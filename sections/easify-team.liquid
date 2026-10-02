@@ -1,0 +1,513 @@
+{% liquid
+  assign team_anchor = section.settings.anchor_id | default: 'partners' | handleize
+  assign team_heading_line_two = section.settings.heading_line_two | default: 'A team that grows with you'
+  assign team_heading_marker = 'grows with you'
+  assign team_heading_parts = team_heading_line_two | split: team_heading_marker
+  assign team_heading_prefix = team_heading_parts | first
+  assign team_heading_remainder = team_heading_line_two | remove_first: team_heading_prefix
+  assign team_heading_suffix = team_heading_remainder | remove_first: team_heading_marker
+  assign team_should_mark_heading = false
+
+  if team_heading_line_two contains team_heading_marker
+    assign team_should_mark_heading = true
+  endif
+%}
+
+<div
+  class="easify-team-root"
+  data-easify-team
+>
+  <section
+    aria-labelledby="EasifyTeamHeading-{{ section.id }}"
+    class="ez-team"
+    data-screen-label="08 Team"
+    id="{{ team_anchor }}"
+  >
+    <div class="ez-team__canvas">
+      <header
+        class="ez-team__heading"
+        style="--ez-team-underline-image:url('{% render 'easify-image-url', image: 'teamUnderline' %}')"
+      >
+        <h2 data-reveal="fade" id="EasifyTeamHeading-{{ section.id }}">
+          <span class="ez-team__heading-line">{{ section.settings.heading_line_one | escape }}</span>
+          {% if team_should_mark_heading %}
+            <span class="ez-team__heading-line">
+              {{ team_heading_prefix | escape }}<span class="ez-team__underline-phrase">grows with you</span>{{ team_heading_suffix | escape }}
+            </span>
+          {% else %}
+            <span class="ez-team__heading-line">{{ team_heading_line_two | escape }}</span>
+          {% endif %}
+        </h2>
+      </header>
+
+      <p class="ez-team__intro" data-reveal="fade">{{ section.settings.intro | escape }}</p>
+
+      <div class="ez-team__cards">
+        {% for block in section.blocks %}
+          <article class="ez-team__card" data-reveal="fade" {{ block.shopify_attributes }}>
+            <div class="ez-team__card-heading">
+              <span aria-hidden="true" class="ez-team__icon">
+                {% case block.settings.icon %}
+                  {% when 'team' %}
+                    <svg height="40" viewBox="0 0 24 24" width="40">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M 0.515 4.647 C -1.117 3.033 1.562 1.743 2.584 1.111 M 0.515 4.647 C 1.312 5.436 2.2 6 3.316 6 L 9.684 6 C 10.8 6 11.688 5.436 12.485 4.647 C 14.117 3.033 11.438 1.743 10.416 1.111 C 8.02 -0.37 4.98 -0.37 2.584 1.111 Z" stroke-width="1.5" transform="translate(5.5 14)"></path>
+                        <path d="M 7 3.5 C 7 5.433 5.433 7 3.5 7 C 1.567 7 0 5.433 0 3.5 C 0 1.567 1.567 0 3.5 0 C 5.433 0 7 1.567 7 3.5 Z" stroke-width="1.5" transform="translate(8.5 4)"></path>
+                        <g stroke-width="1.4">
+                          <path d="M 2.4 2.4 C 2.4 3.725 1.725 4.4 0.9 4.4 C 0.075 4.4 -0.6 3.725 -0.6 2.4 C -0.6 1.075 0.075 0.4 0.9 0.4 C 1.725 0.4 2.4 1.075 2.4 2.4 Z" transform="translate(3.1 6.2)"></path>
+                          <path d="M 0 3.2 C -1.1 2.2 0.5 1.3 1.6 0.8" transform="translate(1.3 13.4)"></path>
+                          <path d="M 2.4 2.4 C 2.4 3.725 1.725 4.4 0.9 4.4 C 0.075 4.4 -0.6 3.725 -0.6 2.4 C -0.6 1.075 0.075 0.4 0.9 0.4 C 1.725 0.4 2.4 1.075 2.4 2.4 Z" transform="translate(18.6 6.2)"></path>
+                          <path d="M 1.6 3.2 C 2.7 2.2 1.1 1.3 0 0.8" transform="translate(21.1 13.4)"></path>
+                        </g>
+                      </g>
+                    </svg>
+                  {% when 'chart' %}
+                    <svg height="40" viewBox="0 0 24 24" width="40">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M 0 9.5 C 0 5.022 0 2.782 1.391 1.391 C 2.782 0 5.022 0 9.5 0 C 13.978 0 16.218 0 17.609 1.391 C 19 2.782 19 5.022 19 9.5 C 19 13.978 19 16.218 17.609 17.609 C 16.218 19 13.978 19 9.5 19 C 5.022 19 2.782 19 1.391 17.609 C 0 16.218 0 13.978 0 9.5 Z" stroke-width="1.5" transform="translate(2.5 2.5)"></path>
+                        <g stroke-width="1.5">
+                          <path d="M 0 0 L 0 -3.2" transform="translate(9 15.6)"></path>
+                          <path d="M 0 0 L 0 -5.8" transform="translate(12 15.6)"></path>
+                          <path d="M 0 0 L 0 -2" transform="translate(15 15.6)"></path>
+                        </g>
+                      </g>
+                    </svg>
+                  {% else %}
+                    <svg height="40" viewBox="0 0 24 24" width="40">
+                      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M 20 9.567 C 20 14.85 15.522 19.133 10 19.133 C 9.351 19.134 8.703 19.074 8.065 18.954 C 7.606 18.868 7.377 18.825 7.217 18.85 C 7.056 18.874 6.829 18.995 6.375 19.236 C 5.09 19.92 3.592 20.161 2.151 19.893 C 2.699 19.219 3.073 18.411 3.238 17.545 C 3.338 17.015 3.09 16.5 2.719 16.123 C 1.033 14.412 0 12.105 0 9.567 C 0 4.284 4.478 0 10 0 C 15.522 0 20 4.284 20 9.567 Z" stroke-width="1.5" transform="translate(2 2)"></path>
+                        <g stroke-width="2.1">
+                          <path d="M 3.996 0 L 4.004 0" transform="translate(8 12)"></path>
+                          <path d="M 7.991 0 L 8 0" transform="translate(8 12)"></path>
+                          <path d="M 0 0 L 0.009 0" transform="translate(8 12)"></path>
+                        </g>
+                      </g>
+                    </svg>
+                {% endcase %}
+              </span>
+              <h3>{{ block.settings.title | escape | newline_to_br }}</h3>
+            </div>
+            <p>{{ block.settings.body | escape }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var currentScript = document.currentScript;
+      var currentRoot = currentScript ? currentScript.closest('[data-easify-team]') : null;
+
+      if (!window.EasifyTeamSection) {
+        var teamStates = new WeakMap();
+        window.EasifyTeamSection = {
+          init: function (root) {
+            if (!root || root.getAttribute('data-team-ready') === 'true') {
+              return;
+            }
+
+            root.setAttribute('data-team-ready', 'true');
+            var state = { revealObserver: null };
+            teamStates.set(root, state);
+            var team = root.querySelector('.ez-team');
+            if (!team) {
+              return;
+            }
+
+            var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reducedMotion || typeof IntersectionObserver !== 'function') {
+              root.classList.add('is-revealed');
+              return;
+            }
+
+            root.classList.add('ez-team--motion-ready');
+            var revealObserver = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) {
+                  return;
+                }
+                root.classList.add('is-revealed');
+                revealObserver.disconnect();
+              });
+            }, { threshold: 0.16 });
+            state.revealObserver = revealObserver;
+            revealObserver.observe(team);
+          },
+          destroy: function (root) {
+            var state = root ? teamStates.get(root) : null;
+            if (!state) {
+              return;
+            }
+            if (state.revealObserver) {
+              state.revealObserver.disconnect();
+            }
+            teamStates.delete(root);
+            root.removeAttribute('data-team-ready');
+          }
+        };
+
+        document.addEventListener('shopify:section:load', function (event) {
+          var sectionRoot = event.target ? event.target.querySelector('[data-easify-team]') : null;
+          window.EasifyTeamSection.init(sectionRoot);
+        });
+        document.addEventListener('shopify:section:unload', function (event) {
+          var sectionRoot = event.target ? event.target.querySelector('[data-easify-team]') : null;
+          window.EasifyTeamSection.destroy(sectionRoot);
+        });
+      }
+
+      window.EasifyTeamSection.init(currentRoot);
+    }());
+  </script>
+</div>
+
+{% stylesheet %}
+  .easify-team-section {
+    display:block;
+    margin:0;
+    padding:0;
+  }
+  .easify-team-root {
+    width:100%;
+    overflow:clip;
+    background:#fff8e9;
+    color:#000;
+    font-family:"Inter Tight",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .easify-team-root,
+  .easify-team-root *,
+  .easify-team-root *::before,
+  .easify-team-root *::after {
+    box-sizing:border-box;
+  }
+  .easify-team-root .ez-team {
+    position:sticky;
+    top:0;
+    width:100%;
+    height:clamp(720px,100svh,1024px);
+    overflow:hidden;
+    background:#fff8e9;
+  }
+  .easify-team-root .ez-team__canvas {
+    position:absolute;
+    top:0;
+    left:50%;
+    width:1440px;
+    height:1024px;
+    transform:translateX(-50%);
+  }
+  .easify-team-root .ez-team__heading {
+    position:absolute;
+    top:80px;
+    left:80px;
+    width:1004px;
+    height:192px;
+  }
+  .easify-team-root .ez-team__heading h2 {
+    position:absolute;
+    inset:0 auto auto 0;
+    width:1004px;
+    margin:0;
+    color:#000;
+    font-size:80px;
+    font-weight:600;
+    letter-spacing:0;
+    line-height:96px;
+  }
+  .easify-team-root .ez-team__heading-line {
+    display:block;
+  }
+  .easify-team-root .ez-team__underline-phrase {
+    position:relative;
+    z-index:0;
+    display:inline-block;
+    padding:0 0.04em 0.1em;
+    white-space:nowrap;
+    background-image:var(--ez-team-underline-image);
+    background-repeat:no-repeat;
+    background-position:left 95%;
+    background-size:100% 0.34em;
+  }
+  .easify-team-root .ez-team__intro {
+    position:absolute;
+    top:296px;
+    left:80px;
+    width:1004px;
+    margin:0;
+    color:#000;
+    font-size:24px;
+    font-weight:400;
+    line-height:1.2;
+  }
+  .easify-team-root .ez-team__cards {
+    position:absolute;
+    top:424px;
+    left:80px;
+    width:1280px;
+    height:520px;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:20px;
+  }
+  .easify-team-root .ez-team__card {
+    position:relative;
+    min-width:0;
+    height:520px;
+    overflow:hidden;
+    border-radius:32px;
+    background:#fff;
+    box-shadow:inset 0 0 0 1px #000;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:40px;
+    transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1),box-shadow .35s ease;
+  }
+  .easify-team-root .ez-team__card-heading {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+  }
+  .easify-team-root .ez-team__icon {
+    position:relative;
+    width:64px;
+    height:64px;
+    flex-shrink:0;
+    overflow:hidden;
+    border-radius:12px;
+    background:#ff8617;
+    color:#fff;
+    display:grid;
+    place-items:center;
+  }
+  .easify-team-root .ez-team__icon svg {
+    display:block;
+    width:40px;
+    height:40px;
+  }
+  .easify-team-root .ez-team__card h3 {
+    width:100%;
+    margin:0;
+    color:#000;
+    font-size:40px;
+    font-weight:600;
+    line-height:1.2;
+  }
+  .easify-team-root .ez-team__card > p {
+    width:100%;
+    margin:0;
+    color:#737373;
+    font-size:20px;
+    font-weight:400;
+    line-height:1.4;
+  }
+  .easify-team-root.ez-team--motion-ready:not(.is-revealed) [data-reveal="fade"] {
+    opacity:0;
+    transform:translateY(46px);
+  }
+  .easify-team-root [data-reveal="fade"] {
+    opacity:1;
+    transform:translateY(0);
+    transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1),box-shadow .35s ease;
+  }
+  .easify-team-root .ez-team__intro { transition-delay:.08s; }
+  .easify-team-root .ez-team__card:nth-child(1) { transition-delay:.12s, .12s, 0s; }
+  .easify-team-root .ez-team__card:nth-child(2) { transition-delay:.2s, .2s, 0s; }
+  .easify-team-root .ez-team__card:nth-child(3) { transition-delay:.28s, .28s, 0s; }
+
+  @media (hover:hover) {
+    .easify-team-root.is-revealed .ez-team__card:hover {
+      transform:translateY(-12px);
+      box-shadow:inset 0 0 0 1px #000,12px 12px 0 #ff8617;
+    }
+  }
+
+  @media (min-width:0px) {
+    .easify-team-root .ez-team {
+      position:relative;
+      height:auto;
+      min-height:0;
+      padding:88px clamp(24px,5vw,64px);
+    }
+    .easify-team-root .ez-team__canvas {
+      position:relative;
+      top:auto;
+      left:auto;
+      width:min(100%,1280px);
+      height:auto;
+      margin:0 auto;
+      transform:none;
+    }
+    .easify-team-root .ez-team__heading {
+      position:relative;
+      top:auto;
+      left:auto;
+      width:100%;
+      height:auto;
+    }
+    .easify-team-root .ez-team__heading h2 {
+      position:relative;
+      inset:auto;
+      width:100%;
+      max-width:920px;
+      font-size:clamp(52px,7.4vw,72px);
+      letter-spacing:-.035em;
+      line-height:1.08;
+    }
+    .easify-team-root .ez-team__intro {
+      position:relative;
+      top:auto;
+      left:auto;
+      width:100%;
+      max-width:720px;
+      margin:24px 0 40px;
+      font-size:20px;
+      line-height:1.45;
+    }
+    .easify-team-root .ez-team__cards {
+      position:relative;
+      top:auto;
+      left:auto;
+      width:100%;
+      height:auto;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+    .easify-team-root .ez-team__card {
+      width:100%;
+      height:auto;
+      min-height:380px;
+      padding:24px;
+      border-radius:22px;
+      gap:32px;
+    }
+    .easify-team-root .ez-team__card-heading { gap:24px; }
+    .easify-team-root .ez-team__card h3 {
+      font-size:28px;
+      letter-spacing:-.02em;
+      line-height:1.16;
+    }
+    .easify-team-root .ez-team__card > p { line-height:1.5; }
+  }
+
+  @media (min-width:768px) and (max-width:959px) {
+    .easify-team-root .ez-team__cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .easify-team-root .ez-team__card:last-child {
+      grid-column:1 / -1;
+      min-height:240px;
+      flex-direction:row;
+      align-items:center;
+      gap:40px;
+    }
+    .easify-team-root .ez-team__card:last-child > * { flex:1; }
+  }
+
+  @media (max-width:767px) {
+    .easify-team-root .ez-team { padding:72px 24px; }
+    .easify-team-root .ez-team__heading h2 {
+      font-size:clamp(40px,11vw,54px);
+      line-height:1.05;
+    }
+    .easify-team-root .ez-team__intro { font-size:18px; }
+    .easify-team-root .ez-team__cards { grid-template-columns:1fr; }
+    .easify-team-root .ez-team__card {
+      min-height:300px;
+      padding:28px;
+    }
+    .easify-team-root .ez-team__card h3 {
+      max-width:300px;
+      font-size:32px;
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+    .easify-team-root [data-reveal] {
+      opacity:1 !important;
+      transform:none !important;
+      clip-path:none !important;
+      transition:none !important;
+    }
+    .easify-team-root .ez-team__card { transition:none !important; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Easify team",
+  "tag": "section",
+  "class": "easify-team-section",
+  "settings": [
+    { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "partners" },
+    { "type": "text", "id": "heading_line_one", "label": "Heading line 1", "default": "More than an app." },
+    { "type": "text", "id": "heading_line_two", "label": "Heading line 2", "default": "A team that grows with you" },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Introduction",
+      "default": "A dedicated CRO expert team to support, advise, and help you win bigger."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Team card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "chat",
+          "options": [
+            { "value": "chat", "label": "Live chat" },
+            { "value": "team", "label": "Team" },
+            { "value": "chart", "label": "CRO chart" }
+          ]
+        },
+        { "type": "textarea", "id": "title", "label": "Title", "default": "24/7 live chat\nwith real people" },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Not bots. Not AI pretending to care. Just real humans who actually enjoy talking to you."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Easify team",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "icon": "chat",
+            "title": "24/7 live chat\nwith real people",
+            "body": "Not bots. Not AI pretending to care. Just real humans who actually enjoy talking to you."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "team",
+            "title": "We’re a full team",
+            "body": "Not one person vibe-coding an app. Developers, designers, QA, BA, support - real people with real expertise."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "chart",
+            "title": "CRO experts\nthat accompany",
+            "body": "We read your numbers with you and tell you which offer to run next - not once at launch, every month."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

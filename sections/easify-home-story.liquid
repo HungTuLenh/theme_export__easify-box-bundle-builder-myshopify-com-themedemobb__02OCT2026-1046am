@@ -1,0 +1,121 @@
+{% liquid
+  assign story_app_store_link = settings.easify_app_store_url
+%}
+<div class="easify-final" data-easify-final data-page-variant="home">
+  <div class="bb-root" style='position:relative;width:100%;margin:0;background:rgb(255,255,255);font-family:"Inter Tight",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip;--accent:rgb(255,134,23);--play:paused;'>
+    <section class="bb-morph" data-screen-label="04 Other apps vs Easify" id="growth" style="position:relative;width:100%;height:2304px;">
+      <div class="bb-morph-pane" style="position:sticky;top:0;z-index:1;width:100%;height:947px;overflow:hidden;background:rgb(255,255,255);">
+        <div class="bb-morph-canvas">
+          <div data-morph-layer="grey" style="position:absolute;inset:0;clip-path:inset(0 11.67% 0 0);">
+          <div class="bb-morph-copy">
+            <span style='display:block;width:1047px;height:260px;font-family:"Inter Tight";font-weight:600;font-size:95px;text-align:center;line-height:95px;letter-spacing:0;white-space:pre-line;color:rgb(164,164,164);'>Other apps
+help you create</span>
+            <svg height="30" preserveAspectRatio="none" style="position:absolute;left:460px;top:281px;width:371px;height:30px;" viewBox="0 0 371 30" width="371"><path d="M5 18 q26 -14 52 -3 q26 11 52 1 q26 -10 52 -11 q26 -1 52 8 q26 9 52 -2 q26 -11 52 -5 q26 6 52 7" fill="none" stroke="rgb(164,164,164)" stroke-linecap="round" stroke-width="13"></path></svg>
+          </div>
+          </div>
+          <div data-morph-layer="orange" style="position:absolute;inset:0;clip-path:inset(0 0 0 88.33%);">
+          <div class="bb-morph-copy">
+            <span style='display:block;width:1047px;height:260px;font-family:"Inter Tight";font-weight:600;font-size:95px;text-align:center;line-height:95px;letter-spacing:0;white-space:pre-line;color:rgb(255,134,23);'>Easify helps
+you grow</span>
+            <svg height="30" preserveAspectRatio="none" style="position:absolute;left:482px;top:281px;width:303px;height:30px;" viewBox="0 0 303 30" width="303"><path d="M5 18 q21 -14 42 -3 q21 11 42 1 q21 -10 42 -11 q21 -1 42 8 q21 9 42 -2 q21 -11 42 -5 q21 6 42 7" fill="none" stroke="rgb(255,134,23)" stroke-linecap="round" stroke-width="13"></path></svg>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bb-features" data-screen-label="05 Feature sequence" id="apps" style="position:relative;z-index:3;margin-top:-947px;width:100%;height:4850px;">
+      <div class="bb-feature-pane" style="position:sticky;top:0;width:100%;height:947px;overflow:hidden;border-radius:40px 40px 0 0;background:rgb(255,243,231);">
+        <div class="bb-feature-track" style="position:absolute;left:0;top:0;width:calc(400vw + 240px);height:100%;transform:translate3d(0,0,0);will-change:transform;">
+          <div class="bb-feature-panel" style="position:absolute;left:0;top:0;width:100vw;height:100%;">
+            <div class="bb-layout bb-feature-cover" style="position:absolute;left:0;top:0;width:100%;height:1024px;">
+              <div class="bb-layout bb-feature-canvas" style="position:absolute;left:0;top:0;width:100%;height:1024px;margin:0;">
+                <span class="bb-feature-title" style='position:absolute;left:80px;top:80px;font-family:"Inter Tight";font-weight:600;font-size:95px;line-height:1.05;letter-spacing:0;color:rgb(0,0,0);'>Create</span>
+                <span class="bb-feature-number" style='position:absolute;left:80px;top:316px;width:197px;height:95px;font-family:"Inter Tight";font-weight:600;font-size:95px;line-height:1;letter-spacing:0;color:rgb(0,0,0);'>01</span>
+                <div class="bb-feature-copy" style="position:absolute;left:297px;top:316px;width:432px;display:flex;flex-direction:column;gap:40px;">
+                  <span style='align-self:stretch;font-family:"Inter Tight";font-weight:500;font-size:32px;line-height:1.2;color:rgb(0,0,0);'>Create a winning box with AI. Or start from 40+ templates.</span>
+                  <span style='align-self:stretch;font-family:"Inter Tight";font-weight:400;font-size:16px;line-height:1.2;color:rgb(0,0,0);'>Easify AI helps you create the right bundle, while 40+ ready-made templates make them beautiful and launch-ready.</span>
+                </div>
+                <div class="bb-feature-actions" style="position:absolute;left:297px;top:534px;width:432px;display:flex;align-items:center;gap:12px;">
+                  {% render 'easify-button',
+                    label: 'Try with AI',
+                    href: story_app_store_link,
+                    variant: 'primary',
+                    rel: 'noreferrer',
+                    target: '_blank'
+                  %}
+                  {% render 'easify-button',
+                    label: 'Browse templates',
+                    href: 'https://easify-box-bundle-builder.myshopify.com/pages/demo',
+                    variant: 'default'
+                  %}
+                </div>
+                <div class="bb-feature-media" style="position:absolute;left:838px;top:316px;width:522px;height:540px;overflow:hidden;border-radius:16px;background:rgb(255,230,206);">
+                  <img alt="AI bundle ideas and templates in Easify" class="bb-feature-media-image" decoding="async" height="1620" loading="lazy" src="{% render 'easify-image-url', image: 'homeFeatureCreate' %}" width="1566">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bb-feature-panel" style="position:absolute;left:calc(100vw + 80px);top:0;width:100vw;height:100%;">
+            <div class="bb-layout bb-feature-cover" style="position:absolute;left:0;top:0;width:100%;height:1024px;">
+              <div class="bb-layout bb-feature-canvas" style="position:absolute;left:0;top:0;width:100%;height:1024px;margin:0;">
+                <span class="bb-feature-title" style='position:absolute;left:80px;top:80px;font-family:"Inter Tight";font-weight:600;font-size:95px;line-height:1.05;letter-spacing:0;color:rgb(0,0,0);'>Customize</span>
+                <span class="bb-feature-number" style='position:absolute;left:80px;top:316px;width:197px;height:95px;font-family:"Inter Tight";font-weight:600;font-size:95px;line-height:1;letter-spacing:0;color:rgb(0,0,0);'>02</span>
+                <div class="bb-feature-copy" style="position:absolute;left:297px;top:316px;width:432px;display:flex;flex-direction:column;gap:40px;">
+                  <span style='align-self:stretch;font-family:"Inter Tight";font-weight:500;font-size:32px;line-height:1.2;color:rgb(0,0,0);'>Make it brand-tailored.</span>
+                  <span style='align-self:stretch;font-family:"Inter Tight";font-weight:400;font-size:16px;line-height:1.2;color:rgb(0,0,0);'>A page-builder-like visual editor that inherits your theme styles. Drag, drop, Fully-customizable</span>
+                </div>
+                <div class="bb-feature-media" style="position:absolute;left:838px;top:316px;width:522px;height:540px;overflow:hidden;border-radius:16px;background:rgb(255,214,175);">
+                  <img alt="Easify visual editor for a box builder" class="bb-feature-media-image" decoding="async" height="1620" loading="lazy" src="{% render 'easify-image-url', image: 'homeFeatureCustomize' %}" width="1566">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bb-feature-panel" style="position:absolute;left:calc(200vw + 160px);top:0;width:100vw;height:100%;">
+            <div class="bb-layout bb-feature-cover" style="position:absolute;left:0;top:0;width:100%;height:1024px;">
+              <div class="bb-layout bb-feature-canvas" style="position:absolute;left:0;top:0;width:100%;height:1024px;margin:0;">
+                <span class="bb-feature-title" style='position:absolute;left:80px;top:80px;font-family:"Inter Tight";font-weight:600;font-size:95px;line-height:1.05;letter-spacing:0;color:rgb(0,0,0);'>Boost sales</span>
+                <span class="bb-feature-number" style='position:absolute;left:80px;top:316px;width:197px;height:95px;font-family:"Inter Tight";font-weight:600;font-size:95px;line-height:1;letter-spacing:0;color:rgb(0,0,0);'>03</span>
+                <div class="bb-feature-copy" style="position:absolute;left:297px;top:316px;width:432px;display:flex;flex-direction:column;gap:40px;">
+                  <span style='align-self:stretch;font-family:"Inter Tight";font-weight:500;font-size:32px;line-height:1.2;color:rgb(0,0,0);'>Sale boosters inside the box.</span>
+                  <span style='align-self:stretch;font-family:"Inter Tight";font-weight:400;font-size:16px;line-height:1.2;color:rgb(0,0,0);'>Stock counters, live sales notifications, countdown timers, free gift tiers and subscriptions.</span>
+                </div>
+                <div class="bb-feature-media" style="position:absolute;left:838px;top:316px;width:522px;height:540px;overflow:hidden;border-radius:16px;background:rgb(255,187,120);">
+                  <img alt="Easify sales booster tools in a box builder" class="bb-feature-media-image" decoding="async" height="1620" loading="lazy" src="{% render 'easify-image-url', image: 'homeFeatureSalesBoosters' %}" width="1566">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bb-feature-panel" style="position:absolute;left:calc(300vw + 240px);top:0;width:100vw;height:100%;">
+            <div class="bb-layout bb-feature-cover" style="position:absolute;left:0;top:0;width:100%;height:1024px;">
+              <div class="bb-layout bb-feature-canvas" style="position:absolute;left:0;top:0;width:100%;height:1024px;margin:0;">
+                <span class="bb-feature-title" style='position:absolute;left:80px;top:80px;font-family:"Inter Tight";font-weight:600;font-size:95px;line-height:1.05;letter-spacing:0;color:rgb(0,0,0);'>Track &amp; Scale</span>
+                <span class="bb-feature-number" style='position:absolute;left:80px;top:316px;width:197px;height:95px;font-family:"Inter Tight";font-weight:600;font-size:95px;line-height:1;letter-spacing:0;color:rgb(0,0,0);'>04</span>
+                <div class="bb-feature-copy" style="position:absolute;left:297px;top:316px;width:432px;display:flex;flex-direction:column;gap:40px;">
+                  <span style='align-self:stretch;font-family:"Inter Tight";font-weight:500;font-size:32px;line-height:1.2;color:rgb(0,0,0);'>Real-time data. Real decisions.</span>
+                  <span style='align-self:stretch;font-family:"Inter Tight";font-weight:400;font-size:16px;line-height:1.2;color:rgb(0,0,0);'>See which box converts, which tier lifts AOV — the moment it happens. Then double down.</span>
+                </div>
+                <div class="bb-feature-media" style="position:absolute;left:838px;top:316px;width:522px;height:540px;overflow:hidden;border-radius:16px;background:rgb(255,155,64);">
+                  <img alt="Easify box performance analytics dashboard" class="bb-feature-media-image" decoding="async" height="1620" loading="lazy" src="{% render 'easify-image-url', image: 'homeFeatureAnalytics' %}" width="1566">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Easify Home Story",
+  "tag": "section",
+  "class": "easify-home-story-section",
+  "settings": [],
+  "presets": [{ "name": "Easify Home Story" }]
+}
+{% endschema %}

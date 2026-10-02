@@ -1,0 +1,683 @@
+{% liquid
+  assign hero_variant = section.settings.variant | default: 'home'
+  assign hero_is_demo_fallback = false
+  if hero_variant == 'demo-fallback'
+    assign hero_variant = 'demo'
+    assign hero_is_demo_fallback = true
+  endif
+  assign hero_anchor = section.settings.anchor_id | default: 'top' | handleize
+  assign hero_button_url = section.settings.button_link
+  if hero_button_url == blank
+    assign hero_button_url = settings.easify_app_store_url
+  endif
+%}
+
+<div
+  class="easify-hero-root"
+  data-easify-hero
+  {% if hero_is_demo_fallback %}data-demo-fallback-hero hidden{% endif %}
+>
+  <section
+    aria-labelledby="EasifyHeroHeading-{{ section.id }}"
+    class="bb-shared-hero bb-shared-hero--{{ hero_variant }}{% if hero_variant == 'home' %} bb-hero{% else %} ez-demo-hero{% endif %}"
+    data-component-isolated
+    data-screen-label="01 Hero"
+    id="{{ hero_anchor }}"
+  >
+    <div aria-hidden="true" class="bb-shared-hero__grid"></div>
+    <div class="bb-shared-hero__fit">
+      <div class="bb-shared-hero__canvas">
+        <div class="bb-shared-hero__content">
+          <div class="bb-shared-hero__copy">
+            <h1 data-reveal="fade" id="EasifyHeroHeading-{{ section.id }}">
+              <span>{{ section.settings.heading | escape }}</span>
+              <span class="bb-shared-hero__highlight">{{ section.settings.highlight | escape }}</span>
+            </h1>
+
+            {% if section.settings.subtext != blank %}
+              <p class="bb-shared-hero__subtext">{{ section.settings.subtext | escape }}</p>
+            {% endif %}
+          </div>
+
+          {% render 'easify-button',
+            label: section.settings.button_label,
+            href: hero_button_url,
+            variant: 'default',
+            new_tab: section.settings.open_new_tab,
+            attributes: 'data-reveal="pop"'
+          %}
+        </div>
+
+        <div aria-hidden="true" class="bb-shared-hero__ground{% if hero_variant == 'home' %} bb-hero-ground{% else %} ez-demo-hero-ground{% endif %}"></div>
+        <div class="bb-shared-hero__mascot{% if hero_variant == 'home' %} bb-hero-mascot{% else %} ez-demo-hero-mascot{% endif %}">
+          <div aria-hidden="true" class="bb-shared-hero__mascot-shadow"></div>
+          <img
+            alt="{{ section.settings.mascot_alt | escape }}"
+            decoding="async"
+            fetchpriority="high"
+            height="480"
+            loading="eager"
+            src="{% render 'easify-image-url', image: 'mascotHero' %}"
+            width="480"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var currentScript = document.currentScript;
+      var currentRoot = currentScript ? currentScript.closest('[data-easify-hero]') : null;
+
+      function syncRouteVisibility(root) {
+        if (!root || !root.hasAttribute('data-demo-fallback-hero')) {
+          return true;
+        }
+
+        var currentPath = window.location.pathname || '';
+        var isDemoRoute = currentPath.indexOf('/pages/demo') !== -1;
+        root.hidden = !isDemoRoute;
+        return isDemoRoute;
+      }
+
+      function startTitleReveal(root) {
+        if (!root || root.getAttribute('data-hero-reveal-ready') === 'true') {
+          return;
+        }
+
+        window.requestAnimationFrame(function () {
+          root.setAttribute('data-hero-reveal-ready', 'true');
+        });
+      }
+
+      if (!window.EasifyHeroSection) {
+        window.EasifyHeroSection = {
+          init: function (root) {
+            if (!syncRouteVisibility(root)) {
+              return;
+            }
+
+            startTitleReveal(root);
+            if (root.getAttribute('data-hero-ready') === 'true') {
+              return;
+            }
+
+            var nav = root.querySelector('[data-site-nav]');
+            var button = nav ? nav.querySelector('.bb-menu-toggle') : null;
+            var links = nav ? nav.querySelector('.bb-nav-links') : null;
+            if (!nav || !button || !links) {
+              return;
+            }
+
+            root.setAttribute('data-hero-ready', 'true');
+            nav.setAttribute('data-menu-ready', 'true');
+
+            function setOpen(open) {
+              nav.setAttribute('data-menu-open', open ? 'true' : 'false');
+              button.setAttribute('aria-expanded', open ? 'true' : 'false');
+              button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            }
+
+            button.addEventListener('click', function () {
+              setOpen(nav.getAttribute('data-menu-open') !== 'true');
+            });
+
+            links.querySelectorAll('a').forEach(function (link) {
+              link.addEventListener('click', function () {
+                setOpen(false);
+              });
+            });
+
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') {
+                setOpen(false);
+              }
+            });
+          }
+        };
+
+        document.addEventListener('shopify:section:load', function (event) {
+          var sectionRoot = event.target ? event.target.querySelector('[data-easify-hero]') : null;
+          window.EasifyHeroSection.init(sectionRoot);
+        });
+      }
+
+      window.EasifyHeroSection.init(currentRoot);
+    }());
+  </script>
+</div>
+
+{% stylesheet %}
+  /* Component-owned styles keep the hero independent from page wrappers. */
+  @keyframes easifyHeroBob {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-20px); }
+  }
+  @keyframes easifyHeroBobSmall {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-10px); }
+  }
+  @keyframes easifyHeroSquish {
+    0%,100% { transform:scale(1,1); }
+    50% { transform:scale(1.1,.86); }
+  }
+  @keyframes easifyHeroLineReveal {
+    from { opacity:0; transform:translateY(48px); clip-path:inset(0 0 100% 0); }
+    to { opacity:1; transform:translateY(0); clip-path:inset(0 0 0 0); }
+  }
+  @keyframes easifyHeroActionReveal {
+    from { opacity:0; transform:translateY(22px) scale(.96); }
+    to { opacity:1; transform:none; }
+  }
+  @keyframes easifyHeroMascotReveal {
+    from { opacity:0; transform:translate(-50%,32px) scale(.94); }
+    to { opacity:1; transform:translate(-50%,0) scale(1); }
+  }
+  @keyframes easifyHeroGroundReveal {
+    from { opacity:0; transform:translateY(28px) scale(.96); }
+    to { opacity:1; transform:none; }
+  }
+  @keyframes easifyHeroHighlightWipe {
+    from { transform:scaleX(0); }
+    to { transform:scaleX(1); }
+  }
+  .easify-hero-section {
+    display:block;
+    margin:0;
+    padding:0;
+  }
+  .easify-hero-root {
+    width:100%;
+    overflow:hidden;
+    color:#000;
+    font-family:"Inter Tight",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .easify-hero-root,
+  .easify-hero-root *,
+  .easify-hero-root *::before,
+  .easify-hero-root *::after {
+    box-sizing:border-box;
+  }
+  .easify-hero-root a {
+    text-decoration:none;
+  }
+  .easify-hero-root :focus-visible {
+    outline:3px solid #8640ff;
+    outline-offset:5px;
+  }
+  .easify-hero-root .bb-shared-hero {
+    --hero-height:100dvh;
+    --hero-title-size:clamp(56px,min(9vw,11dvh),104px);
+    --hero-content-width:1198px;
+    --hero-mascot-size:clamp(360px,48dvh,480px);
+    --hero-mascot-bottom:0px;
+    --hero-ground-height:665px;
+    --hero-ground-bottom:-535px;
+    position:relative !important;
+    isolation:isolate;
+    display:block;
+    width:100% !important;
+    max-width:none !important;
+    height:100vh !important;
+    height:var(--hero-height) !important;
+    min-height:100vh !important;
+    min-height:var(--hero-height) !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+    background:#ff7300;
+    color:#000;
+    z-index:10;
+  }
+  .easify-hero-root .bb-shared-hero__grid {
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background-color:#ff7300;
+    background-image:linear-gradient(#ff8725 1px,transparent 1px),linear-gradient(90deg,#ff8725 1px,transparent 1px);
+    background-size:60px 60px;
+  }
+  .easify-hero-root .bb-shared-hero__fit {
+    position:relative;
+    width:100%;
+    height:100%;
+  }
+  .easify-hero-root .bb-site-nav {
+    position:absolute;
+    top:40px;
+    left:50%;
+    z-index:20;
+    width:min(1280px,calc(100% - 48px));
+    height:76px;
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:16px;
+    color:#000;
+  }
+  .easify-hero-root .bb-site-nav-main {
+    position:relative;
+    min-width:0;
+    height:76px;
+    flex:1 1 auto;
+    border-radius:16px;
+    background:#fff;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 32px;
+  }
+  .easify-hero-root .bb-brand {
+    height:48px;
+    display:flex;
+    align-items:center;
+    flex-shrink:0;
+    text-decoration:none;
+  }
+  .easify-hero-root .bb-brand img {
+    display:block;
+    width:auto;
+    max-width:100%;
+    height:48px;
+    margin:0;
+    object-fit:contain;
+  }
+  .easify-hero-root .bb-menu-toggle {
+    display:none;
+    appearance:none;
+  }
+  .easify-hero-root .bb-nav-links {
+    height:44px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    flex-shrink:0;
+    gap:4px;
+  }
+  .easify-hero-root .bb-nav-link {
+    height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 12px;
+    border-radius:999999px;
+    color:#000;
+    font:500 20px/1.2 "Inter Tight",sans-serif;
+    white-space:nowrap;
+    transition:background .25s,color .25s;
+  }
+  .easify-hero-root .bb-nav-link:hover {
+    background:#f3eee9;
+    color:#000;
+  }
+  .easify-hero-root .bb-nav-link.is-active,
+  .easify-hero-root .bb-nav-link[aria-current="page"] {
+    background:#eaeaea;
+    color:#000;
+  }
+  .easify-hero-root .bb-shared-hero__canvas {
+    position:relative;
+    width:100%;
+    max-width:none;
+    height:100%;
+    margin:0;
+    padding:clamp(128px,17dvh,166px) 24px 0;
+  }
+  .easify-hero-root .bb-shared-hero__content {
+    position:relative;
+    z-index:3;
+    width:min(var(--hero-content-width),100%);
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:32px;
+  }
+  .easify-hero-root .bb-shared-hero__copy {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+  }
+  .easify-hero-root .bb-shared-hero__content h1 {
+    position:relative;
+    width:100%;
+    margin:0;
+    color:#5f2d00;
+    font:600 var(--hero-title-size)/1.04 "Inter Tight",sans-serif;
+    letter-spacing:-.025em;
+    text-align:center;
+    text-wrap:balance;
+  }
+  .easify-hero-root .bb-shared-hero__content h1 > span:first-child {
+    display:block;
+  }
+  .easify-hero-root[data-hero-reveal-ready="true"] .bb-shared-hero__content h1 > span:first-child {
+    animation:easifyHeroLineReveal .8s cubic-bezier(.16,1,.3,1) .06s backwards;
+  }
+  .easify-hero-root[data-hero-reveal-ready="true"] .bb-shared-hero__highlight {
+    animation:easifyHeroLineReveal .8s cubic-bezier(.16,1,.3,1) .16s backwards;
+  }
+  .easify-hero-root[data-hero-reveal-ready="true"] .bb-shared-hero__highlight::before {
+    animation:easifyHeroHighlightWipe .72s cubic-bezier(.16,1,.3,1) .48s backwards;
+  }
+  .easify-hero-root .bb-shared-hero__highlight {
+    position:relative;
+    display:table;
+    margin:0 auto;
+    padding:0 18px 6px;
+    border-radius:21px;
+    background:transparent;
+    isolation:isolate;
+  }
+  .easify-hero-root .bb-shared-hero__highlight::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    border-radius:inherit;
+    background:#ffbb7c;
+    transform:scaleX(1);
+    transform-origin:left center;
+    pointer-events:none;
+  }
+  .easify-hero-root .bb-shared-hero__subtext {
+    max-width:min(680px,100%);
+    margin:0;
+    color:#5f2d00;
+    font:500 clamp(18px,2.1vw,24px)/1.25 "Inter Tight",sans-serif;
+    text-align:center;
+    text-wrap:balance;
+  }
+  .easify-hero-root[data-hero-reveal-ready="true"] .bb-shared-hero__subtext {
+    animation:easifyHeroActionReveal .72s cubic-bezier(.16,1,.3,1) .24s backwards;
+  }
+  .easify-hero-root .bb-shared-hero__ground {
+    position:absolute;
+    bottom:var(--hero-ground-bottom);
+    left:-50%;
+    z-index:1;
+    width:200%;
+    height:var(--hero-ground-height);
+    border-radius:50%;
+    background:#fff;
+  }
+  .easify-hero-root[data-hero-reveal-ready="true"] .bb-shared-hero__ground {
+    animation:easifyHeroGroundReveal .9s cubic-bezier(.16,1,.3,1) .12s backwards;
+  }
+  .easify-hero-root .bb-shared-hero__mascot {
+    position:absolute;
+    bottom:var(--hero-mascot-bottom);
+    left:50%;
+    z-index:2;
+    width:min(var(--hero-mascot-size),80vw);
+    aspect-ratio:1;
+    transform:translateX(-50%);
+  }
+  .easify-hero-root[data-hero-reveal-ready="true"] .bb-shared-hero__mascot {
+    animation:easifyHeroMascotReveal .9s cubic-bezier(.16,1,.3,1) .2s backwards;
+  }
+  .easify-hero-root .bb-shared-hero__mascot-shadow {
+    position:absolute;
+    bottom:2.5%;
+    left:23%;
+    width:54%;
+    height:9%;
+    border-radius:50%;
+    background:#eee;
+    animation:easifyHeroSquish 3.2s ease-in-out infinite;
+  }
+  .easify-hero-root .bb-shared-hero__mascot img {
+    position:absolute;
+    inset:0;
+    display:block;
+    width:100%;
+    max-width:none;
+    height:100%;
+    max-height:none;
+    margin:0;
+    padding:0;
+    object-fit:contain;
+    pointer-events:none;
+    animation:easifyHeroBob 3.2s ease-in-out infinite;
+  }
+
+  @media (max-width:1199px) {
+    .easify-hero-root .bb-shared-hero {
+      --hero-title-size:clamp(44px,min(9vw,11dvh),96px);
+      --hero-mascot-size:min(400px,64vw,50dvh);
+      --hero-mascot-bottom:clamp(-24px,-3dvh,0px);
+    }
+    .easify-hero-root .bb-site-nav {
+      top:24px;
+      right:24px;
+      left:24px;
+      width:auto;
+      height:68px;
+      transform:none;
+      gap:12px;
+    }
+    .easify-hero-root .bb-site-nav-main {
+      height:68px;
+      padding:12px 18px;
+    }
+    .easify-hero-root .bb-brand,
+    .easify-hero-root .bb-brand img {
+      height:40px;
+    }
+    .easify-hero-root .bb-menu-toggle {
+      position:relative;
+      width:44px;
+      height:44px;
+      flex-shrink:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      color:#000;
+      appearance:none;
+      -webkit-appearance:none;
+      box-shadow:none;
+      cursor:pointer;
+    }
+    .easify-hero-root .bb-menu-toggle span {
+      position:absolute;
+      width:28px;
+      height:3px;
+      border-radius:3px;
+      background:currentColor;
+      transition:opacity .2s,transform .2s;
+    }
+    .easify-hero-root .bb-menu-toggle span:first-child {
+      transform:translateY(-8px);
+    }
+    .easify-hero-root .bb-menu-toggle span:nth-child(2) {
+      transform:translateY(0);
+    }
+    .easify-hero-root .bb-menu-toggle span:last-child {
+      transform:translateY(8px);
+    }
+    .easify-hero-root .bb-site-nav[data-menu-open="true"] .bb-menu-toggle span:first-child {
+      transform:rotate(45deg);
+    }
+    .easify-hero-root .bb-site-nav[data-menu-open="true"] .bb-menu-toggle span:nth-child(2) {
+      opacity:0;
+    }
+    .easify-hero-root .bb-site-nav[data-menu-open="true"] .bb-menu-toggle span:last-child {
+      transform:rotate(-45deg);
+    }
+    .easify-hero-root .bb-nav-links {
+      position:absolute;
+      top:calc(100% + 10px);
+      right:0;
+      left:0;
+      display:none;
+      width:100%;
+      height:auto;
+      padding:12px;
+      border-radius:16px;
+      background:#fff;
+      box-shadow:0 16px 40px #5f2d0029;
+      flex-direction:column;
+      align-items:stretch;
+      gap:4px;
+    }
+    .easify-hero-root .bb-site-nav[data-menu-open="true"] .bb-nav-links {
+      display:flex;
+    }
+    .easify-hero-root .bb-nav-link {
+      min-height:52px;
+      justify-content:flex-start;
+      border-radius:10px;
+      padding:0 18px;
+    }
+    .easify-hero-root .bb-nav-link:hover {
+      background:#fff3e7;
+    }
+    .easify-hero-root .bb-shared-hero__canvas {
+      padding-top:clamp(96px,17dvh,132px);
+    }
+    .easify-hero-root .bb-shared-hero__content {
+      gap:clamp(20px,4dvh,32px);
+    }
+    .easify-hero-root .bb-shared-hero__copy {
+      gap:clamp(12px,2dvh,18px);
+    }
+  }
+
+  @media (max-width:767px) {
+    .easify-hero-root .bb-shared-hero {
+      --hero-title-size:clamp(40px,min(12vw,6.4dvh),64px);
+      --hero-mascot-size:min(360px,88vw,44dvh);
+      --hero-mascot-bottom:clamp(88px,13dvh,112px);
+      --hero-ground-height:clamp(336px,52dvh,420px);
+      --hero-ground-bottom:calc(-1 * clamp(152px,24dvh,188px));
+    }
+    .easify-hero-root .bb-site-nav {
+      top:16px;
+      right:16px;
+      left:16px;
+      height:60px;
+    }
+    .easify-hero-root .bb-site-nav-main {
+      height:60px;
+      padding:8px 12px;
+      border-radius:14px;
+    }
+    .easify-hero-root .bb-brand,
+    .easify-hero-root .bb-brand img {
+      height:36px;
+    }
+    .easify-hero-root .bb-shared-hero__canvas {
+      padding:clamp(120px,17.8dvh,144px) 16px 0;
+    }
+    .easify-hero-root .bb-shared-hero__content {
+      gap:clamp(24px,3.5dvh,28px);
+    }
+    .easify-hero-root .bb-shared-hero__copy {
+      gap:12px;
+    }
+    .easify-hero-root .bb-shared-hero__subtext {
+      max-width:328px;
+      font-size:16px;
+      line-height:1.28;
+    }
+  }
+
+  @media (max-width:359px) {
+    .easify-hero-root .bb-shared-hero {
+      --hero-title-size:43px;
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+    .easify-hero-root *,
+    .easify-hero-root *::before,
+    .easify-hero-root *::after {
+      animation:none !important;
+      transition:none !important;
+      scroll-behavior:auto !important;
+    }
+  }
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Easify hero",
+  "tag": "section",
+  "class": "easify-hero-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "Page variant",
+      "default": "home",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "demo", "label": "Demo" },
+        { "value": "demo-fallback", "label": "Demo route fallback" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "default": "top"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pre-set bundles are"
+    },
+    {
+      "type": "text",
+      "id": "highlight",
+      "label": "Highlighted line",
+      "default": "not enough."
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Bundle your way"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_new_tab",
+      "label": "Open button in a new tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "mascot_alt",
+      "label": "Mascot alt text",
+      "default": "Easify mascot"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Easify hero"
+    }
+  ]
+}
+{% endschema %}

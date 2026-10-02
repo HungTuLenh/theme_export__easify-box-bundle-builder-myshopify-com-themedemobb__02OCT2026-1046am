@@ -1,0 +1,41 @@
+<div
+  class="easify-final easify-final--home"
+  data-easify-final
+  data-page-variant="home"
+  data-home-pricing-reveal
+>
+  {% render 'easify-pricing-calculator',
+    context: 'home',
+    section_id: 'pricing',
+    heading_tag: 'h2',
+    heading: section.settings.heading,
+    subtext: section.settings.subtext,
+    initial_position: 0,
+    price_decimals: 2,
+    show_metrics: false,
+    show_note: false
+  %}
+</div>
+
+{% schema %}
+{
+  "name": "Easify home pricing",
+  "tag": "section",
+  "class": "easify-home-pricing-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We build and reach bigger together."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "The app pays for itself. We only grow when you grow, so pricing follows your orders, not your ambition."
+    }
+  ],
+  "presets": [{ "name": "Easify home pricing" }]
+}
+{% endschema %}

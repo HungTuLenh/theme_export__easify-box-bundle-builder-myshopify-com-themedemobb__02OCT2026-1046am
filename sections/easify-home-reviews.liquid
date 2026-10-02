@@ -1,0 +1,582 @@
+{% liquid
+  assign reviews_link = section.settings.button_link
+  if reviews_link == blank
+    assign reviews_link = settings.easify_app_reviews_url
+  endif
+  assign reviews_button_new_tab = false
+  if reviews_link contains 'http://' or reviews_link contains 'https://'
+    assign reviews_button_new_tab = true
+  endif
+
+
+  assign app_review_rating = settings.easify_app_review_rating
+  assign app_review_count = settings.easify_app_review_count
+  assign app_review_label = settings.easify_app_review_label
+  assign home_reviews_average_rating = section.settings.average_rating | strip
+  assign home_reviews_review_count = section.settings.review_count | strip
+  assign home_reviews_review_label = section.settings.review_label | strip
+  if home_reviews_average_rating == blank
+    assign home_reviews_average_rating = app_review_rating
+  endif
+  if home_reviews_review_count == blank
+    assign home_reviews_review_count = app_review_count
+  endif
+  if home_reviews_review_label == blank
+    assign home_reviews_review_label = app_review_label
+  endif
+
+  assign review_repeat_count = 1
+  assign displayed_review_count = section.blocks.size
+  if section.blocks.size == 1
+    assign review_repeat_count = 4
+  elsif section.blocks.size == 2
+    assign review_repeat_count = 2
+  elsif section.blocks.size == 3
+    assign review_repeat_count = 2
+  endif
+
+  if displayed_review_count == 0
+    assign displayed_review_count = 4
+  endif
+%}
+
+{% capture review_card_star_icon %}{% render 'easify-star-icon', size: 24 %}{% endcapture %}
+{% capture rating_star_icon %}{% render 'easify-star-icon', size: 32 %}{% endcapture %}
+
+{% capture review_cards %}
+  {% if section.blocks.size > 0 %}
+    {% for copy_index in (1..review_repeat_count) %}
+      {% for block in section.blocks %}
+        <article class="ez-home-reviews__card" {% if copy_index > 1 %}aria-hidden="true"{% endif %}>
+          <p class="ez-home-reviews__quote">{{ block.settings.quote | escape }}</p>
+          <footer class="ez-home-reviews__meta">
+            <span class="ez-home-reviews__merchant">{{ block.settings.store | escape }}</span>
+            <span aria-label="5 out of 5 stars" class="ez-home-reviews__stars" role="img">
+              {% for star_index in (1..5) %}
+                {{ review_card_star_icon }}
+              {% endfor %}
+            </span>
+          </footer>
+        </article>
+      {% endfor %}
+    {% endfor %}
+  {% else %}
+    {% for fallback_index in (1..4) %}
+      <article class="ez-home-reviews__card" {% if fallback_index > 1 %}aria-hidden="true"{% endif %}>
+        <p class="ez-home-reviews__quote">The app is amazing and the customer support couldnt be better to be honest</p>
+        <footer class="ez-home-reviews__meta">
+          <span class="ez-home-reviews__merchant">Salie</span>
+          <span aria-label="5 out of 5 stars" class="ez-home-reviews__stars" role="img">
+            {% for star_index in (1..5) %}
+              {{ review_card_star_icon }}
+            {% endfor %}
+          </span>
+        </footer>
+      </article>
+    {% endfor %}
+  {% endif %}
+{% endcapture %}
+
+<div
+  class="easify-home-reviews-root"
+  data-easify-home-reviews
+  data-section-id="{{ section.id }}"
+>
+  <section aria-label="Merchant reviews" class="ez-home-reviews" data-screen-label="{{ displayed_review_count }} Reviews" id="reviews">
+    <div class="ez-home-reviews__rows">
+      <div aria-label="Merchant reviews — animation pauses while focused" class="ez-home-reviews__viewport" tabindex="0">
+        <div class="ez-home-reviews__track ez-home-reviews__track--left">
+          <div class="ez-home-reviews__group">{{ review_cards }}</div>
+          <div aria-hidden="true" class="ez-home-reviews__group">{{ review_cards }}</div>
+        </div>
+      </div>
+      <div aria-hidden="true" class="ez-home-reviews__viewport">
+        <div class="ez-home-reviews__track ez-home-reviews__track--right">
+          <div class="ez-home-reviews__group">{{ review_cards }}</div>
+          <div class="ez-home-reviews__group">{{ review_cards }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div aria-label="Review navigation" class="ez-home-reviews__mobile-nav" role="group">
+      <button aria-label="Previous review" class="ez-home-reviews__nav-button" data-ez-home-review-nav="prev" type="button">
+        <svg aria-hidden="true" height="24" viewBox="0 0 24 24" width="24">
+          <path d="M15 6L9 12L15 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+        </svg>
+      </button>
+      <button aria-label="Next review" class="ez-home-reviews__nav-button" data-ez-home-review-nav="next" type="button">
+        <svg aria-hidden="true" height="24" viewBox="0 0 24 24" width="24">
+          <path d="M9 6L15 12L9 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div aria-label="{{ home_reviews_average_rating | escape }} {{ section.settings.average_label | escape }}, {{ home_reviews_review_count | escape }} {{ home_reviews_review_label | escape }}" class="ez-home-reviews__rating" role="group">
+      <div aria-hidden="true" class="ez-home-reviews__rating-item">
+        <div class="ez-home-reviews__rating-value">
+          {{ rating_star_icon }}
+          <span>{{ home_reviews_average_rating | escape }}</span>
+        </div>
+        <span class="ez-home-reviews__rating-label">{{ section.settings.average_label | escape }}</span>
+      </div>
+      <span aria-hidden="true" class="ez-home-reviews__rating-divider"></span>
+      <div aria-hidden="true" class="ez-home-reviews__rating-item">
+        <span class="ez-home-reviews__rating-value">{{ home_reviews_review_count | escape }}</span>
+        <span class="ez-home-reviews__rating-label">{{ home_reviews_review_label | escape }}</span>
+      </div>
+    </div>
+
+    <div class="ez-home-reviews__button-wrap">
+      {% render 'easify-button',
+        label: section.settings.button_label,
+        href: reviews_link,
+        variant: 'default',
+        new_tab: reviews_button_new_tab
+      %}
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var currentScript = document.currentScript;
+      var currentRoot = currentScript ? currentScript.closest('[data-easify-home-reviews]') : null;
+
+      if (!window.EasifyHomeReviewsSection) {
+        window.EasifyHomeReviewsSection = {
+          init: function (root) {
+            if (!root || root.getAttribute('data-reviews-ready') === 'true') {
+              return;
+            }
+
+            var viewport = root.querySelector('.ez-home-reviews__viewport');
+            var track = root.querySelector('.ez-home-reviews__track--left');
+            var buttons = Array.prototype.slice.call(root.querySelectorAll('[data-ez-home-review-nav]'));
+            if (!viewport || !track || buttons.length === 0) {
+              return;
+            }
+
+            root.setAttribute('data-reviews-ready', 'true');
+
+            function getStep() {
+              var cards = Array.prototype.slice.call(track.querySelectorAll('.ez-home-reviews__card'));
+              if (cards.length > 1) {
+                return Math.abs(cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left);
+              }
+
+              if (cards.length === 1) {
+                var styles = window.getComputedStyle(track);
+                var gap = parseFloat(styles.columnGap || styles.gap || '0');
+                return cards[0].getBoundingClientRect().width + gap;
+              }
+
+              return viewport.clientWidth;
+            }
+
+            function isMobileLayout() {
+              return window.matchMedia('(max-width: 767px)').matches;
+            }
+
+            function scrollReviews(direction) {
+              if (!isMobileLayout()) {
+                return;
+              }
+
+              var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              var left = getStep() * direction;
+              var behavior = prefersReducedMotion ? 'auto' : 'smooth';
+              viewport.scrollBy({ left: left, behavior: behavior });
+            }
+
+            buttons.forEach(function (button) {
+              button.addEventListener('click', function () {
+                var direction = 1;
+                if (button.getAttribute('data-ez-home-review-nav') === 'prev') {
+                  direction = -1;
+                }
+                scrollReviews(direction);
+              });
+            });
+          }
+        };
+
+        document.addEventListener('shopify:section:load', function (event) {
+          var sectionRoot = event.target ? event.target.querySelector('[data-easify-home-reviews]') : null;
+          window.EasifyHomeReviewsSection.init(sectionRoot);
+        });
+      }
+
+      window.EasifyHomeReviewsSection.init(currentRoot);
+    }());
+  </script>
+</div>
+
+{% stylesheet %}
+  .easify-home-reviews-section {
+    display:block;
+    margin:0;
+    padding:0;
+  }
+  .easify-home-reviews-root {
+    --ez-reviews-gap:20px;
+    --ez-reviews-half-gap:10px;
+    width:100%;
+    overflow:hidden;
+    background:#2d1400;
+    color:#fff;
+    font-family:"Inter Tight",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .easify-home-reviews-root,
+  .easify-home-reviews-root *,
+  .easify-home-reviews-root *::before,
+  .easify-home-reviews-root *::after {
+    box-sizing:border-box;
+  }
+  .easify-home-reviews-root .ez-home-reviews {
+    position:relative;
+    width:100%;
+    height:1024px;
+    overflow:hidden;
+    background:#2d1400;
+  }
+  .easify-home-reviews-root .ez-home-reviews__rows {
+    position:absolute;
+    top:144px;
+    left:0;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:var(--ez-reviews-gap);
+  }
+  .easify-home-reviews-root .ez-home-reviews__viewport {
+    width:100%;
+    overflow:hidden;
+  }
+  .easify-home-reviews-root .ez-home-reviews__viewport:focus-visible {
+    outline:3px solid #ffc131;
+    outline-offset:-6px;
+  }
+  .easify-home-reviews-root .ez-home-reviews__track,
+  .easify-home-reviews-root .ez-home-reviews__group {
+    display:flex;
+    flex-direction:row;
+    flex-shrink:0;
+    gap:var(--ez-reviews-gap);
+    width:max-content;
+  }
+  .easify-home-reviews-root .ez-home-reviews__track {
+    will-change:transform;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+  }
+  .easify-home-reviews-root .ez-home-reviews__track--left {
+    animation-name:ezHomeReviewsMarqueeLeft;
+    animation-duration:46s;
+  }
+  .easify-home-reviews-root .ez-home-reviews__track--right {
+    margin-left:-137px;
+    animation-name:ezHomeReviewsMarqueeRight;
+    animation-duration:52s;
+  }
+  .easify-home-reviews-root .ez-home-reviews__rows:hover .ez-home-reviews__track,
+  .easify-home-reviews-root .ez-home-reviews__rows:focus-within .ez-home-reviews__track {
+    animation-play-state:paused;
+  }
+  .easify-home-reviews-root .ez-home-reviews__card {
+    position:relative;
+    width:454px;
+    height:250px;
+    flex-shrink:0;
+    overflow:hidden;
+    border-radius:16px;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+    padding:20px;
+    justify-content:space-between;
+    align-items:flex-start;
+  }
+  .easify-home-reviews-root .ez-home-reviews__quote {
+    display:-webkit-box;
+    align-self:stretch;
+    overflow:hidden;
+    margin:0;
+    color:#737373;
+    font-size:20px;
+    font-weight:500;
+    line-height:1.2;
+    text-overflow:ellipsis;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:5;
+  }
+  .easify-home-reviews-root .ez-home-reviews__meta {
+    width:100%;
+    min-height:24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+  }
+  .easify-home-reviews-root .ez-home-reviews__merchant {
+    min-width:0;
+    overflow:hidden;
+    color:#404040;
+    font-size:16px;
+    font-weight:500;
+    line-height:1.2;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .easify-home-reviews-root .ez-home-reviews__stars {
+    display:flex;
+    flex-shrink:0;
+    gap:4px;
+    color:#ffc131;
+  }
+  .easify-home-reviews-root .ez-home-reviews__stars svg {
+    display:block;
+    width:24px;
+    height:24px;
+  }
+  .easify-home-reviews-root .ez-home-reviews__rating {
+    position:absolute;
+    top:704px;
+    left:50%;
+    width:296px;
+    min-height:61px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:8px;
+    transform:translateX(-50%);
+  }
+  .easify-home-reviews-root .ez-home-reviews__rating-item {
+    width:140px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+  }
+  .easify-home-reviews-root .ez-home-reviews__rating-value {
+    display:flex;
+    align-items:center;
+    gap:6.464px;
+    color:#fff;
+    font-size:32px;
+    font-weight:500;
+    line-height:1.2;
+  }
+  .easify-home-reviews-root .ez-home-reviews__rating-value svg {
+    display:block;
+    width:32px;
+    height:32px;
+  }
+  .easify-home-reviews-root .ez-home-reviews__rating-label {
+    color:#fff;
+    font-size:16px;
+    font-weight:400;
+    line-height:1.2;
+    text-align:center;
+  }
+  .easify-home-reviews-root .ez-home-reviews__rating-divider {
+    width:1px;
+    height:40px;
+    flex-shrink:0;
+    background:#b15000;
+  }
+  .easify-home-reviews-root .ez-home-reviews__button-wrap {
+    position:absolute;
+    top:805px;
+    right:0;
+    left:0;
+    display:flex;
+    justify-content:center;
+  }
+  .easify-home-reviews-root .ez-home-reviews__mobile-nav {
+    display:none;
+  }
+
+  @keyframes ezHomeReviewsMarqueeLeft {
+    from { transform:translate3d(0,0,0); }
+    to { transform:translate3d(calc(-50% - var(--ez-reviews-half-gap)),0,0); }
+  }
+  @keyframes ezHomeReviewsMarqueeRight {
+    from { transform:translate3d(calc(-50% - var(--ez-reviews-half-gap)),0,0); }
+    to { transform:translate3d(0,0,0); }
+  }
+
+  @media (max-width:1199px) {
+    .easify-home-reviews-root .ez-home-reviews { height:900px; }
+    .easify-home-reviews-root .ez-home-reviews__rows { top:100px; }
+    .easify-home-reviews-root .ez-home-reviews__track--right { margin-left:-80px; }
+    .easify-home-reviews-root .ez-home-reviews__card { width:390px; height:220px; }
+    .easify-home-reviews-root .ez-home-reviews__quote { font-size:18px; line-height:1.35; }
+    .easify-home-reviews-root .ez-home-reviews__rating { top:610px; }
+    .easify-home-reviews-root .ez-home-reviews__button-wrap { top:710px; }
+  }
+
+  @media (max-width:767px) {
+    .easify-home-reviews-root {
+      --ez-reviews-gap:18px;
+      --ez-reviews-half-gap:9px;
+    }
+    .easify-home-reviews-root .ez-home-reviews { height:640px; }
+    .easify-home-reviews-root .ez-home-reviews__rows {
+      top:39px;
+      gap:0;
+    }
+    .easify-home-reviews-root .ez-home-reviews__viewport {
+      overflow-x:auto;
+      overflow-y:hidden;
+      scroll-padding-left:12px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .easify-home-reviews-root .ez-home-reviews__viewport::-webkit-scrollbar {
+      display:none;
+    }
+    .easify-home-reviews-root .ez-home-reviews__viewport + .ez-home-reviews__viewport {
+      display:none;
+    }
+    .easify-home-reviews-root .ez-home-reviews__track {
+      animation:none;
+      transform:none;
+      will-change:auto;
+    }
+    .easify-home-reviews-root .ez-home-reviews__track--left {
+      padding:0 12px;
+    }
+    .easify-home-reviews-root .ez-home-reviews__track--right {
+      margin-left:0;
+    }
+    .easify-home-reviews-root .ez-home-reviews__card {
+      width:min(360px,82vw);
+      height:264px;
+      padding:24px;
+      border-radius:16px;
+      scroll-snap-align:start;
+    }
+    .easify-home-reviews-root .ez-home-reviews__quote {
+      font-size:20px;
+      line-height:1.12;
+      -webkit-line-clamp:5;
+    }
+    .easify-home-reviews-root .ez-home-reviews__meta { gap:8px; }
+    .easify-home-reviews-root .ez-home-reviews__merchant { font-size:16px; }
+    .easify-home-reviews-root .ez-home-reviews__stars { gap:3px; }
+    .easify-home-reviews-root .ez-home-reviews__stars svg { width:17px; height:17px; }
+    .easify-home-reviews-root .ez-home-reviews__mobile-nav {
+      position:absolute;
+      top:331px;
+      right:0;
+      left:0;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      z-index:2;
+    }
+    .easify-home-reviews-root .ez-home-reviews__nav-button {
+      width:52px;
+      height:52px;
+      padding:0;
+      border:0;
+      border-radius:50%;
+      background:#fff;
+      color:#000;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:none;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .easify-home-reviews-root .ez-home-reviews__nav-button svg {
+      display:block;
+      width:24px;
+      height:24px;
+    }
+    .easify-home-reviews-root .ez-home-reviews__nav-button:focus-visible {
+      outline:3px solid #ffc131;
+      outline-offset:4px;
+    }
+    .easify-home-reviews-root .ez-home-reviews__rating {
+      top:430px;
+      width:296px;
+    }
+    .easify-home-reviews-root .ez-home-reviews__rating-value {
+      font-size:38px;
+      gap:8px;
+    }
+    .easify-home-reviews-root .ez-home-reviews__rating-value svg {
+      width:36px;
+      height:36px;
+    }
+    .easify-home-reviews-root .ez-home-reviews__rating-label {
+      font-size:18px;
+    }
+    .easify-home-reviews-root .ez-home-reviews__rating-divider {
+      height:46px;
+    }
+    .easify-home-reviews-root .ez-home-reviews__button-wrap {
+      top:532px;
+    }
+    .easify-home-reviews-root .ez-home-reviews__button-wrap .ez-button {
+      --ez-button-width:222px;
+      --ez-button-height:65px;
+      --ez-button-min-height:65px;
+      --ez-button-padding:10px 16px 10px 20px;
+      --ez-button-gap:12px;
+      --ez-button-font-size:18px;
+      --ez-button-icon-size:40px;
+      --ez-button-radius:14px;
+      --ez-button-max-width:calc(100vw - 48px);
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+    .easify-home-reviews-root .ez-home-reviews__track {
+      animation:none;
+      transform:none;
+      will-change:auto;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Easify home reviews",
+  "tag": "section",
+  "class": "easify-home-reviews-section",
+  "settings": [
+    { "type": "text", "id": "average_rating", "label": "Average rating", "info": "Blank uses the global Easify app review rating." },
+    { "type": "text", "id": "average_label", "label": "Average rating label", "default": "average rating" },
+    { "type": "text", "id": "review_count", "label": "Review count", "info": "Blank uses the global Easify app review count." },
+    { "type": "text", "id": "review_label", "label": "Review count label", "info": "Blank uses the global Easify app review label." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Read all reviews" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Merchant review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review",
+          "default": "The app is amazing and the customer support couldnt be better to be honest"
+        },
+        { "type": "text", "id": "store", "label": "Store name", "default": "Salie" }
+      ]
+    }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "Easify home reviews",
+      "blocks": [{ "type": "review" }]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+{% liquid
+  assign footer_reviews_link = settings.easify_app_reviews_url
+%}
+<div class="bb-site-footer-shell" data-site-footer>
+  <footer class="bb-footer" data-screen-label="Footer" id="footer" style="overflow: hidden; background: linear-gradient(rgb(45, 20, 0) 0%, rgb(0, 0, 0) 100%);">
+    <div style="position: absolute; inset: 0px; background-image: linear-gradient(rgba(255, 255, 255, 0.043) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.043) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <div class="bb-footer-card" data-bb-hide="" data-reveal="fade" style="overflow: hidden; border-radius: 16px; background: rgb(255, 255, 255);">
+      <div class="bb-footer-top" style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start;">
+        <div class="bb-footer-links" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 48px;">
+          <a href="/pages/demo" style='font-family: "Inter Tight"; font-weight: 500; font-size: 20px; line-height: 1.2; color: rgb(0, 0, 0); text-decoration: none; text-underline-offset: 4px; transition: color 0.25s;'>Demo</a>
+          <a href="https://easifyapps.com/contact-us" rel="noreferrer" style='font-family: "Inter Tight"; font-weight: 500; font-size: 20px; line-height: 1.2; color: rgb(0, 0, 0); text-decoration: none; text-underline-offset: 4px; transition: color 0.25s;' target="_blank">Contact us</a>
+          <a href="/pages/pricing" style='font-family: "Inter Tight"; font-weight: 500; font-size: 20px; line-height: 1.2; color: rgb(0, 0, 0); text-decoration: none; text-underline-offset: 4px; transition: color 0.25s;'>Pricing</a>
+          <a href="https://easifyapps.com/terms-of-service" rel="noreferrer" style='font-family: "Inter Tight"; font-weight: 500; font-size: 20px; line-height: 1.2; color: rgb(0, 0, 0); text-decoration: none; text-underline-offset: 4px; transition: color 0.25s;' target="_blank">Terms of service</a>
+          <a href="{{ footer_reviews_link | escape }}" rel="noreferrer" style='font-family: "Inter Tight"; font-weight: 500; font-size: 20px; line-height: 1.2; color: rgb(0, 0, 0); text-decoration: none; text-underline-offset: 4px; transition: color 0.25s;' target="_blank">Reviews</a>
+          <a href="https://easify-box-bundle-builder.myshopify.com/pages/privacy-policy" style='font-family: "Inter Tight"; font-weight: 500; font-size: 20px; line-height: 1.2; color: rgb(0, 0, 0); text-decoration: none; text-underline-offset: 4px; transition: color 0.25s;'>Privacy policy</a>
+        </div>
+        <div class="bb-socials" style="height: 64px; display: flex; flex-direction: row; gap: 8px; justify-content: flex-end; align-items: center;">
+          <a aria-label="LinkedIn" href="https://www.linkedin.com/company/easifyapps/" rel="noreferrer" style="width: 64px; height: 64px; border-radius: 50%; background: rgb(0, 0, 0); display: flex; justify-content: center; align-items: center; transition: transform 0.25s;" target="_blank">
+            <svg height="28" style="width: 28px; height: 28px;" viewbox="0 0 28 28" width="28"><rect fill="rgb(255,255,255)" height="15" rx="1" width="5" x="3" y="10"></rect><circle cx="5.5" cy="5.5" fill="rgb(255,255,255)" r="2.8"></circle><path d="M12 25V10h4.6v2.1c.9-1.5 2.6-2.5 4.7-2.5 3.4 0 5.7 2.2 5.7 6.3V25h-5v-8.3c0-1.9-.9-3-2.5-3-1.5 0-2.5 1.1-2.5 3V25z" fill="rgb(255,255,255)"></path></svg>
+          </a>
+          <a aria-label="YouTube" href="https://www.youtube.com/@EasifyAppsOfficial" rel="noreferrer" style="width: 64px; height: 64px; border-radius: 50%; background: rgb(0, 0, 0); display: flex; justify-content: center; align-items: center; transition: transform 0.25s;" target="_blank">
+            <svg height="30" style="width: 30px; height: 30px;" viewbox="0 0 30 30" width="30"><rect fill="rgb(255,255,255)" height="17" rx="5.5" width="26" x="2" y="7"></rect><path d="M13 12.2l6 3.3-6 3.3z" fill="rgb(0,0,0)"></path></svg>
+          </a>
+          <a aria-label="Facebook" href="https://www.facebook.com/easify.official" rel="noreferrer" style="width: 64px; height: 64px; border-radius: 50%; background: rgb(0, 0, 0); display: flex; justify-content: center; align-items: center; transition: transform 0.25s;" target="_blank">
+            <svg height="28" style="width: 28px; height: 28px;" viewbox="0 0 28 28" width="28"><path d="M17.5 27V16.4h3.6l.6-4.5h-4.2V9.3c0-1.3.4-2.2 2.2-2.2h2.2V3.1C21.4 3 20 2.9 18.5 2.9c-3.6 0-6 2.2-6 6.1v2.9H9v4.5h3.5V27z" fill="rgb(255,255,255)"></path></svg>
+          </a>
+        </div>
+      </div>
+      <span class="bb-footer-logo-wrap" style="--bb-footer-logo-image:url('{% render 'easify-image-url', image: 'wordmark' %}')">
+        <img alt="Easify" class="bb-footer-logo" decoding="async" height="309" loading="lazy" src="{% render 'easify-image-url', image: 'wordmark' %}" width="814"/>
+      </span>
+      <span class="bb-footer-tagline" style='font-family: "Inter Tight"; font-weight: 500; font-size: 20px; line-height: 1.2; color: rgb(0, 0, 0);'>Make the Complex Simple for Shopify Stores</span>
+      <span class="bb-footer-copyright" style='font-family: "Inter Tight"; font-weight: 400; font-size: 14px; white-space: nowrap; line-height: 1.2; color: rgb(115, 115, 115);'>Copyright 2026. All rights reserved</span>
+    </div>
+  </footer>
+</div>
+
+<button aria-label="Back to top" class="ea-back-top" data-top-btn="1" title="Back to top" type="button">
+  <svg fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 19 L12 6"></path><path d="M6 12 L12 6 L18 12"></path></svg>
+</button>

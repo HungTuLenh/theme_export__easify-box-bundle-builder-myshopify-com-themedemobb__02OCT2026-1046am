@@ -1,0 +1,107 @@
+<div class="ez-demo-page" style="position: relative; width: 100%; overflow-x: clip; background: rgb(255, 243, 231);">
+{% liquid
+  assign demo_template_base = 'https://easify-box-bundle-builder.myshopify.com/apps/box-builder/'
+  assign demo_template_free_gift_url = demo_template_base | append: 'figure-bundle-multi?utm_source=in-app&utm_medium=template'
+  assign demo_template_subscription_url = demo_template_base | append: 'dog-meal-subscription?utm_source=in-app&utm_medium=template'
+  assign demo_template_stock_counter_url = demo_template_base | append: 'build-your-gym-set?utm_source=in-app&utm_medium=template'
+  assign demo_template_countdown_url = demo_template_base | append: 'essentials-pack?utm_source=in-app&utm_medium=template'
+  assign demo_template_notification_url = demo_template_base | append: 'tiered-pick-save-snack-box?utm_source=in-app&utm_medium=template'
+  assign demo_template_testimonial_url = demo_template_base | append: 'build-your-wellness-routine-1?utm_source=in-app&utm_medium=template'
+%}
+{% render 'easify-demo-catalog' %}
+<section class="ez-demo-comparison" style="background: rgb(0, 0, 0); padding: 96px 0px;">
+<div style="width: min(1120px, 92vw); margin: 0px auto; display: grid; gap: 44px;">
+<div style="display: flex; gap: 28px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+<h2 style="margin: 0px; font-size: clamp(30px, 4.2vw, 54px); font-weight: 600; letter-spacing: 0em; line-height: 1.05; color: rgb(255, 255, 255); max-width: 22ch; flex: 1 1 320px; min-width: 0px;">A box gets you started. <span style="display: block; color: var(--ez-accent,#FF8617);">We get you selling.</span></h2>
+<img alt="Easify mascot with a wand" decoding="async" height="572" loading="lazy" src="{% render 'easify-image-url', image: 'mascotWizard' %}" style="flex: 0 0 auto; width: 180px; height: 180px; object-fit: contain; display: block; filter: drop-shadow(rgba(130, 68, 245, 0.35) 0px 18px 30px);" width="572"/>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+<div style="border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 20px; padding: 28px; display: grid; gap: 18px; align-content: start;">
+<div style="font-size: 15px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.6);">Without Easify</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgb(201, 169, 255); font-weight: 700; background: rgba(130, 68, 245, 0.16); border: 1px solid rgb(130, 68, 245); border-radius: 14px; padding: 12px 14px; box-sizing: border-box; width: 100%; min-width: 0px;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(130, 68, 245); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-size: 13px;">×</span>You build and optimize the box manually</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.72);"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.7); display: flex; align-items: center; justify-content: center; font-size: 13px;">×</span><span>Box live, but no urgency to buy</span></div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.72);"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.7); display: flex; align-items: center; justify-content: center; font-size: 13px;">×</span><span>No way to incentivise the first order</span></div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.72);"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.7); display: flex; align-items: center; justify-content: center; font-size: 13px;">×</span><span>Visitors browse, then leave</span></div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.72);"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.7); display: flex; align-items: center; justify-content: center; font-size: 13px;">×</span><span>One-time buyers, no retention</span></div>
+</div>
+<div style="background: rgb(255, 255, 255); border-radius: 20px; padding: 28px; display: grid; grid-template-columns: minmax(0px, 1fr); gap: 18px; align-content: start; min-width: 0px; box-shadow: rgba(0, 0, 0, 0.3) 0px 20px 50px;">
+<div style="font-size: 15px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(180, 90, 0); min-width: 0px; overflow-wrap: anywhere;">With Easify Box Builder</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgb(90, 31, 184); font-weight: 700; background: rgba(130, 68, 245, 0.1); border: 1px solid rgb(130, 68, 245); border-radius: 14px; padding: 12px 14px; width: auto; max-width: 471px; height: auto; box-sizing: border-box;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(130, 68, 245); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-size: 12px;">✓</span>AI sets up and optimizes</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgb(26, 18, 6); font-weight: 600;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: var(--ez-accent,#FF8617); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-size: 12px;">✓</span><span>Countdown timer creates urgency</span></div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgb(26, 18, 6); font-weight: 600;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: var(--ez-accent,#FF8617); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-size: 12px;">✓</span><span>Free gift triggers the first purchase</span></div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgb(26, 18, 6); font-weight: 600;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: var(--ez-accent,#FF8617); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-size: 12px;">✓</span><span>Stock alert converts hesitant buyers</span></div>
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: rgb(26, 18, 6); font-weight: 600;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: var(--ez-accent,#FF8617); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-size: 12px;">✓</span><span>Subscription turns buyers into regulars</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="ez-demo-boosters" id="smart-sales-boosters" style="padding: 96px 0px; background-color: rgb(255, 228, 204);">
+<div style="margin: 0px; display: grid; gap: 40px; height: 100%; width: 100%;">
+<div style="display: grid; gap: 10px; min-width: 0px;">
+<h2 style="margin: 0px; font-size: clamp(30px, 4.2vw, 54px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; color: rgb(26, 18, 6); text-align: left; max-width: 52ch; padding-left: 120px; padding-right: 120px;">Smart sales boosters.</h2>
+<p style="margin: 0px; font-size: 17px; line-height: 1.6; color: rgb(122, 106, 87); text-align: left; padding-left: 120px; padding-right: 120px;">Make every visitor count.</p>
+</div><div class="ez-demo-boosters__grid">
+<div style="background: rgb(255, 255, 255); border: 1px solid rgb(245, 231, 214); border-radius: 20px; padding: 20px; display: grid; gap: 14px; align-content: start;">
+<div style="display: grid; gap: 5px; border-bottom: 1px solid rgb(244, 234, 219); padding-bottom: 14px;">
+<span style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: rgb(26, 18, 6);">Free gift</span>
+<span style="font-size: 14px; color: rgb(122, 106, 87);">Reward shoppers as their box grows.</span>
+</div>
+<div style="position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: rgb(251, 248, 244); border: 1px solid rgb(241, 231, 218);">
+<img alt="Free gift progress shown inside a skincare box builder" decoding="async" height="300" loading="lazy" src="{% render 'easify-image-url', image: 'demoBoosterFreeGift' %}" style="display: block; width: 100%; height: 100%; object-fit: cover;" width="423">
+</div>
+{% render 'easify-button', label: 'View on template', href: demo_template_free_gift_url, variant: 'primary', rel: 'noreferrer', target: '_blank' %}
+</div>
+<div style="background: rgb(255, 255, 255); border: 1px solid rgb(245, 231, 214); border-radius: 20px; padding: 20px; display: grid; gap: 14px; align-content: start;">
+<div style="display: grid; gap: 5px; border-bottom: 1px solid rgb(244, 234, 219); padding-bottom: 14px;">
+<span style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: rgb(26, 18, 6);">Subscription</span>
+<span style="font-size: 14px; color: rgb(122, 106, 87);">Turn one order into repeat orders.</span>
+</div>
+<div style="position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: rgb(251, 248, 244); border: 1px solid rgb(241, 231, 218);">
+<img alt="Subscription purchase options shown inside a skincare box builder" decoding="async" height="300" loading="lazy" src="{% render 'easify-image-url', image: 'demoBoosterSubscription' %}" style="display: block; width: 100%; height: 100%; object-fit: cover;" width="412">
+</div>
+{% render 'easify-button', label: 'View on template', href: demo_template_subscription_url, variant: 'primary', rel: 'noreferrer', target: '_blank' %}
+</div>
+<div style="background: rgb(255, 255, 255); border: 1px solid rgb(245, 231, 214); border-radius: 20px; padding: 20px; display: grid; gap: 14px; align-content: start;">
+<div style="display: grid; gap: 5px; border-bottom: 1px solid rgb(244, 234, 219); padding-bottom: 14px;">
+<span style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: rgb(26, 18, 6);">Stock counter</span>
+<span style="font-size: 14px; color: rgb(122, 106, 87);">Show shoppers what's still available.</span>
+</div>
+<div style="position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: rgb(251, 248, 244); border: 1px solid rgb(241, 231, 218);">
+<img alt="Low stock counter shown inside a skincare box builder" decoding="async" height="300" loading="lazy" src="{% render 'easify-image-url', image: 'demoBoosterStockCounter' %}" style="display: block; width: 100%; height: 100%; object-fit: cover;" width="422">
+</div>
+{% render 'easify-button', label: 'View on template', href: demo_template_stock_counter_url, variant: 'primary', rel: 'noreferrer', target: '_blank' %}
+</div>
+<div style="background: rgb(255, 255, 255); border: 1px solid rgb(245, 231, 214); border-radius: 20px; padding: 20px; display: grid; gap: 14px; align-content: start;">
+<div style="display: grid; gap: 5px; border-bottom: 1px solid rgb(244, 234, 219); padding-bottom: 14px;">
+<span style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: rgb(26, 18, 6);">Countdown timer</span>
+<span style="font-size: 14px; color: rgb(122, 106, 87);">Put a deadline on the offer.</span>
+</div>
+<div style="position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: rgb(251, 248, 244); border: 1px solid rgb(241, 231, 218);">
+<img alt="Countdown timer shown inside a skincare box builder" decoding="async" height="286" loading="lazy" src="{% render 'easify-image-url', image: 'demoBoosterCountdownTimer' %}" style="display: block; width: 100%; height: 100%; object-fit: cover;" width="412">
+</div>
+{% render 'easify-button', label: 'View on template', href: demo_template_countdown_url, variant: 'primary', rel: 'noreferrer', target: '_blank' %}
+</div>
+<div style="background: rgb(255, 255, 255); border: 1px solid rgb(245, 231, 214); border-radius: 20px; padding: 20px; display: grid; gap: 14px; align-content: start;">
+<div style="display: grid; gap: 5px; border-bottom: 1px solid rgb(244, 234, 219); padding-bottom: 14px;">
+<span style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: rgb(26, 18, 6);">Sales notification</span>
+<span style="font-size: 14px; color: rgb(122, 106, 87);">Show real orders as they happen.</span>
+</div>
+<div style="position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: rgb(251, 248, 244); border: 1px solid rgb(241, 231, 218);">
+<img alt="Recent purchase notification shown inside a skincare box builder" decoding="async" height="286" loading="lazy" src="{% render 'easify-image-url', image: 'demoBoosterSalesNotification' %}" style="display: block; width: 100%; height: 100%; object-fit: cover;" width="423">
+</div>
+{% render 'easify-button', label: 'View on template', href: demo_template_notification_url, variant: 'primary', rel: 'noreferrer', target: '_blank' %}
+</div>
+<div style="background: rgb(255, 255, 255); border: 1px solid rgb(245, 231, 214); border-radius: 20px; padding: 20px; display: grid; gap: 14px; align-content: start;">
+<div style="display: grid; gap: 5px; border-bottom: 1px solid rgb(244, 234, 219); padding-bottom: 14px;">
+<span style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: rgb(26, 18, 6);">Testimonials</span>
+<span style="font-size: 14px; color: rgb(122, 106, 87);">Let happy customers do the selling.</span>
+</div>
+<div style="position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: rgb(251, 248, 244); border: 1px solid rgb(241, 231, 218);">
+<img alt="Customer testimonial shown inside a skincare box builder" decoding="async" height="286" loading="lazy" src="{% render 'easify-image-url', image: 'demoBoosterTestimonials' %}" style="display: block; width: 100%; height: 100%; object-fit: cover;" width="422">
+</div>
+{% render 'easify-button', label: 'View on template', href: demo_template_testimonial_url, variant: 'primary', rel: 'noreferrer', target: '_blank' %}
+</div>
+</div>
+</div>
+</section>
+</div>

@@ -1,0 +1,107 @@
+{% liquid
+  assign component_context = context | default: 'home'
+  assign component_heading = heading | default: 'We build and reach bigger together.'
+  assign component_subtext = subtext | default: 'The app pays for itself. We only grow when you grow, so pricing follows your orders, not your ambition.'
+  assign component_heading_tag = heading_tag | default: 'h2'
+  assign component_id = section_id | default: 'pricing'
+  assign component_position = initial_position | default: 0
+  assign component_show_metrics = show_metrics
+  assign component_show_note = show_note
+  assign component_price_decimals = price_decimals | default: 0
+%}
+
+<section
+  class="bb-pricing bb-pricing--{{ component_context }}"
+  id="{{ component_id }}"
+  data-component-isolated
+  data-pricing-calculator
+  data-pricing-context="{{ component_context }}"
+  data-pricing-price-decimals="{{ component_price_decimals }}"
+  data-screen-label="Pricing"
+>
+  <div class="bb-pricing-sky" aria-hidden="true"></div>
+  <div class="bb-pricing-bushes" aria-hidden="true">
+    <img class="bb-pricing-bush-piece bb-pricing-bush-piece--1" src="{% render 'easify-image-url', image: 'homeBush1' %}" alt="" decoding="async" loading="lazy" width="290" height="159">
+    <img class="bb-pricing-bush-piece bb-pricing-bush-piece--2" src="{% render 'easify-image-url', image: 'homeBush2' %}" alt="" decoding="async" loading="lazy" width="289" height="152">
+    <img class="bb-pricing-bush-piece bb-pricing-bush-piece--3" src="{% render 'easify-image-url', image: 'homeBush3' %}" alt="" decoding="async" loading="lazy" width="71" height="34">
+    <img class="bb-pricing-bush-piece bb-pricing-bush-piece--4" src="{% render 'easify-image-url', image: 'homeBush4' %}" alt="" decoding="async" loading="lazy" width="463" height="231">
+    <img class="bb-pricing-bush-piece bb-pricing-bush-piece--5" src="{% render 'easify-image-url', image: 'homeBush5' %}" alt="" decoding="async" loading="lazy" width="38" height="33">
+    <svg class="bb-pricing-bush-piece bb-pricing-bush-piece--fruit-1" viewBox="0 0 11.62 10.966">
+      <ellipse cx="5.81" cy="5.483" rx="5.81" ry="5.483" fill="#ffc131"></ellipse>
+    </svg>
+    <img class="bb-pricing-bush-piece bb-pricing-bush-piece--6" src="{% render 'easify-image-url', image: 'homeBush6' %}" alt="" decoding="async" loading="lazy" width="48" height="40">
+    <svg class="bb-pricing-bush-piece bb-pricing-bush-piece--fruit-2" viewBox="0 0 12.911 12.257">
+      <ellipse cx="6.456" cy="6.129" rx="6.456" ry="6.129" fill="#ffc131"></ellipse>
+    </svg>
+    <img class="bb-pricing-bush-piece bb-pricing-bush-piece--7" src="{% render 'easify-image-url', image: 'homeBush7' %}" alt="" decoding="async" loading="lazy" width="60" height="22">
+    <img class="bb-pricing-bush-piece bb-pricing-bush-piece--8" src="{% render 'easify-image-url', image: 'homeBush8' %}" alt="" decoding="async" loading="lazy" width="26" height="13">
+    <img class="bb-pricing-bush-piece bb-pricing-bush-piece--flowers" src="{% render 'easify-image-url', image: 'homeBushFlowers' %}" alt="" decoding="async" loading="lazy" width="637" height="202">
+  </div>
+  <div class="bb-pricing-shell">
+    <div class="bb-pricing-heading">
+      <{{ component_heading_tag }} class="bb-pricing-title">{{ component_heading | escape }}</{{ component_heading_tag }}>
+      <p class="bb-pricing-description">{{ component_subtext | escape }}</p>
+    </div>
+
+    <div class="bb-pricing-card">
+      <div class="bb-price">
+        <span data-pricing-price>{% if component_price_decimals == 2 %}$0.00{% else %}$0{% endif %}</span>
+        <span class="bb-price-period">/month</span>
+      </div>
+
+      <div class="bb-plan">
+        <span><strong data-pricing-plan>Start</strong> plan</span>
+        <span class="bb-plan-divider" aria-hidden="true"></span>
+        <span><strong data-pricing-revenue>$0</strong> Monthly box revenue</span>
+      </div>
+
+      <label class="visually-hidden" for="pricing-range-{{ component_id }}">Monthly box revenue</label>
+      <input
+        id="pricing-range-{{ component_id }}"
+        class="bb-slider"
+        data-pricing-range
+        type="range"
+        min="0"
+        max="100"
+        step="0.01"
+        value="{{ component_position }}"
+        aria-describedby="pricing-status-{{ component_id }}"
+      >
+
+      <div class="bb-price-ticks" role="group" aria-label="Revenue presets">
+        <button type="button" data-pricing-position="0">$0</button>
+        <button type="button" data-pricing-position="25">$500</button>
+        <button type="button" data-pricing-position="50">$5,000</button>
+        <button type="button" data-pricing-position="75">$25,000</button>
+        <button type="button" data-pricing-position="100">Unlimited</button>
+      </div>
+
+     
+
+      {% if component_show_note %}
+        <p class="bb-pricing-note" data-pricing-note>
+          Every cent your boxes earn goes straight to you. The app is free at this level.
+        </p>
+      {% endif %}
+      <p class="visually-hidden bb-pricing-status" id="pricing-status-{{ component_id }}" data-pricing-status aria-live="polite"></p>
+    </div>
+
+    <div class="bb-pricing-tree" data-pricing-tree data-level="1" aria-hidden="true">
+      <img
+        class="bb-pricing-tree-image"
+        data-pricing-tree-image
+        data-level-1-src="{% render 'easify-image-url', image: 'pricingTreeLevel1' %}"
+        data-level-2-src="{% render 'easify-image-url', image: 'pricingTreeLevel2' %}"
+        data-level-3-src="{% render 'easify-image-url', image: 'pricingTreeLevel3' %}"
+        data-level-4-src="{% render 'easify-image-url', image: 'pricingTreeLevel4' %}"
+        src="{% render 'easify-image-url', image: 'pricingTreeLevel1' %}"
+        alt=""
+        decoding="async"
+        loading="lazy"
+        width="380"
+        height="400"
+      >
+    </div>
+  </div>
+  <div class="bb-pricing-ground" aria-hidden="true"></div>
+</section>

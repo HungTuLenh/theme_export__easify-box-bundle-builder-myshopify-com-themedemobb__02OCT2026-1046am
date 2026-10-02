@@ -1,0 +1,41 @@
+{% liquid
+  assign current_page = active_page | default: 'home'
+  assign header_placement = placement | default: 'flow'
+  assign nav_links_id = 'bb-nav-links-' | append: current_page
+  if id_suffix != blank
+    assign nav_links_id = nav_links_id | append: '-' | append: id_suffix
+  endif
+  assign header_app_store_link = settings.easify_app_store_url
+  assign header_app_store_joiner = '?'
+  if header_app_store_link contains '?'
+    assign header_app_store_joiner = '&'
+  endif
+  assign header_cta_link = header_app_store_link | append: header_app_store_joiner | append: 'utm_source=demo-store&utm_medium=sticky-header'
+%}
+
+<header class="bb-nav bb-site-nav bb-site-nav--{{ header_placement }}" data-menu-open="false" data-site-nav>
+  <div class="bb-nav-main bb-site-nav-main">
+    <a class="bb-brand" href="{{ routes.root_url }}" aria-label="Easify Box Bundle Builder home">
+      <img alt="Easify Box Bundle Builder" decoding="async" height="250" loading="eager" src="{% render 'easify-image-url', image: 'homeLockup' %}" width="800">
+    </a>
+
+    <button aria-controls="{{ nav_links_id }}" aria-expanded="false" aria-label="Open menu" class="bb-menu-toggle" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav aria-label="Primary navigation" class="bb-nav-links" id="{{ nav_links_id }}">
+      <a class="bb-nav-link{% if current_page == 'home' %} is-active{% endif %}" href="{{ routes.root_url }}"{% if current_page == 'home' %} aria-current="page"{% endif %}>Home</a>
+      <a class="bb-nav-link{% if current_page == 'demo' %} is-active{% endif %}" href="/pages/demo"{% if current_page == 'demo' %} aria-current="page"{% endif %}>Demo</a>
+      <a class="bb-nav-link{% if current_page == 'pricing' %} is-active{% endif %}" href="/pages/pricing"{% if current_page == 'pricing' %} aria-current="page"{% endif %}>Pricing</a>
+      <a class="bb-nav-link{% if current_page == 'testimonials' %} is-active{% endif %}" href="/pages/testimonials"{% if current_page == 'testimonials' %} aria-current="page"{% endif %}>Testimonials</a>
+      <a class="bb-nav-link" href="https://easify.gitbook.io/easify-box-bundle-builder-docs" rel="noreferrer" target="_blank">Help Center</a>
+    </nav>
+  </div>
+
+  <a class="bb-nav-cta" href="{{ header_cta_link | escape }}" rel="noreferrer" target="_blank">
+    <span>Start building free</span>
+    <span aria-hidden="true" class="bb-nav-cta-icon" style="--play: running; background-image: url('{% render 'easify-image-url', image: 'chatIcon' %}');"></span>
+  </a>
+</header>

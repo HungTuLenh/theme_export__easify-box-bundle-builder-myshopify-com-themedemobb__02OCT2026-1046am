@@ -1,0 +1,360 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior:smooth; }
+  body:has(#easify-pp) .shopify-section:has([data-site-nav]):not(:has(#easify-pp)) { display:none !important; }
+  body:has(#easify-pp) [data-site-nav]:not(#easify-pp [data-site-nav]) { display:none !important; }
+  #easify-pp .bb-site-nav { position:absolute; top:40px; left:50%; z-index:20; width:min(1280px,calc(100% - 48px)); height:76px; transform:translateX(-50%); display:flex; align-items:center; gap:16px; color:#000; box-sizing:border-box; }
+  #easify-pp .bb-site-nav * { box-sizing:border-box; }
+  #easify-pp .bb-site-nav-main { position:relative; min-width:0; height:76px; flex:1 1 auto; border-radius:16px; background:#fff; display:flex; align-items:center; justify-content:space-between; padding:14px 32px; }
+  #easify-pp .bb-brand { height:48px; display:flex; align-items:center; flex-shrink:0; }
+  #easify-pp .bb-brand img { display:block; width:auto; max-width:100%; height:48px; margin:0; object-fit:contain; }
+  #easify-pp .bb-menu-toggle { display:none; appearance:none; }
+  #easify-pp .bb-nav-links { height:44px; display:flex; align-items:center; flex-shrink:0; gap:4px; }
+  #easify-pp .bb-nav-link { height:44px; display:flex; align-items:center; justify-content:center; padding:0 12px; border-radius:999999px; color:#000; font:500 20px/1.2 "Inter Tight",sans-serif; white-space:nowrap; transition:background .25s,color .25s; }
+  #easify-pp .bb-nav-link:hover { background:#f3eee9; color:#000; }
+  #easify-pp .bb-nav-cta { height:76px; flex:none; border-radius:16px; background:#000; color:#fff; display:flex; align-items:center; gap:12px; padding:0 24px; font:500 20px/1.2 "Inter Tight",sans-serif; white-space:nowrap; transition:background .2s; }
+  #easify-pp .bb-nav-cta:hover { background:#151515; color:#fff; }
+  #easify-pp .bb-nav-cta-icon { width:32px; height:32px; flex:none; background-size:contain; background-repeat:no-repeat; background-position:center; }
+  @media (max-width:1199px) {
+    #easify-pp .bb-site-nav { top:24px; left:24px; right:24px; width:auto; height:68px; transform:none; gap:12px; }
+    #easify-pp .bb-site-nav-main { height:68px; padding:12px 18px; }
+    #easify-pp .bb-brand, #easify-pp .bb-brand img { height:40px; }
+    #easify-pp .bb-nav-cta { height:68px; font-size:18px; padding:0 20px; }
+    #easify-pp .bb-menu-toggle { position:relative; width:44px; height:44px; flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:0; border:0; background:transparent; color:#000; -webkit-appearance:none; box-shadow:none; cursor:pointer; }
+    #easify-pp .bb-menu-toggle span { position:absolute; width:28px; height:3px; border-radius:3px; background:currentColor; transition:opacity .2s,transform .2s; }
+    #easify-pp .bb-menu-toggle span:first-child { transform:translateY(-8px); }
+    #easify-pp .bb-menu-toggle span:last-child { transform:translateY(8px); }
+    #easify-pp .bb-site-nav[data-menu-open="true"] .bb-menu-toggle span:first-child { transform:rotate(45deg); }
+    #easify-pp .bb-site-nav[data-menu-open="true"] .bb-menu-toggle span:nth-child(2) { opacity:0; }
+    #easify-pp .bb-site-nav[data-menu-open="true"] .bb-menu-toggle span:last-child { transform:rotate(-45deg); }
+    #easify-pp .bb-nav-links { position:absolute; top:calc(100% + 10px); left:0; right:0; display:none; width:100%; height:auto; padding:12px; border-radius:16px; background:#fff; box-shadow:0 16px 40px #5f2d0029; flex-direction:column; align-items:stretch; gap:4px; }
+    #easify-pp .bb-site-nav[data-menu-open="true"] .bb-nav-links { display:flex; }
+    #easify-pp .bb-nav-link { min-height:52px; justify-content:flex-start; border-radius:10px; padding:0 18px; }
+    #easify-pp .bb-nav-link:hover { background:#fff3e7; }
+  }
+  @media (max-width:767px) {
+    #easify-pp .bb-site-nav { top:16px; left:16px; right:16px; height:60px; }
+    #easify-pp .bb-site-nav-main { height:60px; padding:8px 12px; border-radius:14px; }
+    #easify-pp .bb-brand, #easify-pp .bb-brand img { height:36px; }
+    #easify-pp .bb-nav-cta { display:none; }
+  }
+  main:has(#easify-pp), #MainContent:has(#easify-pp), .content-for-layout:has(#easify-pp) { padding-top:0 !important; margin-top:0 !important; }
+  body:has(#easify-pp) { background:#FFF3E7; }
+  [id^="shopify-section-"]:has(#easify-pp) { margin:0 !important; padding:0 !important; }
+  main:has(#easify-pp), #MainContent:has(#easify-pp) { padding-bottom:0 !important; margin-bottom:0 !important; }
+  body:has(#easify-pp) .shopify-section-group-footer-group, body:has(#easify-pp) footer, body:has(#easify-pp) .footer { margin-top:0 !important; }
+  #easify-pp > div:last-child { padding-bottom:0; }
+  #easify-pp { background:#FFF3E7; font-family:'Inter Tight',system-ui,sans-serif; color:#1A1206; -webkit-font-smoothing:antialiased; line-height:normal; letter-spacing:normal; }
+  #easify-pp h1, #easify-pp h2, #easify-pp h3, #easify-pp p, #easify-pp a, #easify-pp span, #easify-pp small, #easify-pp li, #easify-pp div, #easify-pp nav { font-family:inherit; }
+  #easify-pp h1, #easify-pp h2, #easify-pp h3 { word-break:normal; }
+  #easify-pp ul { margin:0; padding:0; }
+  #easify-pp li::before, #easify-pp li::marker { content:none; }
+  #easify-pp a { color:#1A1206; text-decoration:none; }
+  #easify-pp a:hover { color:#B45A00; }
+  #easify-pp ::selection { background:#1A1206; color:#fff; }
+  #easify-pp [data-toc-link]:hover { background:#FFF3E7 !important; color:#B45A00 !important; }
+  #easify-pp [data-toc-link][data-on="true"] { background:#1A1206 !important; color:#fff !important; }
+  #easify-pp [data-pp-sec] { scroll-margin-top:110px; }
+  #easify-pp [data-toc-toggle] { display:none; }
+  @media (max-width: 1060px) {
+    #easify-pp [data-toc-shell] { flex:1 1 100% !important; max-width:none !important; background:transparent !important; border:0 !important; padding:0 !important; top:10px !important; z-index:60; }
+    #easify-pp [data-toc-eyebrow] { display:none !important; }
+    #easify-pp [data-toc-toggle] { display:inline-flex !important; }
+    #easify-pp [data-toc-list] { display:none !important; position:absolute; left:0; right:0; top:calc(100% + 10px); background:#fff; border:1px solid #1A1206; border-radius:16px; padding:10px; box-shadow:0 20px 44px rgba(26,18,6,.22); max-height:58vh; }
+    #easify-pp [data-toc-shell][data-open="true"] [data-toc-list] { display:grid !important; }
+    #easify-pp [data-toc-chevron] { transition:transform 160ms cubic-bezier(.4,.22,.28,1); }
+    #easify-pp [data-toc-shell][data-open="true"] [data-toc-chevron] { transform:rotate(180deg); }
+    #easify-pp [data-hero-wrap] { margin-top:44px !important; }
+    #easify-pp > div > div:nth-child(2) { padding-top:60px !important; }
+    #easify-pp [data-hero-intro] { height:auto !important; font-size:17px !important; line-height:1.6 !important; }
+  }
+  #easify-pp [data-h="1"]:hover{transform:translateY(-4px) !important;box-shadow:0 16px 34px rgba(26,18,6,.13) !important;border-color:#1A1206 !important;color:#1A1206 !important}
+  #easify-pp [data-h="2"]:hover{background:#FFF3E7 !important;color:#1A1206 !important}
+  @media (prefers-reduced-motion: reduce) { #easify-pp * { animation:none !important; transition:none !important; } }
+</style>
+<div id="easify-pp">
+<div style="width:100%;overflow-x:clip;background:#FFF3E7">
+  <div data-pp-progress="" style="position:fixed;left:0;top:0;height:4px;width:0%;background:#FF8617;z-index:120;transition:width 90ms linear"></div>
+  <div style="position:relative;background:#FF7300;padding:100px 0 96px">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(#FF8725 .5px,transparent .5px),linear-gradient(90deg,#FF8725 .5px,transparent .5px);background-size:57px 57px;pointer-events:none"></div>
+{% liquid
+  assign pp_app_link = settings.easify_app_store_url | default: 'https://apps.shopify.com/easify-box-builder'
+  assign pp_joiner = '?'
+  if pp_app_link contains '?'
+    assign pp_joiner = '&'
+  endif
+  assign pp_cta_link = pp_app_link | append: pp_joiner | append: 'utm_source=demo-store&utm_medium=sticky-header'
+%}
+    <header class="bb-nav bb-site-nav" data-menu-open="false" data-site-nav>
+      <div class="bb-nav-main bb-site-nav-main">
+        <a class="bb-brand" href="{{ routes.root_url }}" aria-label="Easify Box Bundle Builder home"><img alt="Easify Box Bundle Builder" decoding="async" height="250" loading="eager" src="{% render 'easify-image-url', image: 'homeLockup' %}" width="800"></a>
+        <button aria-controls="bb-nav-links-privacy" aria-expanded="false" aria-label="Open menu" class="bb-menu-toggle" type="button"><span></span><span></span><span></span></button>
+        <nav aria-label="Primary navigation" class="bb-nav-links" id="bb-nav-links-privacy">
+          <a class="bb-nav-link" href="{{ routes.root_url }}">Home</a>
+          <a class="bb-nav-link" href="/pages/demo">Demo</a>
+          <a class="bb-nav-link" href="/pages/pricing">Pricing</a>
+          <a class="bb-nav-link" href="/pages/testimonials">Testimonials</a>
+          <a class="bb-nav-link" href="https://easify.gitbook.io/easify-box-bundle-builder-docs" rel="noreferrer" target="_blank">Help Center</a>
+        </nav>
+      </div>
+      <a class="bb-nav-cta" href="{{ pp_cta_link | escape }}" rel="noreferrer" target="_blank"><span>Start building free</span><span aria-hidden="true" class="bb-nav-cta-icon" style="background-image:url('{% render 'easify-image-url', image: 'chatIcon' %}');"></span></a>
+    </header>
+
+    <div data-hero-wrap="" style="position: relative; margin: 72px auto 0; display: grid; gap: 22px; width: 1280px; max-width: 94%; justify-items: center; text-align: center">
+      <h1 style="margin:0;font-size:clamp(46px,7vw,96px);font-weight:600;line-height:1.04;letter-spacing:-.02em;color:#ffffff;max-width:18ch;text-align:center">Privacy Policy</h1><p data-hero-intro="" style="margin: 0; font-size: 16px; font-weight: 400; line-height: 1.45; color: #ffffff; text-wrap: pretty; width: 100%; text-align: center">This Privacy Policy explains how TIGREN TECHNOLOGY SOLUTION COMPANY LIMITED, trading as Easify (“TIGREN COMPANY LIMITED,” “Easify,” “we,” “us,” or “our”) collects, uses, stores, shares, and protects personal data when you use our Shopify apps (collectively, the “Apps”) or visit easifyapps.com (the “Website”). It applies to every user of the Apps and the Website, individual or business, and reflects our obligations under the UK GDPR, the EU GDPR, and other applicable data protection laws.</p>
+    </div>
+  </div>
+  <section style="position:relative;background:#FFF3E7;padding:64px 0 96px">
+    <div style="width:min(1280px,94%);margin:0 auto;display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">
+      <aside data-toc-shell="" data-open="false" style="flex: 1 1 260px; min-width: 250px; max-width: 340px; position: sticky; top: 24px; background: #fff; border: 1px solid #F1E3D0; border-radius: 18px; padding: 22px; display: grid; gap: 14px; border-color: #000000">
+        <small data-toc-eyebrow="" style="font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#9C8A73">On this page</small>
+        <span data-toc-toggle="" role="button" tabindex="0" style="align-items:center;gap:14px;justify-self:start;max-width:100%;box-sizing:border-box;background:#1A1206;color:#fff;border-radius:99999px;padding:13px 20px;font-size:16px;font-weight:600;line-height:1.2;cursor:pointer">
+          <span data-toc-current="" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">1. Data We Collect</span>
+          <svg data-toc-chevron="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="m6 9 6 6 6-6"></path></svg>
+        </span>
+        <nav data-toc-list="" style="display:grid;gap:2px;max-height:min(66vh,620px);overflow:auto">
+          <a href="#data-we-collect" data-toc-link="data-we-collect" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">1. Data We Collect</a>
+          <a href="#how-we-collect-data" data-toc-link="how-we-collect-data" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">2. How We Collect Data</a>
+          <a href="#how-we-use-your-data" data-toc-link="how-we-use-your-data" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">3. How We Use Your Data</a>
+          <a href="#legal-bases-for-processing" data-toc-link="legal-bases-for-processing" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">4. Legal Bases for Processing</a>
+          <a href="#data-location-and-security" data-toc-link="data-location-and-security" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">5. Data Location and Security</a>
+          <a href="#sub-processors" data-toc-link="sub-processors" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">6. Sub-processors</a>
+          <a href="#data-retention-and-deletion" data-toc-link="data-retention-and-deletion" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">7. Data Retention and Deletion</a>
+          <a href="#your-rights" data-toc-link="your-rights" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">8. Your Rights</a>
+          <a href="#cookies-and-the-website" data-toc-link="cookies-and-the-website" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">9. Cookies and the Website</a>
+          <a href="#childrens-data" data-toc-link="childrens-data" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">10. Children’s Data</a>
+          <a href="#data-processing-addendum" data-toc-link="data-processing-addendum" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">11. Data Processing Addendum</a>
+          <a href="#changes-to-this-policy" data-toc-link="changes-to-this-policy" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">12. Changes to This Policy</a>
+          <a href="#contact-us" data-toc-link="contact-us" style="padding:10px 12px;border-radius:10px;font-size:15px;font-weight:600;line-height:1.35;color:#5F4630;transition:background 140ms cubic-bezier(.4,.22,.28,1),color 140ms">13. Contact Us</a>
+        </nav>
+      </aside>
+      <article style="flex: 3 1 620px; min-width: 0; background: #fff; border: 1px solid #F1E3D0; border-radius: 24px; padding: clamp(24px,4vw,56px); display: grid; gap: 52px; border-color: #000000">
+        <section id="data-we-collect" data-pp-sec="" style="display:grid;gap:18px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">1. Data We Collect</h2>
+          <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#B45A00">1.1 Merchant data</h3>
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px">
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Store information:</span> Shopify domain, contact email, and store plan.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Billing information:</span> your subscription plan and billing status, provided through Shopify’s Billing API.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">App settings, configurations, and the rules you define inside the app.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Support communications:</span> the messages, screenshots, and store details you send us through in-app chat or email.</div></li>
+          </ul>
+          <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#B45A00">1.2 Access scopes</h3>
+                    <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px">
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Store information:</span> store name, store URL, contact email, plan type, and currency. Used to set up the app and identify your store.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Product and catalog information:</span> product titles, variants, images, SKUs, pricing, publications, selling plans, tags, and inventory availability. Used to create and display your products, bundles, and offers.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Theme and storefront data:</span> theme files and storefront content. Used to embed the app’s widgets and pages on your store, and to manage which sales channels show them.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Files and media:</span> file upload and storage. Used to serve images, icons, and other assets the app needs to display correctly.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Inventory and locations (optional):</span> read and update inventory levels and locations. Used to keep stock accurate for the product variants linked in the app.</div></li>
+          </ul>
+          <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#B45A00">1.3 Customer data processed on your behalf</h3>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">To run specific features you turn on, we also process:</p>
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px">
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Customer tags:</span> fetched automatically through Shopify’s API. Used for the Box Visibility feature, so you can choose who sees each box or bundle (for example, customers with a certain tag).</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Customer name and email:</span> read from the shopper’s own account, in real time, when they are logged in to your store. Used for the Box Visibility feature, to check the logged-in shopper against your rules so the right boxes or bundles show for them. This information is not stored in our database.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Order information:</span> recent and historical orders, line items, and selected bundle or box options. We may also add a tag adn a additional detail to an order to reflect its bundle configuration. Used to process bundle orders, give you analytics on how your bundles and boxes perform, and power the Scan Catalog feature, which suggests mix-and-match product ideas, including best sellers, based on your catalog and order history.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>AI-assisted suggestions:</span> store and product data used by features such as the AI Setup Assistant is shared with an AI service provider solely to generate the suggestions shown to you.</div></li>
+          </ul>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We do not access customer payment card details, and we do not use customer data to contact your shoppers or for anything beyond what’s described above. The app follows Shopify’s Protected Customer Data requirements and only asks for the access its features need.</p>
+        </section>
+        <section id="how-we-collect-data" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">2. How We Collect Data</h2>
+          <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#B45A00">2.1 Shopify API integration</h3>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">When you install and authorize the app, we receive data from your store through Shopify’s API based on the scopes you grant, as described in sections 1.2 and 1.3. Access is limited to the scopes you approve during installation.</p>
+          <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#B45A00">2.2 Merchant-provided input</h3>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">You may enter additional information directly in the app, such as settings, custom rules, and manual configuration. We store it only to run the app’s features.</p>
+          <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#B45A00">2.3 Customer interactions, processed on your behalf</h3>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">Where the app interacts with your shoppers through bundle or box widgets, we collect the inputs they provide during that interaction, such as option selections and order-linked metadata. Where a shopper is logged in to your store, we also read their name and email in real time, as described in section 1.3. This data is processed solely on your behalf and never for an independent purpose of ours.</p>
+        </section>
+        <section id="how-we-use-your-data" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">3. How We Use Your Data</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We process personal data only as necessary to operate the app:</p>
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px">
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Deliver core app functionality:</span> run the bundle, box, and mix-and-match features your store’s configuration enables.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Apply your settings and preferences:</span> store and apply the rules, logic, and interface configuration you define.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Determine which bundle/box offerings are visible to specific customer segments, based on your configured visibility rules (Box Visibility feature), using customer name, email, and tags.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Generate analytics on bundle and box performance, and power the Catalog Scan feature that suggests mix-and-match product ideas, including best sellers, using order and line-item data.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Provide support and fix problems:</span> access relevant store or order data when needed to investigate bugs and answer your support requests.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Keep the app secure and reliable:</span> monitor for abuse, errors, and performance problems.</div></li>
+          </ul>
+          <div style="background:#FFF8F0;border:1px solid #F1E3D0;border-radius:16px;padding:24px;display:grid;gap:14px">
+            <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#1A1206">What we do not do</h3>
+            <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px">
+              <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">We do not use shopper data for advertising or marketing, and we do not build marketing profiles of your shoppers. Sorting customers into the segments you define for Box Visibility (such as by tag or account type) is only used to control what they see in your store, never to advertise to them or build a profile of them.</div></li>
+              <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">The app has no email, SMS, or other messaging feature, so we never contact your shoppers. The name and email we process are used only to match your Box Visibility rules and are never used to reach out to a shopper.</div></li>
+              <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">We do not sell, rent, or share your data with third parties for commercial purposes.</div></li>
+              <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">We do not access customer payment card details.</div></li>
+            </ul>
+          </div>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We do email you, as the merchant, about your account, billing, and app changes, and occasionally about our products. You can unsubscribe from the product emails at any time; operational messages are part of the Services.</p>
+        </section>
+        <section id="legal-bases-for-processing" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">4. Legal Bases for Processing</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">The data controller for that processing is TIGREN TECHNOLOGY SOLUTION COMPANY LIMITED, trading as Easify. Where we act as a data controller, for example for merchant account and billing-related data, support conversations, and website use, we rely on the following legal bases under the UK and EU GDPR: performance of our contract with you, our legitimate interests in operating and securing the app, compliance with legal obligations, and your consent where consent is required.</p>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">Where we process shopper data on your behalf, including the customer tags, name, and email used for Box Visibility, and the order data used for analytics, Catalog Scan, and other AI-assisted suggestions, you are the controller and we are the processor. You decide the purpose and legal basis for that processing, and our handling of it is governed by our Data Processing Addendum.</p>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We do not carry out automated decision-making or profiling that produces legal effects for you or for your shoppers.</p>
+        </section>
+        <section id="data-location-and-security" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">5. Data Location and Security</h2>
+          <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#B45A00">5.1 Storage and international transfers</h3>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We store and process data on Akamai cloud infrastructure. Easify Box Bundle Builder BYOB runs in Dallas, Texas, United States.</p>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">Our team, based in Hanoi, Vietnam, may also access this data to provide support and operate the app. Data may therefore be stored or processed outside the United Kingdom and the European Economic Area, including in the United States and Vietnam. Our other providers, including our support chat provider, may also process data outside those areas. For transfers from the EEA we rely on the European Commission’s Standard Contractual Clauses, and for transfers from the UK on the International Data Transfer Addendum issued by the UK Information Commissioner’s Office, together with other legally recognized safeguards for cross-border transfers.</p>
+          <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#B45A00">5.2 Security measures</h3>
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px">
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Industry-standard encryption in transit and at rest.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Individual accounts with multi-factor authentication for systems that hold data.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Least-privilege access, restricted to authorized personnel and reviewed periodically.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Regular backups with restoration testing, and documented recovery procedures.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Logical separation of data per store.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Ongoing monitoring and auditing of our data infrastructure.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Internal data handling policies, confidentiality obligations, and staff training.</div></li>
+          </ul>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We review these practices regularly against Shopify’s platform standards and applicable legal requirements. The full set of measures is set out in Appendix 2 of our Data Processing Addendum.</p>
+        </section>
+        <section id="sub-processors" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">6. Sub-processors</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We work with a limited number of trusted providers that process personal data on our behalf, strictly to run our infrastructure and answer your support requests:</p>
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px">
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Cloud infrastructure:</span> Akamai, used for hosting and computing.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Server management:</span> RunCloud, used to manage and maintain our hosting environment.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Customer support:</span> Crisp, used for support conversations between merchants and our team.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>AI service providers:</span> used to power AI-assisted features, such as the AI Setup Assistant and Catalog Scan, which generate suggestions from your store and product data.</div></li>
+          </ul>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">Every sub-processor is bound by a written agreement, including a Data Processing Agreement where required, by obligations under the UK and EU GDPR, and by appropriate technical and organizational security measures. We review our sub-processors periodically and share data with them only to the extent their function requires. The list above is complete and current; we update it here when it changes.</p>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We give you at least 14 days’ notice by email before adding or replacing a sub-processor, and you may object on reasonable data protection grounds. The full process, including what happens if we cannot provide a feature without that provider, is set out in section 9 of our Data Processing Addendum.</p>
+        </section>
+        <section id="data-retention-and-deletion" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">7. Data Retention and Deletion</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We retain personal and store-related data only for as long as we need it to provide the app, comply with legal obligations, and resolve disputes or enforce our agreements. Once it is no longer needed, it is securely deleted or anonymized.</p>
+          <div style="background:#FFF8F0;border:1px solid #F1E3D0;border-radius:16px;padding:24px;display:grid;gap:14px">
+            <h3 style="margin:0;font-size:19px;font-weight:700;line-height:1.3;color:#1A1206">Merchant control and deletion requests</h3>
+            <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px">
+              <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">Uninstalling the app from your Shopify store starts the deletion process for that store’s data.</div></li>
+              <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29">You can also contact us directly to request deletion of stored data.</div></li>
+            </ul>
+          </div>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">The app implements Shopify’s mandatory privacy webhooks (shop/redact, customers/redact, and customers/data_request), so deletion is triggered automatically: Shopify sends us a store redaction request 48 hours after you uninstall the app, and a customer redaction request when a shopper asks for erasure. We complete the deletion within 30 days of receiving the request, and provide requested shopper data to you within 30 days, keeping only what we are legally required to retain.</p>
+        </section>
+        <section id="your-rights" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">8. Your Rights</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">Subject to the conditions and limits set out in the UK and EU GDPR, you may exercise the following rights over your personal data:</p>
+          <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px">
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Access:</span> request a copy of the personal data we hold about you and how we use it.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Rectification:</span> ask us to correct inaccurate or incomplete data.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Erasure:</span> ask us to delete data where it is no longer necessary, where you withdraw consent, or where you object and we have no overriding legitimate grounds.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Restriction:</span> ask us to limit processing in specific circumstances, such as while accuracy is being verified.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Portability:</span> receive your data in a structured, commonly used, machine-readable format.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Objection:</span> object to processing based on legitimate interests.</div></li>
+            <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:7px;height:7px;margin-top:10px;border-radius:50%;background:#FF8617"></span><div style="font-size:17px;line-height:1.6;color:#4A3A29"><span>Withdraw consent:</span> withdraw consent at any time, without affecting processing already carried out lawfully.</div></li>
+          </ul>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">To exercise a right, email <a href="mailto:support@tigren.com" style="color:#B45A00;font-weight:700;border-bottom:1px solid rgba(180,90,0,.35)">support@tigren.com</a>. We respond within 30 days. We may need to keep certain data where the law requires it. If you are a shopper of a store using this app, please contact that store directly: the merchant is the controller of your data and we act on their instructions, so we will direct any request you send us back to the relevant store. Your name, email, and tags are processed as described in section 1.3. You also have the right to complain to your data protection authority, such as the ICO in the United Kingdom.</p>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">If you are a California resident, you also have rights under the CCPA as amended. We do not sell personal information and do not share it for cross-context behavioural advertising. Where we process shopper data for a merchant, we act as that merchant’s service provider and use the data only to provide the app.</p>
+        </section>
+        <section id="cookies-and-the-website" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">9. Cookies and the Website</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">Our website uses cookies that are necessary for it to function. You can control or clear cookies in your browser at any time; blocking necessary cookies may affect how parts of the site work.</p>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">The app runs inside your Shopify admin and storefront and uses only the session and functional storage it needs to operate. We do not use advertising or cross-site tracking cookies in the app.</p>
+        </section>
+        <section id="childrens-data" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">10. Children’s Data</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">The app and the Website are business tools and are not directed to children. We do not knowingly collect personal data from anyone under 16. If you believe a child has provided us with personal data, contact us at <a href="mailto:support@tigren.com" style="color:#B45A00;font-weight:700;border-bottom:1px solid rgba(180,90,0,.35)">support@tigren.com</a> and we will delete it.</p>
+        </section>
+        <section id="data-processing-addendum" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">11. Data Processing Addendum</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">If you need processor terms under Article 28 of the UK or EU GDPR, our Data Processing Addendum sets out the roles of the parties, the scope and purpose of processing, our security measures, our sub-processor commitments, and the safeguards that apply to international transfers.</p>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">It applies whenever we process personal data on your behalf and is available at our Data Processing Addendum page. If you need a countersigned copy, email <a href="mailto:support@tigren.com" style="color:#B45A00;font-weight:700;border-bottom:1px solid rgba(180,90,0,.35)">support@tigren.com</a> and we will send our standard DPA for review and signature.</p>
+        </section>
+        <section id="changes-to-this-policy" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">12. Changes to This Policy</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">We may update this Privacy Policy to reflect changes in our data processing practices, updates to applicable laws and regulatory guidance, or improvements to our services and infrastructure.</p>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">When a change is material we will give notice by email to your store contact address, or through a prominent notice in the app or on our website, before it takes effect. The date at the top of this page always shows when it was last revised.</p>
+        </section>
+        <section id="contact-us" data-pp-sec="" style="display:grid;gap:18px;border-top:1px solid #F1E3D0;padding-top:44px">
+          <h2 style="margin:0;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#1A1206">13. Contact Us</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29;text-wrap:pretty">For privacy questions, data access or deletion requests, or documentation you need for your own compliance work, contact us at:</p>
+          <div style="display:grid;gap:8px">
+            <p style="margin:0;font-size:17px;line-height:1.7;color:#1A1206;font-weight:700">TIGREN TECHNOLOGY SOLUTION COMPANY LIMITED (TIGREN COMPANY LIMITED), trading as Easify.</p>
+            <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29">Registered address: No. 2, Alley 113, Giap Bat Street, Tuong Mai Ward, Hanoi, Vietnam.</p>
+            <p style="margin:0;font-size:17px;line-height:1.7;color:#4A3A29">Business registration number: 0105887692.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px">
+            <div style="background:#FFF8F0;border:1px solid #F1E3D0;border-radius:16px;padding:22px;display:grid;gap:6px">
+              <small style="font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #9C8A73">Privacy requests</small>
+              <a href="mailto:support@tigren.com" style="font-size:19px;font-weight:700;color:#1A1206">support@tigren.com</a>
+            </div>
+            <div style="background:#FFF8F0;border:1px solid #F1E3D0;border-radius:16px;padding:22px;display:grid;gap:6px">
+              <small style="font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #9C8A73">App support</small>
+              <span style="font-size:19px;font-weight:700;color:#1A1206">In-app live chat, 24/7</span>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </section>
+  <section style="position:relative;background:#FFF3E7;padding:16px 24px 96px">
+    <div style="position:relative;width:min(1280px,94%);margin:0 auto;display:grid;gap:36px">
+      <h2 style="margin:0;font-size:clamp(32px,4vw,52px);font-weight:600;letter-spacing:-.02em;line-height:1.1;color:#1A1206">Related policies</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px;align-items:stretch">
+        <a href="https://easifyapps.com/terms-of-service" target="_blank" rel="noreferrer" style="display: grid; align-content: start; gap: 12px; background: #fff; border: 1px solid #F1E3D0; border-radius: 16px; padding: 28px 30px; color: #1A1206; transition: transform 180ms cubic-bezier(.4,.22,.28,1),box-shadow 180ms,border-color 180ms; border-color: #000000" data-h="1">
+          <span style="font-size:23px;font-weight:700;letter-spacing:-.01em;line-height:1.25">Terms of service</span>
+          <span style="font-size:16px;font-weight:500;line-height:1.55;color:#5F4630">The terms that govern your use of our apps, this website, and our support.</span>
+        </a>
+        <div style="display:grid;align-content:start;gap:14px;background:#1A1206;border:1px solid #1A1206;border-radius:16px;padding:28px 30px">
+          <span style="font-size:23px;font-weight:700;letter-spacing:-.01em;line-height:1.25;color:#fff">Still have a question?</span>
+          <span style="font-size:16px;font-weight:500;line-height:1.55;color:#E8D9C6">A real person on our team reads every message and answers.</span>
+          <a href="https://easifyapps.com/contact-us" target="_blank" rel="noreferrer" style="margin-top:4px;justify-self:start;display:inline-flex;align-items:center;gap:14px;background:#fff;color:#1A1206;border-radius:12px;padding:12px 14px 12px 22px;font-size:17px;font-weight:600;line-height:1.2;transition:background 160ms ease-out" data-h="2">Contact us<span style="width:32px;height:32px;flex:none;border-radius:50%;background:#1A1206;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+</div>
+<script>
+(function(){
+  var R=document.getElementById('easify-pp'); if(!R) return;
+  var secs=function(){return R.querySelectorAll('[data-pp-sec]');};
+  var links=function(){return R.querySelectorAll('[data-toc-link]');};
+  var shell=R.querySelector('[data-toc-shell]'), lock=null, lockT;
+  var nav=R.querySelector('[data-site-nav]'), tg=nav&&nav.querySelector('.bb-menu-toggle');
+  if(nav&&tg){
+    var setOpen=function(o){nav.setAttribute('data-menu-open',o?'true':'false');tg.setAttribute('aria-expanded',o?'true':'false');tg.setAttribute('aria-label',o?'Close menu':'Open menu');};
+    tg.addEventListener('click',function(e){e.stopPropagation();setOpen(nav.getAttribute('data-menu-open')!=='true');});
+    nav.querySelectorAll('.bb-nav-link').forEach(function(l){l.addEventListener('click',function(){setOpen(false);});});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false);});
+  }
+  function paint(active){
+    var label='';
+    links().forEach(function(a){var on=a.getAttribute('data-toc-link')===active;a.setAttribute('data-on',on?'true':'false');if(on)label=a.textContent;});
+    var cur=R.querySelector('[data-toc-current]'); if(cur&&label) cur.textContent=label;
+  }
+  function onScroll(){
+    var bar=R.querySelector('[data-pp-progress]'), h=document.documentElement;
+    if(bar){var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?Math.min(100,h.scrollTop/max*100):0)+'%';}
+    if(lock) return;
+    var active=null;
+    secs().forEach(function(s){if(s.getBoundingClientRect().top<=140) active=s.id;});
+    if(!active){var f=secs()[0];active=f&&f.id;}
+    paint(active);
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest&&e.target.closest('[data-toc-toggle]');
+    if(t&&shell){shell.setAttribute('data-open',shell.getAttribute('data-open')==='true'?'false':'true');return;}
+    var a=e.target.closest&&e.target.closest('[data-toc-link]');
+    if(shell) shell.setAttribute('data-open','false');
+    if(!a) return;
+    var id=a.getAttribute('data-toc-link'); lock=id; paint(id);
+    clearTimeout(lockT); lockT=setTimeout(function(){lock=null;onScroll();},900);
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+{% schema %}
+{
+  "name": "Easify privacy policy",
+  "settings": [],
+  "presets": [{ "name": "Easify privacy policy" }]
+}
+{% endschema %}

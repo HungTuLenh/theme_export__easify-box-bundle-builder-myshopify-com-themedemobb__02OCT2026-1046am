@@ -1,0 +1,128 @@
+{% liquid
+  assign page_variant = section.settings.page_variant | default: 'home'
+  if page_variant == 'auto'
+    assign page_variant = 'home'
+    assign request_path = request.path | default: ''
+    if page != blank and page.handle == 'demo'
+      assign page_variant = 'demo'
+    elsif page != blank and page.handle == 'pricing'
+      assign page_variant = 'pricing'
+    elsif page != blank and page.handle == 'testimonials'
+      assign page_variant = 'testimonials'
+    elsif request_path contains '/pages/demo'
+      assign page_variant = 'demo'
+    elsif request_path contains '/pages/pricing'
+      assign page_variant = 'pricing'
+    elsif request_path contains '/pages/testimonials'
+      assign page_variant = 'testimonials'
+    endif
+  endif
+%}
+
+<div
+  class="easify-final easify-final--{{ page_variant }}"
+  data-easify-final
+  data-page-variant="{{ page_variant }}"
+>
+  {% case page_variant %}
+    {% when 'demo' %}
+      {% render 'easify-demo' %}
+    {% when 'pricing' %}
+      {% render 'easify-pricing',
+        pricing_heading: section.settings.pricing_heading,
+        pricing_subtext: section.settings.pricing_subtext
+      %}
+    {% when 'testimonials' %}
+      {% render 'easify-testimonials' %}
+    {% when 'route-fallback' %}
+      <div data-route-fallback>
+        <div data-route-variant="home" hidden>
+          {% render 'easify-home',
+            pricing_heading: section.settings.pricing_heading,
+            pricing_subtext: section.settings.pricing_subtext
+          %}
+        </div>
+        <div data-route-variant="demo" hidden>
+          {% render 'easify-demo' %}
+        </div>
+        <div data-route-variant="pricing" hidden>
+          {% render 'easify-pricing',
+            pricing_heading: section.settings.pricing_heading,
+            pricing_subtext: section.settings.pricing_subtext
+          %}
+        </div>
+        <div data-route-variant="testimonials" hidden>
+          {% render 'easify-testimonials' %}
+        </div>
+      </div>
+      <script>
+        (function () {
+          var currentScript = document.currentScript;
+          var root = currentScript ? currentScript.closest('[data-easify-final]') : null;
+          if (!root) {
+            return;
+          }
+
+          var path = window.location.pathname || '';
+          var variant = 'home';
+          if (path.indexOf('/pages/demo') !== -1) {
+            variant = 'demo';
+          } else if (path.indexOf('/pages/pricing') !== -1) {
+            variant = 'pricing';
+          } else if (path.indexOf('/pages/testimonials') !== -1) {
+            variant = 'testimonials';
+          }
+
+          root.setAttribute('data-page-variant', variant);
+          root.className = 'easify-final easify-final--' + variant;
+
+          var panels = root.querySelectorAll('[data-route-variant]');
+          panels.forEach(function (panel) {
+            panel.hidden = panel.getAttribute('data-route-variant') !== variant;
+          });
+        })();
+      </script>
+    {% else %}
+      {% render 'easify-home',
+        pricing_heading: section.settings.pricing_heading,
+        pricing_subtext: section.settings.pricing_subtext
+      %}
+  {% endcase %}
+</div>
+
+{% schema %}
+{
+  "name": "Easify Box Builder",
+  "tag": "section",
+  "class": "easify-box-builder-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "page_variant",
+      "label": "Page variant",
+      "default": "auto",
+      "options": [
+        { "value": "auto", "label": "Auto detect" },
+        { "value": "home", "label": "Home" },
+        { "value": "demo", "label": "Demo" },
+        { "value": "pricing", "label": "Pricing" },
+        { "value": "testimonials", "label": "Testimonials" },
+        { "value": "route-fallback", "label": "Route fallback" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "pricing_heading",
+      "label": "Pricing heading",
+      "default": "We build and reach bigger together."
+    },
+    {
+      "type": "textarea",
+      "id": "pricing_subtext",
+      "label": "Pricing subtext",
+      "default": "The app pays for itself. We only grow when you grow, so pricing follows your orders, not your ambition."
+    }
+  ],
+  "presets": [{ "name": "Easify Box Builder" }]
+}
+{% endschema %}

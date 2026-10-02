@@ -1,0 +1,52 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Easify Box Builder",
+    "theme_version": "1.0.0",
+    "theme_author": "Easify",
+    "theme_support_email": "support@easifyapps.com",
+    "theme_documentation_url": "https://easify.gitbook.io/easify-box-bundle-builder-docs"
+  },
+  {
+    "name": "Easify app metrics",
+    "settings": [
+      {
+        "type": "text",
+        "id": "easify_app_store_url",
+        "label": "Shopify App Store URL",
+        "default": "https://apps.shopify.com/easify-box-builder"
+      },
+      {
+        "type": "text",
+        "id": "easify_app_reviews_url",
+        "label": "Shopify App Store reviews URL",
+        "default": "https://apps.shopify.com/easify-box-builder/reviews"
+      },
+      {
+        "type": "text",
+        "id": "easify_app_review_rating",
+        "label": "App review rating",
+        "default": "5"
+      },
+      {
+        "type": "text",
+        "id": "easify_app_review_count",
+        "label": "App review count",
+        "default": "300+"
+      },
+      {
+        "type": "text",
+        "id": "easify_app_review_label",
+        "label": "App review label",
+        "default": "reviews"
+      },
+      {
+        "type": "text",
+        "id": "easify_app_store_rating_label",
+        "label": "App store rating label",
+        "default": "on the Shopify App Store"
+      }
+    ]
+  }
+]
+

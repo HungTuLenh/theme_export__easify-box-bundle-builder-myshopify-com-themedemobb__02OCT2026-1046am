@@ -1,0 +1,792 @@
+{% liquid
+  assign stats_anchor = section.settings.anchor_id | default: 'stats' | handleize
+  assign mascot_alt = section.settings.mascot_alt | default: 'Easify Box Bundle Builder mascot'
+  assign button_link = section.settings.button_link | default: settings.easify_app_store_url
+  assign app_review_rating = settings.easify_app_review_rating
+  assign app_review_count = settings.easify_app_review_count
+  assign app_review_label = settings.easify_app_review_label
+  assign app_review_rating_display = app_review_rating | replace: '.', ','
+  assign app_review_count_text = app_review_count | append: ' ' | append: app_review_label
+  assign stats_reviews_label = section.settings.reviews_label | strip
+  if stats_reviews_label == blank
+    assign stats_reviews_label = app_review_count_text
+  endif
+%}
+
+
+<div
+  class="easify-home-stats-root"
+  data-component-isolated
+  data-easify-home-stats
+  data-review-rating-target="{{ app_review_rating | escape }}"
+>
+  <section
+    aria-labelledby="EasifyStatsHeading-{{ section.id }}"
+    class="ez-stats"
+    data-screen-label="03 Stats"
+    id="{{ stats_anchor }}"
+  >
+    <div aria-hidden="true" class="ez-stats__grid"></div>
+
+    <div class="ez-stats__canvas">
+      <h2 class="ez-stats__heading" id="EasifyStatsHeading-{{ section.id }}">
+        {{ section.settings.heading | escape | newline_to_br }}
+      </h2>
+
+      <div class="ez-stats__cards">
+        <article class="ez-stats__card">
+          <strong aria-label="4 million dollars plus" class="ez-stats__value" data-counter="revenue">$4M+</strong>
+          <span class="ez-stats__label">{{ section.settings.revenue_label | escape }}</span>
+        </article>
+
+        <article class="ez-stats__card">
+          <strong aria-label="5,000 plus" class="ez-stats__value" data-counter="merchants">5,000+</strong>
+          <span class="ez-stats__label">{{ section.settings.merchants_label | escape }}</span>
+        </article>
+
+        <article class="ez-stats__card">
+          <div class="ez-stats__rating">
+            <strong aria-label="{{ app_review_rating | escape }} out of 5" class="ez-stats__value" data-counter="rating">{{ app_review_rating_display | escape }}</strong>
+            {% render 'easify-star-icon', size: 60 %}
+          </div>
+          <span class="ez-stats__label">{{ stats_reviews_label | escape }}</span>
+        </article>
+      </div>
+
+      <div class="ez-stats__copy">
+        <p>{{ section.settings.body | escape }}</p>
+        {% render 'easify-button',
+          label: section.settings.button_label,
+          href: button_link,
+          variant: 'primary',
+          new_tab: section.settings.open_new_tab
+        %}
+      </div>
+
+      <div class="ez-stats__mascot">
+        {% if section.settings.mascot != blank %}
+          {{
+            section.settings.mascot
+            | image_url: width: 1082
+            | image_tag:
+              alt: mascot_alt,
+              class: 'ez-stats__mascot-image',
+              loading: 'lazy',
+              decoding: 'async',
+              sizes: '(min-width: 1200px) 460px, (min-width: 768px) 39vw, 82vw',
+              widths: '320, 480, 541, 760, 1082'
+          }}
+        {% else %}
+          <img
+            alt="{{ mascot_alt | escape }}"
+            class="ez-stats__mascot-image"
+            height="621"
+            loading="lazy"
+            decoding="async"
+            src="{% render 'easify-image-url', image: 'homeBbHand' %}"
+            width="541"
+          >
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var currentScript = document.currentScript;
+      var currentRoot = currentScript ? currentScript.closest('[data-easify-home-stats]') : null;
+
+      if (!window.EasifyHomeStatsSection) {
+        var statsStates = new WeakMap();
+        window.EasifyHomeStatsSection = {
+          init: function (root) {
+            if (!root || root.getAttribute('data-stats-ready') === 'true') {
+              return;
+            }
+
+            var statsSection = root.querySelector('.ez-stats');
+            var canvas = root.querySelector('.ez-stats__canvas');
+            if (!statsSection || !canvas) {
+              return;
+            }
+
+            root.setAttribute('data-stats-ready', 'true');
+            var reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+            var state = { active: true, counterObserver: null, frameId: 0, resizeHandler: null, orientationHandler: null, clearStickyStats: null };
+            statsStates.set(root, state);
+
+            function formatCounter(counter, value) {
+              var counterType = counter.getAttribute('data-counter');
+              if (counterType === 'revenue') {
+                return '$' + Math.round(value) + 'M+';
+              }
+              if (counterType === 'merchants') {
+                return Math.round(value).toLocaleString('en-US') + '+';
+              }
+              return value.toFixed(1).replace('.', ',');
+            }
+
+            function getCounterTarget(counter) {
+              var counterType = counter.getAttribute('data-counter');
+              if (counterType === 'revenue') {
+                return 4;
+              }
+              if (counterType === 'merchants') {
+                return 5000;
+              }
+              return parseFloat(String(root.getAttribute('data-review-rating-target') || counter.textContent || '0').replace(',', '.')) || 0;
+            }
+
+            function animateCounter(counter) {
+              var target = getCounterTarget(counter);
+              var startedAt = 0;
+              var duration = 1800;
+
+              function update(timestamp) {
+                if (!state.active || !root.isConnected) {
+                  return;
+                }
+                if (!startedAt) {
+                  startedAt = timestamp;
+                }
+                var progress = Math.min((timestamp - startedAt) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                counter.textContent = formatCounter(counter, target * eased);
+                if (progress < 1) {
+                  window.requestAnimationFrame(update);
+                  return;
+                }
+                counter.textContent = formatCounter(counter, target);
+              }
+
+              counter.textContent = formatCounter(counter, 0);
+              window.requestAnimationFrame(update);
+            }
+
+            function startCounters() {
+              if (root.getAttribute('data-counters-complete') === 'true') {
+                return;
+              }
+              root.setAttribute('data-counters-complete', 'true');
+              Array.prototype.slice.call(root.querySelectorAll('[data-counter]')).forEach(animateCounter);
+            }
+
+            function getViewportHeight() {
+              if (window.visualViewport && window.visualViewport.height) {
+                return window.visualViewport.height;
+              }
+              return window.innerHeight || document.documentElement.clientHeight || 1024;
+            }
+
+            function clearStickyStats() {
+              root.style.removeProperty('--ez-stats-stage-height');
+              root.style.removeProperty('--ez-stats-pane-height');
+              root.style.removeProperty('--ez-stats-canvas-scale');
+            }
+
+            function syncStickyStats() {
+              state.frameId = 0;
+              if (!state.active || !root.isConnected) {
+                return;
+              }
+              if (reducedMotionMedia.matches) {
+                clearStickyStats();
+                return;
+              }
+
+              var viewportHeight = getViewportHeight();
+              root.style.setProperty('--ez-stats-stage-height', Math.round(viewportHeight * 1.35) + 'px');
+              root.style.setProperty('--ez-stats-pane-height', Math.round(viewportHeight) + 'px');
+              root.style.setProperty('--ez-stats-canvas-scale', '1');
+
+              var canvasHeight = canvas.scrollHeight || canvas.offsetHeight || viewportHeight;
+              var canvasScale = canvasHeight > 0 ? Math.min(1, viewportHeight / canvasHeight) : 1;
+              root.style.setProperty('--ez-stats-canvas-scale', canvasScale.toFixed(4));
+            }
+
+            function requestStickySync() {
+              if (state.frameId) {
+                return;
+              }
+              state.frameId = window.requestAnimationFrame(syncStickyStats);
+            }
+
+            state.resizeHandler = requestStickySync;
+            state.orientationHandler = requestStickySync;
+            state.clearStickyStats = clearStickyStats;
+            window.addEventListener('resize', state.resizeHandler, { passive: true });
+            window.addEventListener('orientationchange', state.orientationHandler);
+            requestStickySync();
+            window.setTimeout(requestStickySync, 240);
+
+            if (reducedMotionMedia.matches || typeof IntersectionObserver !== 'function') {
+              return;
+            }
+
+            var counterObserver = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) {
+                  return;
+                }
+                startCounters();
+                counterObserver.disconnect();
+              });
+            }, { threshold: 0.25 });
+            state.counterObserver = counterObserver;
+            counterObserver.observe(statsSection);
+          },
+          destroy: function (root) {
+            var state = root ? statsStates.get(root) : null;
+            if (!state) {
+              return;
+            }
+            state.active = false;
+            if (state.resizeHandler) {
+              window.removeEventListener('resize', state.resizeHandler);
+            }
+            if (state.orientationHandler) {
+              window.removeEventListener('orientationchange', state.orientationHandler);
+            }
+            if (state.frameId) {
+              window.cancelAnimationFrame(state.frameId);
+              state.frameId = 0;
+            }
+            if (state.clearStickyStats) {
+              state.clearStickyStats();
+            }
+            if (state.counterObserver) {
+              state.counterObserver.disconnect();
+            }
+            statsStates.delete(root);
+            root.removeAttribute('data-stats-ready');
+          }
+        };
+
+        document.addEventListener('shopify:section:load', function (event) {
+          var sectionRoot = event.target ? event.target.querySelector('[data-easify-home-stats]') : null;
+          window.EasifyHomeStatsSection.init(sectionRoot);
+        });
+        document.addEventListener('shopify:section:unload', function (event) {
+          var sectionRoot = event.target ? event.target.querySelector('[data-easify-home-stats]') : null;
+          window.EasifyHomeStatsSection.destroy(sectionRoot);
+        });
+      }
+
+      window.EasifyHomeStatsSection.init(currentRoot);
+    }());
+  </script>
+</div>
+
+{% stylesheet %}
+  @keyframes ezStatsBob {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-20px); }
+  }
+
+  .easify-home-stats-section {
+    display:block;
+    width:100%;
+    margin:0;
+    padding:0;
+  }
+  .easify-home-stats-root {
+    --ez-stats-bg:#ffd8b4;
+    --ez-stats-grid:#ffc997;
+    --ez-stats-accent:#8f4500;
+    --ez-stats-pop:#ff8617;
+    --ez-stats-ink:#000;
+    --ez-stats-paper:#fff;
+    --ez-stats-ease:cubic-bezier(.25,1,.5,1);
+    isolation:isolate;
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow:clip;
+    color:var(--ez-stats-ink);
+    font-family:"Inter Tight",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .easify-home-stats-root,
+  .easify-home-stats-root *,
+  .easify-home-stats-root *::before,
+  .easify-home-stats-root *::after {
+    box-sizing:border-box;
+  }
+  .easify-home-stats-root .ez-stats {
+    position:relative;
+    width:100%;
+    height:1024px;
+    overflow:hidden;
+    background:var(--ez-stats-bg);
+  }
+  .easify-home-stats-root .ez-stats__grid {
+    position:absolute;
+    inset:0;
+    background-image:linear-gradient(var(--ez-stats-grid) 1px,transparent 1px),linear-gradient(90deg,var(--ez-stats-grid) 1px,transparent 1px);
+    background-size:60px 60px;
+    pointer-events:none;
+  }
+  .easify-home-stats-root .ez-stats__canvas {
+    position:absolute;
+    left:50%;
+    top:0;
+    width:1440px;
+    height:1024px;
+    margin-left:-720px;
+  }
+  .easify-home-stats-root .ez-stats__heading {
+    position:absolute;
+    left:80px;
+    top:64px;
+    width:843px;
+    margin:0;
+    color:var(--ez-stats-accent);
+    font:600 95px/1.08 "Inter Tight",sans-serif;
+    letter-spacing:0;
+    text-wrap:balance;
+  }
+  .easify-home-stats-root .ez-stats__cards {
+    position:absolute;
+    z-index:2;
+    left:80px;
+    top:390px;
+    width:1280px;
+    height:300px;
+    display:flex;
+    gap:40px;
+    align-items:center;
+  }
+  .easify-home-stats-root .ez-stats__card {
+    position:relative;
+    width:400px;
+    align-self:stretch;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:40px;
+    border-radius:24px;
+    background:var(--ez-stats-paper);
+    box-shadow:inset 0 0 0 1px var(--ez-stats-ink);
+    transition:transform 350ms var(--ez-stats-ease),box-shadow 350ms var(--ez-stats-ease);
+  }
+  .easify-home-stats-root .ez-stats__value {
+    display:block;
+    align-self:stretch;
+    color:var(--ez-stats-ink);
+    font:700 64px/1.2 "Inter Tight",sans-serif;
+    letter-spacing:0;
+    font-variant-numeric:tabular-nums;
+  }
+  .easify-home-stats-root .ez-stats__label {
+    align-self:stretch;
+    color:var(--ez-stats-ink);
+    font:400 24px/1.2 "Inter Tight",sans-serif;
+  }
+  .easify-home-stats-root .ez-stats__rating {
+    position:relative;
+    height:77px;
+    align-self:stretch;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .easify-home-stats-root .ez-stats__rating .ez-stats__value {
+    align-self:auto;
+    white-space:nowrap;
+  }
+  .easify-home-stats-root .ez-stats__rating svg {
+    width:60px;
+    height:59px;
+    flex-shrink:0;
+    color:var(--ez-stats-ink);
+  }
+  .easify-home-stats-root .ez-stats__copy {
+    position:absolute;
+    z-index:2;
+    left:725px;
+    top:767px;
+    width:635px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:24px;
+  }
+  .easify-home-stats-root .ez-stats__copy p {
+    align-self:stretch;
+    margin:0;
+    color:var(--ez-stats-accent);
+    font:400 24px/1.2 "Inter Tight",sans-serif;
+    text-wrap:pretty;
+  }
+  .easify-home-stats-root .ez-stats__mascot {
+    position:absolute;
+    z-index:5;
+    left:19px;
+    top:690px;
+    width:531px;
+    height:531px;
+    pointer-events:none;
+  }
+  .easify-home-stats-root .ez-stats__mascot-image {
+    position:absolute;
+    left:2px;
+    top:-78px;
+    width:541px;
+    height:621px;
+    display:block;
+    object-fit:contain;
+    animation:ezStatsBob 4s ease-in-out infinite;
+  }
+
+  @media (hover:hover) {
+    .easify-home-stats-root .ez-stats__card:hover {
+      transform:translateY(-10px);
+      box-shadow:inset 0 0 0 1px var(--ez-stats-ink),10px 10px 0 var(--ez-stats-pop);
+    }
+  }
+
+  @media (min-width:0px) {
+    .easify-home-stats-root .ez-stats {
+      height:auto;
+      min-height:0;
+      padding:88px clamp(24px,5vw,56px) 0;
+    }
+    .easify-home-stats-root .ez-stats__canvas {
+      position:relative;
+      left:auto;
+      top:auto;
+      width:min(100%,1280px);
+      height:auto;
+      margin:0 auto;
+      transform:none;
+      display:grid;
+      grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+      gap:48px 36px;
+      align-items:center;
+    }
+    .easify-home-stats-root .ez-stats__heading {
+      position:relative;
+      left:auto;
+      top:auto;
+      width:100%;
+      grid-column:1/-1;
+      color:var(--ez-stats-accent);
+      font-size:clamp(56px,8vw,88px);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+    .easify-home-stats-root .ez-stats__cards {
+      position:relative;
+      left:auto;
+      top:auto;
+      width:100%;
+      height:auto;
+      grid-column:1/-1;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+    .easify-home-stats-root .ez-stats__card {
+      width:100%;
+      min-height:190px;
+      padding:24px;
+      gap:24px;
+      border-radius:20px;
+    }
+    .easify-home-stats-root .ez-stats__value {
+      font-size:clamp(42px,5.5vw,64px);
+    }
+    .easify-home-stats-root .ez-stats__label {
+      font-size:18px;
+    }
+    .easify-home-stats-root .ez-stats__rating {
+      height:auto;
+      gap:10px;
+    }
+    .easify-home-stats-root .ez-stats__rating svg {
+      width:38px;
+      height:38px;
+    }
+    .easify-home-stats-root .ez-stats__copy {
+      position:relative;
+      left:auto;
+      top:auto;
+      width:100%;
+      grid-column:2;
+      grid-row:3;
+    }
+    .easify-home-stats-root .ez-stats__copy p {
+      font-size:20px;
+      line-height:1.45;
+    }
+    .easify-home-stats-root .ez-stats__mascot {
+      position:relative;
+      left:auto;
+      top:auto;
+      width:min(92%,460px);
+      height:auto;
+      justify-self:center;
+      aspect-ratio:1;
+      grid-column:1;
+      grid-row:3;
+    }
+    .easify-home-stats-root .ez-stats__mascot-image {
+      inset:0;
+      width:100%;
+      height:100%;
+    }
+  }
+
+  @media (max-width:767px) {
+    .easify-home-stats-root .ez-stats {
+      padding:52px 16px 0;
+    }
+    .easify-home-stats-root .ez-stats__canvas {
+      grid-template-columns:1fr;
+      gap:40px;
+      width:min(100%,333px);
+    }
+    .easify-home-stats-root .ez-stats__heading {
+      font-size:clamp(42px,12.3vw,48px);
+      line-height:1.08;
+      letter-spacing:0;
+    }
+    .easify-home-stats-root .ez-stats__cards {
+      grid-template-columns:1fr;
+      gap:20px;
+    }
+    .easify-home-stats-root .ez-stats__card {
+      min-height:86px;
+      display:grid;
+      grid-template-columns:auto minmax(0,1fr);
+      align-items:center;
+      padding:18px 20px;
+      gap:20px;
+      border-radius:14px;
+    }
+    .easify-home-stats-root .ez-stats__value {
+      font-size:40px;
+      line-height:1;
+    }
+    .easify-home-stats-root .ez-stats__label {
+      align-self:center;
+      justify-self:end;
+      font-size:14px;
+      line-height:1.2;
+      text-align:left;
+    }
+    .easify-home-stats-root .ez-stats__rating {
+      gap:10px;
+    }
+    .easify-home-stats-root .ez-stats__rating svg {
+      width:40px;
+      height:40px;
+    }
+    .easify-home-stats-root .ez-stats__copy {
+      position:relative;
+      grid-column:1;
+      grid-row:3;
+      min-height:218px;
+      gap:24px;
+    }
+    .easify-home-stats-root .ez-stats__copy p {
+      font-size:16px;
+      line-height:1.25;
+    }
+    .easify-home-stats-root .ez-stats__copy .ez-button {
+      --ez-button-height:52px;
+      --ez-button-min-height:52px;
+      --ez-button-padding:8px 12px 8px 16px;
+      --ez-button-radius:12px;
+      --ez-button-font-size:16px;
+      --ez-button-icon-size:30px;
+      align-self:flex-end;
+      z-index:2;
+    }
+    .easify-home-stats-root .ez-stats__mascot {
+      position:absolute;
+      left:clamp(-84px,-21.5vw,-76px);
+      bottom:-156px;
+      width:clamp(256px,72vw,280px);
+      max-width:none;
+      height:auto;
+      aspect-ratio:541 / 621;
+      margin:0;
+    }
+    .easify-home-stats-root .ez-stats__mascot-image {
+      inset:auto;
+      width:100%;
+      height:auto;
+    }
+  }
+
+  @media (max-width:359px) {
+    .easify-home-stats-root .ez-stats {
+      padding-right:14px;
+      padding-left:14px;
+    }
+    .easify-home-stats-root .ez-stats__card {
+      padding:18px;
+      gap:12px;
+    }
+    .easify-home-stats-root .ez-stats__value {
+      font-size:38px;
+    }
+  }
+
+
+  @media (prefers-reduced-motion:no-preference) {
+    .easify-home-stats-root[data-stats-ready="true"] {
+      position:relative;
+      height:var(--ez-stats-stage-height,135svh);
+      overflow:visible;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats {
+      position:sticky;
+      top:0;
+      width:100%;
+      height:var(--ez-stats-pane-height,100svh);
+      min-height:var(--ez-stats-pane-height,100svh);
+      padding:0;
+      overflow:hidden;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__canvas {
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:min(calc(100% - clamp(40px,7.8vw,112px)),1280px);
+      height:auto;
+      margin:0;
+      transform:translate(-50%,-50%) scale(var(--ez-stats-canvas-scale,1));
+      transform-origin:center center;
+      will-change:transform;
+    }
+  }
+
+  @media (max-width:767px) and (prefers-reduced-motion:no-preference) {
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__canvas {
+      width:min(calc(100% - 32px),333px);
+      gap:40px;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__heading {
+      font-size:clamp(42px,12.3vw,48px);
+      line-height:1.08;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__cards {
+      gap:20px;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__card {
+      min-height:86px;
+      padding:18px 20px;
+      gap:20px;
+      border-radius:14px;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__value {
+      font-size:40px;
+      line-height:1;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__label {
+      font-size:14px;
+      line-height:1.2;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__rating svg {
+      width:40px;
+      height:40px;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__copy p {
+      font-size:16px;
+      line-height:1.25;
+    }
+    .easify-home-stats-root[data-stats-ready="true"] .ez-stats__mascot {
+      width:clamp(256px,72vw,280px);
+      max-width:none;
+    }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .easify-home-stats-root,
+    .easify-home-stats-root *,
+    .easify-home-stats-root *::before,
+    .easify-home-stats-root *::after {
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+      scroll-behavior:auto !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Easify Home Stats",
+  "tag": "section",
+  "class": "easify-home-stats-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "default": "stats"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Easify Box\nBundle Builder"
+    },
+    {
+      "type": "text",
+      "id": "revenue_label",
+      "label": "Revenue label",
+      "default": "Revenue generated"
+    },
+    {
+      "type": "text",
+      "id": "merchants_label",
+      "label": "Merchants label",
+      "default": "Merchants trusted"
+    },
+    {
+      "type": "text",
+      "id": "reviews_label",
+      "label": "Reviews label",
+      "info": "Blank uses the global Easify app review count."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "Stop selling one product at a time. Sell the whole routine. Everything is built in a visual editor: colours, layout, options, pricing logic, all yours. Start with a simple box, grow."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Explore app"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_new_tab",
+      "label": "Open link in a new tab",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "mascot",
+      "label": "Mascot override"
+    },
+    {
+      "type": "text",
+      "id": "mascot_alt",
+      "label": "Mascot alt text",
+      "default": "Easify Box Bundle Builder mascot"
+    }
+  ],
+  "presets": [{ "name": "Easify Home Stats" }]
+}
+{% endschema %}

@@ -1,0 +1,316 @@
+{% liquid
+  assign gigi_anchor = section.settings.anchor_id | default: 'gigi' | handleize
+  assign gigi_word = section.settings.word | default: 'GiGi'
+  assign gigi_alt = section.settings.mascot_alt | default: 'GiGi, the Easify AI assistant'
+%}
+
+
+<div
+  class="easify-home-gigi-root"
+  data-component-isolated
+  data-easify-home-gigi
+>
+  <section
+    aria-label="{{ section.settings.accessible_label | escape }}"
+    class="ez-gigi"
+    data-screen-label="06 GiGi"
+    id="{{ gigi_anchor }}"
+  >
+    <div class="ez-gigi__canvas">
+      <div aria-hidden="true" class="ez-gigi__word">
+        <div class="ez-gigi__word-track">
+          <span>{{ gigi_word | escape }}</span>
+          <span>{{ gigi_word | escape }}</span>
+        </div>
+      </div>
+
+      <div aria-hidden="true" class="ez-gigi__ground"></div>
+
+      <div class="ez-gigi__mascot">
+        <div aria-hidden="true" class="ez-gigi__shadow"></div>
+
+        {% if section.settings.mascot != blank %}
+          {{
+            section.settings.mascot
+            | image_url: width: 1920
+            | image_tag:
+              alt: gigi_alt,
+              class: 'ez-gigi__mascot-image',
+              loading: 'lazy',
+              decoding: 'async',
+              sizes: '(min-width: 1200px) 960px, 66vw',
+              widths: '480, 720, 960, 1440, 1920'
+          }}
+        {% else %}
+          <img
+            alt="{{ gigi_alt | escape }}"
+            class="ez-gigi__mascot-image"
+            height="960"
+            loading="lazy"
+            decoding="async"
+            src="{% render 'easify-image-url', image: 'mascotGigi' %}"
+            width="960"
+          >
+        {% endif %}
+
+        <div aria-hidden="true" class="ez-gigi__sparkles">
+          <svg class="ez-gigi__sparkle ez-gigi__sparkle--1" height="46" viewBox="0 0 24 24" width="46">
+            <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" fill="#fff"></path>
+          </svg>
+          <svg class="ez-gigi__sparkle ez-gigi__sparkle--2" height="34" viewBox="0 0 24 24" width="34">
+            <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" fill="#ffc131"></path>
+          </svg>
+          <svg class="ez-gigi__sparkle ez-gigi__sparkle--3" height="28" viewBox="0 0 24 24" width="28">
+            <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" fill="#fff"></path>
+          </svg>
+          <svg class="ez-gigi__sparkle ez-gigi__sparkle--4" height="24" viewBox="0 0 24 24" width="24">
+            <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" fill="#ffc131"></path>
+          </svg>
+          <svg class="ez-gigi__sparkle ez-gigi__sparkle--5" height="20" viewBox="0 0 24 24" width="20">
+            <path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0 Z" fill="#fff"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{% stylesheet %}
+  @keyframes ezGigiBob {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-20px); }
+  }
+  @keyframes ezGigiSquish {
+    0%,100% { transform:scale(1,1); }
+    50% { transform:scale(1.1,.86); }
+  }
+  @keyframes ezGigiMarquee {
+    from { transform:translateX(-50%); }
+    to { transform:translateX(0); }
+  }
+  @keyframes ezGigiTwinkle {
+    0%,100% { opacity:0; transform:scale(.4) rotate(0); }
+    50% { opacity:1; transform:scale(1) rotate(25deg); }
+  }
+
+  .easify-home-gigi-section {
+    position:relative;
+    z-index:4;
+    display:block;
+    width:100%;
+    margin:0;
+    padding:0;
+    background:rgb(255,201,151);
+  }
+  .easify-home-gigi-root {
+    --ez-gigi-purple:#8640ff;
+    --ez-gigi-word:#975bff;
+    --ez-gigi-ground:#000;
+    --ez-gigi-shadow:#1a0049;
+    isolation:isolate;
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow:clip;
+    background:rgb(255,201,151);
+  }
+  .easify-home-gigi-root,
+  .easify-home-gigi-root *,
+  .easify-home-gigi-root *::before,
+  .easify-home-gigi-root *::after {
+    box-sizing:border-box;
+  }
+  .easify-home-gigi-root .ez-gigi {
+    position:relative;
+    z-index:4;
+    width:100%;
+    height:1028px;
+    overflow:hidden;
+    border-radius:var(--ez-gigi-radius,var(--ez-gigi-maximum-radius,40px)) var(--ez-gigi-radius,var(--ez-gigi-maximum-radius,40px)) 0 0;
+    background:var(--ez-gigi-purple);
+  }
+  .easify-home-gigi-root .ez-gigi__canvas {
+    position:absolute;
+    left:50%;
+    top:0;
+    width:1440px;
+    height:1028px;
+    margin-left:-720px;
+  }
+  .easify-home-gigi-root .ez-gigi__word {
+    position:absolute;
+    left:0;
+    top:-10.9px;
+    width:1440px;
+    height:900px;
+    overflow:hidden;
+  }
+  .easify-home-gigi-root .ez-gigi__word-track {
+    display:flex;
+    flex-direction:row;
+    width:max-content;
+    animation:ezGigiMarquee 26s linear infinite;
+  }
+  .easify-home-gigi-root .ez-gigi__word span {
+    padding-right:120px;
+    color:var(--ez-gigi-word);
+    font-family:"Inter Tight",sans-serif;
+    font-size:769.74px;
+    font-weight:700;
+    line-height:1;
+    white-space:nowrap;
+  }
+  .easify-home-gigi-root .ez-gigi__ground {
+    position:absolute;
+    left:-1080px;
+    top:741px;
+    width:3600px;
+    height:643px;
+    border-radius:50%;
+    background:var(--ez-gigi-ground);
+  }
+  .easify-home-gigi-root .ez-gigi__mascot {
+    position:absolute;
+    left:240px;
+    top:34px;
+    width:960px;
+    height:960px;
+  }
+  .easify-home-gigi-root .ez-gigi__shadow {
+    position:absolute;
+    left:228.25px;
+    top:845.88px;
+    width:530.35px;
+    height:60.42px;
+    border-radius:50%;
+    background:var(--ez-gigi-shadow);
+    animation:ezGigiSquish 3.6s ease-in-out infinite;
+  }
+  .easify-home-gigi-root .ez-gigi__mascot-image {
+    position:absolute;
+    left:0;
+    top:0;
+    display:block;
+    width:960px;
+    height:960px;
+    object-fit:cover;
+    animation:ezGigiBob 3.6s ease-in-out infinite;
+  }
+  .easify-home-gigi-root .ez-gigi__sparkles {
+    position:absolute;
+    left:0;
+    top:0;
+    width:960px;
+    height:960px;
+    animation:ezGigiBob 3.6s ease-in-out infinite;
+  }
+  .easify-home-gigi-root .ez-gigi__sparkle {
+    position:absolute;
+    animation-name:ezGigiTwinkle;
+    animation-timing-function:ease-in-out;
+    animation-iteration-count:infinite;
+  }
+  .easify-home-gigi-root .ez-gigi__sparkle--1 { left:104px; top:132px; width:46px; height:46px; animation-duration:1.9s; }
+  .easify-home-gigi-root .ez-gigi__sparkle--2 { left:32px; top:212px; width:34px; height:34px; animation-duration:2.3s; animation-delay:.5s; }
+  .easify-home-gigi-root .ez-gigi__sparkle--3 { left:196px; top:196px; width:28px; height:28px; animation-duration:2.1s; animation-delay:1s; }
+  .easify-home-gigi-root .ez-gigi__sparkle--4 { left:48px; top:352px; width:24px; height:24px; animation-duration:2.6s; animation-delay:.9s; }
+  .easify-home-gigi-root .ez-gigi__sparkle--5 { left:214px; top:330px; width:20px; height:20px; animation-duration:1.7s; animation-delay:1.4s; }
+
+  @media (min-width:0px) {
+    .easify-home-gigi-root .ez-gigi {
+      height:100svh;
+      min-height:600px;
+      border-radius:28px 28px 0 0;
+    }
+    .easify-home-gigi-root .ez-gigi__canvas {
+      left:0;
+      width:100%;
+      height:100%;
+      margin-left:0;
+      transform:none;
+    }
+    .easify-home-gigi-root .ez-gigi__word {
+      top:30px;
+      width:100%;
+      height:100%;
+    }
+    .easify-home-gigi-root .ez-gigi__word span {
+      padding-right:60px;
+      font-size:clamp(280px,55vw,769.74px);
+    }
+    .easify-home-gigi-root .ez-gigi__ground {
+      left:-25%;
+      top:auto;
+      bottom:-70px;
+      width:150%;
+      height:190px;
+    }
+    .easify-home-gigi-root .ez-gigi__mascot {
+      --ez-gigi-mascot-size:min(80vw,90svh,960px);
+      left:50%;
+      top:10px;
+      width:var(--ez-gigi-mascot-size);
+      height:var(--ez-gigi-mascot-size);
+      margin-left:0;
+      transform:translateX(-50%);
+    }
+    .easify-home-gigi-root .ez-gigi__mascot-image,
+    .easify-home-gigi-root .ez-gigi__sparkles {
+      width:100%;
+      height:100%;
+    }
+    .easify-home-gigi-root .ez-gigi__shadow {
+      left:23.78%;
+      top:88.11%;
+      width:55.25%;
+      height:6.3%;
+    }
+  }
+
+  @media (max-width:767px) {
+    .easify-home-gigi-root .ez-gigi {
+      height:390px;
+      min-height:0;
+    }
+    .easify-home-gigi-root .ez-gigi__word {
+      top:30px;
+    }
+    .easify-home-gigi-root .ez-gigi__word span {
+      font-size:290px;
+    }
+    .easify-home-gigi-root .ez-gigi__ground {
+      bottom:-60px;
+      height:150px;
+    }
+    .easify-home-gigi-root .ez-gigi__mascot {
+      --ez-gigi-mascot-size:min(105vw,380px);
+      top:5px;
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+    .easify-home-gigi-root *,
+    .easify-home-gigi-root *::before,
+    .easify-home-gigi-root *::after {
+      animation:none !important;
+      transition:none !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Easify GiGi",
+  "tag": "section",
+  "class": "easify-home-gigi-section",
+  "settings": [
+    { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "gigi" },
+    { "type": "text", "id": "accessible_label", "label": "Accessible label", "default": "GiGi, the Easify AI assistant" },
+    { "type": "text", "id": "word", "label": "Background word", "default": "GiGi" },
+    { "type": "image_picker", "id": "mascot", "label": "Mascot image" },
+    { "type": "text", "id": "mascot_alt", "label": "Mascot alt text", "default": "GiGi, the Easify AI assistant" }
+  ],
+  "presets": [{ "name": "Easify GiGi" }]
+}
+{% endschema %}

@@ -1,0 +1,87 @@
+{{ 'easify-demo-catalog.css' | asset_url | stylesheet_tag }}
+
+<section
+  aria-labelledby="EasifyDemoCatalogHeading"
+  class="easify-demo-catalog"
+  data-demo-catalog
+  data-store-base="https://easify-box-bundle-builder.myshopify.com/apps/box-builder/"
+  id="ez-box-types"
+>
+  <div class="easify-demo-catalog__shell">
+    <header class="easify-demo-catalog__heading">
+      <h2 id="EasifyDemoCatalogHeading">One store. Four ways to sell more.</h2>
+      <p>Pick the one that fits — and you're already halfway done.</p>
+    </header>
+
+    <div aria-label="Box type" class="easify-demo-catalog__types" role="tablist">
+      <button aria-selected="true" data-demo-type="regular" role="tab" type="button">
+        <span>1</span>
+        <span><strong>Regular box</strong><small>Build your own box</small></span>
+      </button>
+      <button aria-selected="false" data-demo-type="fixed" role="tab" type="button">
+        <span>2</span>
+        <span><strong>Fixed-price box</strong><small>Bundle at one price</small></span>
+      </button>
+      <button aria-selected="false" data-demo-type="predefined" role="tab" type="button">
+        <span>3</span>
+        <span><strong>Predefined box sizes</strong><small>Pick a size, fill the rest</small></span>
+      </button>
+      <button aria-selected="false" data-demo-type="tiered" role="tab" type="button">
+        <span>4</span>
+        <span><strong>Tiered quantity discounts</strong><small>Buy more, save more</small></span>
+      </button>
+    </div>
+
+    <div class="easify-demo-catalog__catalog">
+      <div class="easify-demo-catalog__toolbar">
+        <div aria-label="Template layout" class="easify-demo-catalog__layouts" role="tablist">
+          <button aria-selected="true" data-demo-layout="onepage" role="tab" type="button">One-page templates</button>
+          <button aria-selected="false" data-demo-layout="multipage" role="tab" type="button">Multi-page templates</button>
+          <button aria-selected="false" data-demo-layout="seasonal" role="tab" type="button">Seasonal templates</button>
+        </div>
+
+        <div class="easify-demo-catalog__tools">
+          <div class="easify-demo-catalog__filter">
+            <button aria-expanded="false" class="easify-demo-catalog__filter-toggle" data-demo-filter-toggle type="button">
+              <svg aria-hidden="true" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24" width="15">
+                <path d="M4 6h16"></path>
+                <path d="M6 12h12"></path>
+                <path d="M9 18h6"></path>
+              </svg>
+              <span data-demo-filter-label>Filters</span>
+            </button>
+            <div class="easify-demo-catalog__filter-panel" data-demo-filter-panel hidden>
+              <div>
+                <strong>Industry</strong>
+                <div class="easify-demo-catalog__chips" data-demo-industry-filters></div>
+              </div>
+              <div data-demo-season-group hidden>
+                <strong>Season</strong>
+                <div class="easify-demo-catalog__chips" data-demo-season-filters></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="easify-demo-catalog__grid" data-demo-grid></div>
+      <p class="easify-demo-catalog__empty" data-demo-empty hidden>No templates in this combination yet.</p>
+    </div>
+  </div>
+
+  <dialog aria-labelledby="EasifyDemoModalTitle" class="easify-demo-catalog__modal" data-demo-modal>
+    <div class="easify-demo-catalog__modal-bar">
+      <h3 id="EasifyDemoModalTitle" data-demo-modal-title>Template preview</h3>
+      <button aria-label="Close template preview" data-demo-modal-close type="button">×</button>
+    </div>
+    <div class="easify-demo-catalog__modal-body">
+      <span aria-hidden="true" class="easify-demo-catalog__loader"></span>
+      <iframe data-demo-modal-frame loading="lazy" title="Box builder demo"></iframe>
+    </div>
+  </dialog>
+</section>
+
+{% render 'easify-image-manifest', group: 'catalog' %}
+
+<script defer src="{{ 'easify-demo-catalog-data.js' | asset_url }}"></script>
+<script defer src="{{ 'easify-demo-catalog.js' | asset_url }}"></script>
